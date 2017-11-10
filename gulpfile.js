@@ -42,7 +42,7 @@
       orderedTasks: ['svgo', 'convertType', 'svgSprites', 'flags'],
       watch: {
         active: false,
-        files: [sitesettings.watch.sass, sitesettings.watch.js]
+        // files: [sitesettings.watch.sass, sitesettings.watch.js]
       },
       linting: {
         testSass: false
@@ -125,11 +125,28 @@
     genTasks(masterTaskObj, 'pretasks');
     genTasks(masterTaskObj, 'subtasks');
 
-    gulp.task(masterTaskName, typeof masterTaskObj.orderedTasks === 'undefined' ? gulp.series(masterTaskObj.pretasks, masterTaskObj.subtasks) : gulp.series(gulp.series(masterTaskObj.orderedTasks), masterTaskObj.pretasks, masterTaskObj.subtasks, function () {
-      if (masterTaskObj.watch.active) {
-        gulp.watch([masterTaskObj.watch.files], gulp.series(masterTaskObj.pretasks, masterTaskObj.subtasks));
-      }
-    }));
+    if (typeof masterTaskObj.orderedTasks === 'undefined') {
+      gulp.task(masterTaskName, gulp.series(
+        masterTaskObj.pretasks,
+        masterTaskObj.subtasks
+      ));
+    }
+    else {
+      gulp.task(masterTaskName, gulp.series(
+        masterTaskObj.orderedTasks,
+        masterTaskObj.pretasks,
+        masterTaskObj.subtasks,
+        function(done) {
+          if (masterTaskObj.watch.active) {
+            gulp.watch(
+              [masterTaskObj.watch.files],
+              gulp.series(masterTaskObj.pretasks, masterTaskObj.subtasks)
+            );
+          }
+          done();
+        }
+      ));
+    }
   }
 
   // This task simply displays information about the other tasks available.

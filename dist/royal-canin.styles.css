@@ -5331,17 +5331,6 @@ figure > figcaption {
   height: 100%;
 }
 
-body,input,textarea,select,button {
-  font-family: "RC TYPE", "Avenir", Helvetica, Arial, sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-}
-
-h1,h2,h3,h4,h5,h6 {
-  font-weight: 300;
-  margin-top: 0;
-}
-
 .alpha,.alpha--black,.rc-replace-header-styles h1,.beta,.beta--black,.rc-replace-header-styles h2,.gamma,.gamma--black,.rc-replace-header-styles h3,.delta,.delta--black,.rc-replace-header-styles h4,.espilon,.espilon--black,.rc-replace-header-styles h5,.zeta,.zeta--black,.rc-replace-header-styles h6,.rc-head--subheadline,.rc-head--subheadline--black,.rc-head--article,.rc-head--article--black {
   color: #EC001A;
   font-weight: 300;
@@ -5446,6 +5435,17 @@ h1,h2,h3,h4,h5,h6 {
 
 .label--black {
   color: #333333;
+}
+
+body,input,textarea,select,button {
+  font-family: "RC TYPE", "Avenir", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 300;
+  margin-top: 0;
 }
 
 .font--regular {
@@ -8402,10 +8402,6 @@ video.hero__bg {
     margin: 1em auto;
   }
 
-  body,input,textarea,select,button {
-    font-size: 16px;
-  }
-
   .alpha,.alpha--black,.rc-replace-header-styles h1 {
     font-size: 2.5em;
   }
@@ -8448,6 +8444,10 @@ video.hero__bg {
 
   .label,.label--black {
     font-size: 1.1em;
+  }
+
+  body,input,textarea,select,button {
+    font-size: 16px;
   }
 
   [role="alert"],.alert {

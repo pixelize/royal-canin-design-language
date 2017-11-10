@@ -138,10 +138,7 @@
         masterTaskObj.subtasks,
         function(done) {
           if (masterTaskObj.watch.active) {
-            gulp.watch(
-              [masterTaskObj.watch.files],
-              gulp.series(masterTaskObj.pretasks, masterTaskObj.subtasks)
-            );
+            gulp.watch([masterTaskObj.watch.files], gulp.series(masterTaskObj.pretasks, masterTaskObj.subtasks));
           }
           done();
         }

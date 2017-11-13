@@ -1,18 +1,27 @@
 /// ----------------------------------------------------------------------
 
-/// Animation Function
+/// Animation Functions
+///
+/// Config file containing sass maps: 
+/// ./configuration/_animations.scss
 
 /// ----------------------------------------------------------------------
 
-@function animatePlusTransform($animate, $settings, $transform, $transformPlusValue) {
-  @if $animate == steady-spin {
-    @return steady-spin-#{$transform} $settings;
-  }
-}
-
+///
+/// Get Movement Setting
+///
+/// Used to apply a transition or animation to an element.
+///
+/// @param {String} $type Type of movement, found in $movementSettings sass map.
+/// @returns {String}
+///
+/// @param {String} $setting Setting of movement, found in $movementSettings sass map.
+/// @returns {String}
+///
 @function movementSetting($type, $setting) {
   @if $type != null {
     $getSetting: map-get( map-get($movementSettings, $type), $setting);
+
     @if $getSetting != null {
       @return $getSetting;
     }
@@ -22,5 +31,11 @@
   }
   @else {
     @error 'The animation setting type #{$type} doesn\'t exsist';
+  }
+}
+
+@function animatePlusTransform($animate, $settings, $transform, $transformPlusValue) {
+  @if $animate == steady-spin {
+    @return steady-spin-#{$transform} $settings;
   }
 }

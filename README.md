@@ -1,4 +1,4 @@
-# Royal Canin Design Language
+# Royal Canin Design Language Assets
 
 This repository contains the development files used to generate the Royal Canin Design Language Assets (2017). All files are managed via the repo.
 

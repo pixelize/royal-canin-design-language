@@ -4825,11 +4825,15 @@ RCDL.features.Slider = {
     var min = parseInt(item.getAttribute('data-js-min')) || 0;
     var max = parseInt(item.getAttribute('data-js-max')) || 100;
     var start = parseInt(item.getAttribute('data-js-start')) || min;
-    var step = parseInt(item.getAttribute('data-js-step')) || max / 10;
+    var step = parseInt(item.getAttribute('data-js-step')) || max / 50;
 
     var sliderInput = item.getElementsByTagName('input');
     sliderInput[0].value = start;
     sliderInput[0].style.display = 'none';
+
+    function filterVal(value) {
+      return value % 10 ? 0 : 1;
+    }
 
     noUiSlider.create(item, {
       start: [start],
@@ -4842,8 +4846,8 @@ RCDL.features.Slider = {
       },
       pips: {
         mode: 'steps',
-        stepped: true,
-        density: 2
+        density: step,
+        filter: filterVal
       }
     });
 
@@ -5007,7 +5011,6 @@ RCDL.features.Tabs = {
     var target = document.querySelectorAll(this.getAttribute('href'));
 
     RCDL.features.Tabs.hideTabs(this.parentNode.parentNode.parentNode);
-    RCDL.utilities.modifyClass('toggle', target[0], 'hidden');
 
     // Set the ARIA attributes on the controller and target.
     target[0].setAttribute('aria-hidden', 'false');

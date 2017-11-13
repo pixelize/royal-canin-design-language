@@ -1,6 +1,9 @@
 /// ----------------------------------------------------------------------
 
 /// Layout Functions
+///
+/// Config file containing sass maps:
+/// ./configuration/_layout.scss
 
 /// ----------------------------------------------------------------------
 
@@ -9,7 +12,7 @@
 ///
 /// Used to create consistency across max width values.
 ///
-/// @param {String} $name Name of the max width found in the $max-width sass map.
+/// @param {String} $name Name of the max width, found in the $max-width sass map.
 /// @returns {Number}
 ///
 @function get-maxWidth($name) {
@@ -21,7 +24,7 @@
 ///
 /// Used to create consistency across spacing.
 ///
-/// @param {String} $size Name of the spacer found in the $spacers sass map. Current uses the middle value (3).
+/// @param {String} $size Name of the spacer, found in the $spacers sass map. Currently uses the middle value (3).
 /// @returns {Number}
 ///
 @function get-spacer($size) {
@@ -33,7 +36,7 @@
 ///
 /// Used to organise z-index layering of elements.
 ///
-/// @param {String} $key Name of the element.
+/// @param {String} $key Name of the element, found in the $z-layers sass map.
 /// @returns {Number}
 ///
 @function z($key) {
@@ -46,7 +49,9 @@
 }
 
 ///
-/// Generate media queries for each breakpoint in $breakpoints sass map
+/// Breakpoint Functions
+///
+/// Used to generate media queries for each breakpoint in $breakpoints sass map
 ///
 /// @example scss - Basic Usage Sass - outputs @media (min-width)
 ///
@@ -70,7 +75,6 @@
     @error 'The breakpoint size: #{$size} wasn\'t found. Try: $breakpoint-size';
   }
 }
-
 
 @function get-breakpoint-down($size) {
   $breakpoint-size: map-get($breakpoints, $size);

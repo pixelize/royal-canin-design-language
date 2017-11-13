@@ -1,9 +1,26 @@
 /// ----------------------------------------------------------------------
 
 /// Colour Functions
+///
+/// Config file containing sass maps: 
+/// ./configuration/_colours.scss
 
 /// ----------------------------------------------------------------------
 
+///
+/// Get Colour
+///
+/// Used to apply a colour to an element.
+///
+/// @param {String} $palette Colour palette name, found in $colours sass map.
+/// @returns {String}
+///
+/// @param {String} $name Name of colour, found in $colours sass map.
+/// @returns {String}
+///
+/// @param {String} $tintTone Tint of colour (optional), found in $colours sass map.
+/// @returns {String}
+///
 @function colour($palette, $name, $tintTone: null) {
   $getPalette: map-get($colours, $palette);
 

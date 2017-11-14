@@ -3,11 +3,27 @@
 All notable changes to Royal Canin Design Language will be documented on this page.
 [View Full](http://developer.royalcanin.com/changelog.html)
 
+ ## v3.1.0
+This release is all about improving our documentation. We have included a new section on implementation which we hope will clear up how to get your project up and running.
+ ### New Features
+ ##### Implementation Pages
+A whole section dedicated to helping you get up and running with the Design Language. Including a downloadable HTML boilerplate.
+ ##### Readme Documentation in the Project Repository
+Our readme file for developers has been updated with improved instructions.
+ ##### General Layout Improvements
+We are working on incremental layout improvements to the portal, the most notable in this release is the removal of the grey background.
+ ### Minor Updates/Bug fixes
+ ##### Slider Bug Fixes
+The slider element has been improved and had some mobile bugs fixed.
+ ##### Form Element Bug Fixes for Firefox/Safari
+Form elements are now showing properly in latest Firefox and Safari.
+ ##### Bug Fixed on Tabs Element
+Fixed bug where tabs were toggling on double click.
  ## v3.0.0
 Following the recent v2.0.0 update, in this release we give you another boat load of code optimisations on our journey to the land of implementation utopia. A 16 pixel icon set is now also a thing of beauty for design and development. We banished some bugs on responsive typography to the past amongst some other ghosts, ghouls and demons. And finally, whilst we can’t help you find love, we can give you a long lost search feature to help you find what you are looking for.
  ### Breaking Changes
  ##### Form Elements Update
-The "rc-" prefix has been removed from form input classes in order to be consistent with the rest of Design Language. Form elements now also follow BEM class naming convention.
+The "rc-" prefix has been removed from form input classes in order to be consistent with the rest of Design Language. Form elements now also follow BEM class naming convention.,
  ### New Features
  ##### Small 16x16px Icon Set
 There is a new iconset designed and optimised at 16x16px.

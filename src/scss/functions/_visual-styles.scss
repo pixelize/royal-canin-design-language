@@ -1,13 +1,23 @@
 /// ----------------------------------------------------------------------
 
 /// Visual Style Functions
+///
+/// Config file containing sass maps: 
+/// ./configuration/_visual-styles.scss
 
 /// ----------------------------------------------------------------------
 
-/// ------------------- 
-/// Shadows 
-/// -------------------
-
+///
+/// Get Shadow
+///
+/// Used to apply a box-shadow to an element.
+///
+/// @param {String} $name Colour of shadow, found in $shadows sass map.
+/// @returns {String}
+///
+/// @param {String} $tintTone Strength of shadow, found in $shadows sass map.
+/// @returns {String}
+///
 @function getShadow($colour, $strength) {
   $getColour: map-get($shadows, $colour);
 

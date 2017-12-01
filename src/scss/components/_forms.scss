@@ -116,8 +116,7 @@
     }
   }
 
-  & .error,
-  & :invalid {
+  & .error {
     color: colour('brand', 'red');
     border: 1px solid colour('brand', 'red');
     background-color: transparentize( colour('brand', 'red'), .9 );
@@ -311,14 +310,24 @@
 }
 
 [role="listbox"].choices {
-  border-bottom: 3px solid #87888A;
   box-shadow: getShadow('black', 'faint');
   cursor: pointer;
-
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  max-width: 300px;
+  
   & > .choices__inner {
     background-color: colour('tertiary', 'grey--light');
     border: none;
+    border-bottom: 3px solid #87888A;
     border-radius: 0;
+
+    &.error {
+      color: colour('brand', 'red');
+      border: 1px solid colour('brand', 'red');
+      border-bottom: 3px solid colour('brand', 'red');
+      background-color: transparentize( colour('brand', 'red'), .9 );
+    }
   }
 }
 
@@ -349,16 +358,22 @@
   background-color: colour('tertiary', 'blue--light');
 }
 
-.choices__list--multiple .choices__item {
-  background-color: colour('brand', 'red');
-  border: none;
-  border-radius: 0;
-  padding: .75em;
-}
+.choices__list--multiple {
+  & .choices__item {
+    background-color: colour('brand', 'red');
+    border: none;
+    border-radius: 0;
+    padding: .75em;
+  }
+  
+  & .choices__item.is-highlighted {
+    background-color: colour('brand', 'red', 'dark');
+    border: none;
+  }
+} 
 
-.choices__list--multiple .choices__item.is-highlighted {
-  background-color: colour('brand', 'red', 'dark');
-  border: none;
+.choices__list--dropdown {
+  z-index: z(default) + 2;
 }
 
 .choices[data-type*="select-multiple"] .choices__button,

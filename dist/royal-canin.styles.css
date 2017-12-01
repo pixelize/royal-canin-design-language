@@ -5977,13 +5977,13 @@ button {
   opacity: .3;
 }
 
-.input .error,.input :invalid {
+.input .error {
   color: #EC001A;
   border: 1px solid #EC001A;
   background-color: rgba(236, 0, 26, 0.1);
 }
 
-.input .error + .input__label::after,.input :invalid + .input__label::after {
+.input .error + .input__label::after {
   background-color: #EC001A;
   width: 100%;
 }
@@ -6084,15 +6084,25 @@ button {
 }
 
 [role="listbox"].choices {
-  border-bottom: 3px solid #87888A;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  max-width: 300px;
 }
 
 [role="listbox"].choices > .choices__inner {
   background-color: #F6F6F6;
   border: none;
+  border-bottom: 3px solid #87888A;
   border-radius: 0;
+}
+
+[role="listbox"].choices > .choices__inner.error {
+  color: #EC001A;
+  border: 1px solid #EC001A;
+  border-bottom: 3px solid #EC001A;
+  background-color: rgba(236, 0, 26, 0.1);
 }
 
 [role="listbox"].choices--white > .choices__inner {
@@ -6128,6 +6138,10 @@ button {
 .choices__list--multiple .choices__item.is-highlighted {
   background-color: #c90016;
   border: none;
+}
+
+.choices__list--dropdown {
+  z-index: 3;
 }
 
 .choices[data-type*="select-multiple"] .choices__button,.choices[data-type*="text"] .choices__button {

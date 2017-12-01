@@ -6078,6 +6078,11 @@ button {
   left: 4px;
 }
 
+.select__label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
 [role="listbox"].choices {
   border-bottom: 3px solid #87888A;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

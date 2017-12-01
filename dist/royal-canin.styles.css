@@ -6422,13 +6422,13 @@ button {
   margin-bottom: 1em;
 }
 
-.list--standard .list--standard__item {
+.list--standard .list__item--standard {
   position: relative;
   line-height: 1.5;
   margin-bottom: .25em;
 }
 
-.list--standard .list--standard__item:last-child {
+.list--standard .list__item--standard:last-child {
   margin-bottom: 0;
 }
 
@@ -6451,7 +6451,7 @@ button {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.list--significance__item {
+.list__item--significance {
   border-bottom: 1px solid #8d8f91;
   margin-bottom: 0;
   display: block;
@@ -6463,25 +6463,25 @@ button {
   position: relative;
 }
 
-.list--significance__item .rc-icon {
+.list__item--significance .rc-icon {
   position: absolute;
   right: 1em;
 }
 
-.list--significance__item:last-child {
+.list__item--significance:last-child {
   border-bottom-color: transparent;
 }
 
-.list--significance__item:hover,.list--significance__item:focus {
+.list__item--significance:hover,.list__item--significance:focus {
   background-color: #ececec;
 }
 
-.list--significance__item.active {
+.list__item--significance.active {
   background-color: #ececec;
   border-left: 4px solid #EC001A;
 }
 
-.list--significance__item.active::before {
+.list__item--significance.active::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -6494,7 +6494,7 @@ button {
   border-bottom: 4px solid transparent;
 }
 
-.list--significance__link {
+.list__link--significance {
   text-decoration: none;
   color: #333333;
 }

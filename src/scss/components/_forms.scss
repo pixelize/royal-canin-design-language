@@ -121,23 +121,31 @@
 /// Input states
 /// -------------------
 
+%error {
+  border: 1px solid colour('brand', 'red');
+  background-color: lighten(colour('brand', 'red'), 50%);
+}
+
 .input {
   & :disabled {
     & + .input__label {
       opacity: .3;
     }
   }
-
+  
   & .error {
+    @extend %error;
     color: colour('brand', 'red');
-    border: 1px solid colour('brand', 'red');
-    background-color: transparentize( colour('brand', 'red'), .9 );
-    
     & + .input__label::after {
       background-color: colour('brand', 'red');
       width: 100%;
     }
   }
+}
+
+.choices.error + .select__label {
+  @extend %error;
+  border-bottom: 2px solid colour('brand', 'red');
 }
 
 /// ------------------- 
@@ -324,7 +332,9 @@
   @extend %label; 
   z-index: z(select-box);
   background-color: colour('tertiary', 'grey--light');
-  height: calc(100% - 3px);
+  border: none;
+  border-bottom: 2px solid #87888A;
+  border-radius: 0;
   
   .select__label__text {
     @extend %label__text;
@@ -349,20 +359,9 @@
   box-shadow: getShadow('black', 'faint');
   cursor: pointer;
   margin: 0;
-
   
   & > .choices__inner {
-    background-color: colour('tertiary', 'grey--light');
     border: none;
-    border-bottom: 3px solid #87888A;
-    border-radius: 0;
-
-    &.error {
-      color: colour('brand', 'red');
-      border: 1px solid colour('brand', 'red');
-      border-bottom: 3px solid colour('brand', 'red');
-      background-color: transparentize( colour('brand', 'red'), .9 );
-    }
   }
   
   &::after {
@@ -383,8 +382,6 @@
     transform: translateY(-50%) rotate(180deg);
   }
 }
-
-
 
 [role="listbox"].choices--white {
   & > .choices__inner {

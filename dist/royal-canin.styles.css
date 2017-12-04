@@ -5976,19 +5976,26 @@ button {
   outline: none;
 }
 
+.input .error,.choices.error + .select__label {
+  border: 1px solid #EC001A;
+  background-color: #ffecee;
+}
+
 .input :disabled + .input__label {
   opacity: .3;
 }
 
 .input .error {
   color: #EC001A;
-  border: 1px solid #EC001A;
-  background-color: rgba(236, 0, 26, 0.1);
 }
 
 .input .error + .input__label::after {
   background-color: #EC001A;
   width: 100%;
+}
+
+.choices.error + .select__label {
+  border-bottom: 2px solid #EC001A;
 }
 
 .input--white {
@@ -6084,7 +6091,9 @@ button {
 .select__label {
   z-index: 2;
   background-color: #F6F6F6;
-  height: calc(100% - 3px);
+  border: none;
+  border-bottom: 2px solid #87888A;
+  border-radius: 0;
 }
 
 .choices:focus + .select__label,.choices.is-open + .select__label,.choices.has-changed + .select__label {
@@ -6104,17 +6113,7 @@ button {
 }
 
 [role="listbox"].choices > .choices__inner {
-  background-color: #F6F6F6;
   border: none;
-  border-bottom: 3px solid #87888A;
-  border-radius: 0;
-}
-
-[role="listbox"].choices > .choices__inner.error {
-  color: #EC001A;
-  border: 1px solid #EC001A;
-  border-bottom: 3px solid #EC001A;
-  background-color: rgba(236, 0, 26, 0.1);
 }
 
 [role="listbox"].choices::after {

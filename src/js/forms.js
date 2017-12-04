@@ -117,7 +117,10 @@ RCDL.features.Selects = function (selector) {
           classNames: {
             containerOuter: RCDL.utilities.hasClass(select, 'input--white') ? 'choices choices--white' : 'choices'
           }
-        }
+        },
+        select.addEventListener('choice', function () {
+          RCDL.utilities.modifyClass('add', select.parentNode.parentNode, 'has-changed');
+        })
       );
     });
   }

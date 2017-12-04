@@ -5896,13 +5896,20 @@ button {
   border: 1px solid #808285;
 }
 
-.input__label {
+.input__label,.select__label {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+.input__label__text,.select__label .select__label__text {
+  display: inline-block;
+  padding: .75em;
+  pointer-events: none;
+  transition: 0.2s ease;
 }
 
 .input__label::before,.input__label::after {
@@ -5921,13 +5928,6 @@ button {
   background-color: #5ca9ad;
   z-index: 2;
   width: 0;
-}
-
-.input__label__text {
-  display: inline-block;
-  padding: .75em;
-  pointer-events: none;
-  transition: 0.2s ease;
 }
 
 .input input:focus + .input__label > .input__label__text,.input textarea:focus + .input__label > .input__label__text,.input input:not([value=""]) + .input__label > .input__label__text,.input textarea:not([value=""]) + .input__label > .input__label__text {
@@ -5950,11 +5950,14 @@ button {
   cursor: pointer;
 }
 
-.input {
+.input,.select {
   display: block;
   position: relative;
   margin-top: 3rem;
   margin-bottom: 1em;
+}
+
+.input {
   max-width: 300px;
 }
 
@@ -6079,16 +6082,25 @@ button {
 }
 
 .select__label {
-  display: block;
-  margin-bottom: 1rem;
+  z-index: 2;
+  background-color: #F6F6F6;
+  height: calc(100% - 3px);
+}
+
+.choices:focus + .select__label,.choices.is-open + .select__label,.choices.has-changed + .select__label {
+  background: none;
+}
+
+.choices:focus + .select__label .select__label__text,.choices.is-open + .select__label .select__label__text,.choices.has-changed + .select__label .select__label__text {
+  transform: translate(0, -3em);
+  padding-left: 0;
+  background: none;
 }
 
 [role="listbox"].choices {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  max-width: 300px;
+  margin: 0;
 }
 
 [role="listbox"].choices > .choices__inner {
@@ -6105,10 +6117,6 @@ button {
   background-color: rgba(236, 0, 26, 0.1);
 }
 
-[role="listbox"].choices--white > .choices__inner {
-  background-color: #FFF;
-}
-
 [role="listbox"].choices::after {
   height: 32px;
   width: 32px;
@@ -6118,13 +6126,18 @@ button {
   right: 1rem;
   position: absolute;
   cursor: pointer;
+  z-index: 3;
 }
 
-[role="listbox"].choices.is-focused::after {
+[role="listbox"].choices.is-open::after {
   transform: translateY(-50%) rotate(180deg);
 }
 
-[role="listbox"].choices .choices__item--selectable.is-highlighted {
+[role="listbox"].choices--white > .choices__inner {
+  background-color: #FFF;
+}
+
+.choices__item--selectable.is-highlighted {
   background-color: #E7F4F7;
 }
 

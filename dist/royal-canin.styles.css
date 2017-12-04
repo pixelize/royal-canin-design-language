@@ -6177,6 +6177,7 @@ button {
 
 [role="listbox"].choices > .choices__inner {
   border: none;
+  min-height: 49px;
 }
 
 [role="listbox"].choices::after {

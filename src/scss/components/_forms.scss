@@ -8,13 +8,24 @@
 /// Labels
 /// -------------------
 
-.input__label {
+%label {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+%label__text {
+  display: inline-block;
+  padding: .75em;
+  pointer-events: none;
+  transition: movementSetting('transition', 'base');
+}
+
+.input__label {
+  @extend %label;
   
   &::before,
   &::after {
@@ -37,10 +48,7 @@
 }
 
 .input__label__text {
-  display: inline-block;
-  padding: .75em;
-  pointer-events: none;
-  transition: movementSetting('transition', 'base');
+  @extend %label__text;
  }
 
 /// ------------------- 
@@ -50,7 +58,7 @@
 .input input:focus,
 .input textarea:focus,
 .input input:not([value=""]),
-.input textarea:not([value=""]), {
+.input textarea:not([value=""]) {
   & + .input__label {
     & > .input__label__text {
       transform: translate(0, -3em);
@@ -79,14 +87,18 @@
 }
 
 /// ------------------- 
-/// Inputs
+/// Input wrapper & base styles
 /// -------------------
 
-.input {
+%input-wrapper {
   display: block;
   position: relative;
   margin-top: 3rem;
   margin-bottom: 1em;
+}
+
+.input {
+  @extend %input-wrapper;
   max-width: 300px;
 }
 
@@ -116,8 +128,7 @@
     }
   }
 
-  & .error,
-  & :invalid {
+  & .error {
     color: colour('brand', 'red');
     border: 1px solid colour('brand', 'red');
     background-color: transparentize( colour('brand', 'red'), .9 );
@@ -305,17 +316,75 @@
 /// Select inputs - choices.js
 /// -------------------
 
+.select {
+  @extend %input-wrapper;
+}
+
+.select__label {
+  @extend %label; 
+  z-index: z(select-box);
+  background-color: colour('tertiary', 'grey--light');
+  height: calc(100% - 3px);
+  
+  .select__label__text {
+    @extend %label__text;
+  }
+}
+
+.choices:focus,
+.choices.is-open,
+.choices.has-changed {
+  & + .select__label {
+    background: none;
+
+    .select__label__text {
+        transform: translate(0, -3em);
+        padding-left: 0;
+        background: none;
+    }
+  }
+}
+
 [role="listbox"].choices {
-  border-bottom: 3px solid #87888A;
   box-shadow: getShadow('black', 'faint');
   cursor: pointer;
+  margin: 0;
 
+  
   & > .choices__inner {
     background-color: colour('tertiary', 'grey--light');
     border: none;
+    border-bottom: 3px solid #87888A;
     border-radius: 0;
+
+    &.error {
+      color: colour('brand', 'red');
+      border: 1px solid colour('brand', 'red');
+      border-bottom: 3px solid colour('brand', 'red');
+      background-color: transparentize( colour('brand', 'red'), .9 );
+    }
+  }
+  
+  &::after {
+    @extend %rc-icon;
+    @extend .rc-icon-chevron--down--small--red;
+    height: 32px;
+    width: 32px;
+    border: none;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
+    position: absolute;
+    cursor: pointer;
+    z-index: z(select-box) + 1;
+  }
+
+  &.is-open::after {
+    transform: translateY(-50%) rotate(180deg);
   }
 }
+
+
 
 [role="listbox"].choices--white {
   & > .choices__inner {
@@ -323,37 +392,26 @@
   }
 }
 
-[role="listbox"].choices::after {
-  @extend %rc-icon;
-  @extend .rc-icon-chevron--down--small--red;
-  height: 32px;
-  width: 32px;
-  border: none;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 1rem;
-  position: absolute;
-  cursor: pointer;
-}
-
-[role="listbox"].choices.is-focused::after {
-  transform: translateY(-50%) rotate(180deg);
-}
-
-[role="listbox"].choices .choices__item--selectable.is-highlighted {
+.choices__item--selectable.is-highlighted {
   background-color: colour('tertiary', 'blue--light');
 }
 
-.choices__list--multiple .choices__item {
-  background-color: colour('brand', 'red');
-  border: none;
-  border-radius: 0;
-  padding: .75em;
-}
+.choices__list--multiple {
+  & .choices__item {
+    background-color: colour('brand', 'red');
+    border: none;
+    border-radius: 0;
+    padding: .75em;
+  }
+  
+  & .choices__item.is-highlighted {
+    background-color: colour('brand', 'red', 'dark');
+    border: none;
+  }
+} 
 
-.choices__list--multiple .choices__item.is-highlighted {
-  background-color: colour('brand', 'red', 'dark');
-  border: none;
+.choices__list--dropdown {
+  z-index: z(select-box) + 1;
 }
 
 .choices[data-type*="select-multiple"] .choices__button,

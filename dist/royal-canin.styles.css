@@ -5957,13 +5957,20 @@ button {
   border: 1px solid #808285;
 }
 
-.input__label {
+.input__label,.select__label {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+.input__label__text,.select__label .select__label__text {
+  display: inline-block;
+  padding: .75em;
+  pointer-events: none;
+  transition: 0.2s ease;
 }
 
 .input__label::before,.input__label::after {
@@ -5982,13 +5989,6 @@ button {
   background-color: #5ca9ad;
   z-index: 2;
   width: 0;
-}
-
-.input__label__text {
-  display: inline-block;
-  padding: .75em;
-  pointer-events: none;
-  transition: 0.2s ease;
 }
 
 .input input:focus + .input__label > .input__label__text,.input textarea:focus + .input__label > .input__label__text,.input input:not([value=""]) + .input__label > .input__label__text,.input textarea:not([value=""]) + .input__label > .input__label__text {
@@ -6011,11 +6011,14 @@ button {
   cursor: pointer;
 }
 
-.input {
+.input,.select {
   display: block;
   position: relative;
   margin-top: 3rem;
   margin-bottom: 1em;
+}
+
+.input {
   max-width: 300px;
 }
 
@@ -6038,13 +6041,13 @@ button {
   opacity: .3;
 }
 
-.input .error,.input :invalid {
+.input .error {
   color: #EC001A;
   border: 1px solid #EC001A;
   background-color: rgba(236, 0, 26, 0.1);
 }
 
-.input .error + .input__label::after,.input :invalid + .input__label::after {
+.input .error + .input__label::after {
   background-color: #EC001A;
   width: 100%;
 }
@@ -6139,20 +6142,40 @@ button {
   left: 4px;
 }
 
+.select__label {
+  z-index: 2;
+  background-color: #F6F6F6;
+  height: calc(100% - 3px);
+}
+
+.choices:focus + .select__label,.choices.is-open + .select__label,.choices.has-changed + .select__label {
+  background: none;
+}
+
+.choices:focus + .select__label .select__label__text,.choices.is-open + .select__label .select__label__text,.choices.has-changed + .select__label .select__label__text {
+  transform: translate(0, -3em);
+  padding-left: 0;
+  background: none;
+}
+
 [role="listbox"].choices {
-  border-bottom: 3px solid #87888A;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  margin: 0;
 }
 
 [role="listbox"].choices > .choices__inner {
   background-color: #F6F6F6;
   border: none;
+  border-bottom: 3px solid #87888A;
   border-radius: 0;
 }
 
-[role="listbox"].choices--white > .choices__inner {
-  background-color: #FFF;
+[role="listbox"].choices > .choices__inner.error {
+  color: #EC001A;
+  border: 1px solid #EC001A;
+  border-bottom: 3px solid #EC001A;
+  background-color: rgba(236, 0, 26, 0.1);
 }
 
 [role="listbox"].choices::after {
@@ -6164,13 +6187,18 @@ button {
   right: 1rem;
   position: absolute;
   cursor: pointer;
+  z-index: 3;
 }
 
-[role="listbox"].choices.is-focused::after {
+[role="listbox"].choices.is-open::after {
   transform: translateY(-50%) rotate(180deg);
 }
 
-[role="listbox"].choices .choices__item--selectable.is-highlighted {
+[role="listbox"].choices--white > .choices__inner {
+  background-color: #FFF;
+}
+
+.choices__item--selectable.is-highlighted {
   background-color: #E7F4F7;
 }
 
@@ -6184,6 +6212,10 @@ button {
 .choices__list--multiple .choices__item.is-highlighted {
   background-color: #c90016;
   border: none;
+}
+
+.choices__list--dropdown {
+  z-index: 3;
 }
 
 .choices[data-type*="select-multiple"] .choices__button,.choices[data-type*="text"] .choices__button {
@@ -6482,13 +6514,13 @@ button {
   margin-bottom: 1em;
 }
 
-.list--standard .list--standard__item {
+.list--standard .list__item--standard {
   position: relative;
   line-height: 1.5;
   margin-bottom: .25em;
 }
 
-.list--standard .list--standard__item:last-child {
+.list--standard .list__item--standard:last-child {
   margin-bottom: 0;
 }
 
@@ -6511,7 +6543,7 @@ button {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.list--significance__item {
+.list__item--significance {
   border-bottom: 1px solid #8d8f91;
   margin-bottom: 0;
   display: block;
@@ -6523,25 +6555,25 @@ button {
   position: relative;
 }
 
-.list--significance__item .rc-icon {
+.list__item--significance .rc-icon {
   position: absolute;
   right: 1em;
 }
 
-.list--significance__item:last-child {
+.list__item--significance:last-child {
   border-bottom-color: transparent;
 }
 
-.list--significance__item:hover,.list--significance__item:focus {
+.list__item--significance:hover,.list__item--significance:focus {
   background-color: #ececec;
 }
 
-.list--significance__item.active {
+.list__item--significance.active {
   background-color: #ececec;
   border-left: 4px solid #EC001A;
 }
 
-.list--significance__item.active::before {
+.list__item--significance.active::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -6554,7 +6586,7 @@ button {
   border-bottom: 4px solid transparent;
 }
 
-.list--significance__link {
+.list__link--significance {
   text-decoration: none;
   color: #666666;
 }

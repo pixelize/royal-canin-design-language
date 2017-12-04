@@ -10,14 +10,14 @@
   background-color: colour('brand', 'white');
   margin: auto;
   position: relative;
-}  
+}
 
 section {
   position: relative;
   @extend %clearfix;
 }
 
-/// ------------------- 
+/// -------------------
 /// Body modifier class for nav
 /// -------------------
 
@@ -36,10 +36,18 @@ $navigation-width: 240px;
   }
 }
 
-.has-left-side-bar > [role="alert"].alert--info {
-  @media (get-breakpoint-up('large')) {
-    left: $navigation-width;
-  }
+.lock-Yaxis {
+  overflow-y: hidden;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main-content__wrapper {
+  flex: 1;
 }
 
 body::before {
@@ -50,7 +58,7 @@ body::before {
   height: 0;
 }
 
-/// ------------------- 
+/// -------------------
 /// Layout Utilities
 /// -------------------
 
@@ -69,7 +77,7 @@ body::before {
   @extend %layout--two-one--base-small;
 }
 
-/// ------------------- 
+/// -------------------
 /// Stick elements
 /// -------------------
 
@@ -134,7 +142,7 @@ body::before {
   display: none;
 }
 
-/// ------------------- 
+/// -------------------
 /// Alignment Utilities
 /// -------------------
 
@@ -157,7 +165,64 @@ body::before {
   transform: translateY(-50%) translateX(-50%);
 }
 
-/// ------------------- 
+
+@media (get-breakpoint-up('med')) {
+  .center-align--med-up {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+  }
+}
+
+%align-base {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%align-child-base {
+  max-width: 50%;
+}
+
+.align-children--centered {
+  @extend %align-base;
+
+  & > div {
+    @extend %align-child-base;
+  }
+}
+
+.align-children--top {
+  @extend %align-base;
+
+  & > div {
+    @extend %align-child-base;
+    align-self: flex-start;
+  }
+}
+
+.align-children--bottom {
+  @extend %align-base;
+
+  & > div {
+    @extend %align-child-base;
+    align-self: flex-end;
+  }
+}
+
+.align-children--space-between {
+  @extend %align-base;
+  justify-content: space-between;
+
+  & > div {
+    display: inline-block;
+    display: inline-flex;
+    vertical-align: middle;
+  }
+}
+
+/// -------------------
 /// Max-widths
 /// -------------------
 
@@ -173,7 +238,7 @@ body::before {
   margin-right: auto;
 }
 
-/// ------------------- 
+/// -------------------
 /// Hide/show elements
 /// -------------------
 
@@ -185,7 +250,7 @@ body::before {
   }
 }
 
-/// ------------------- 
+/// -------------------
 /// Other Utilities
 /// -------------------
 
@@ -246,7 +311,7 @@ $spacingTypes: map-keys($spacers);
     }
   }
 }
-  
+
 ///
 /// Generate media queries for each breakpoint in $breakpoints sass map
 ///

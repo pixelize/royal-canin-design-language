@@ -52,14 +52,13 @@
   & > a:hover {
     @extend %active-menu-item;
   }
-
 }
 
 
 .navigation--vertical--toggle {
   @extend %rc-icon;
   position: absolute;
-  z-index: 99;
+  z-index: z(side-navigation);
   top: 30px;
   left: 15px;
   height: 32px;
@@ -106,6 +105,9 @@
   }
 }
 
+.page-header {
+  z-index: z(header-navigation) + 1;
+}
 
 .page-header .logo-wrapper {
   @extend .center-align;
@@ -141,6 +143,5 @@
     & .primary-navigation {
       display: inline-block;
     }
-
   }
 }

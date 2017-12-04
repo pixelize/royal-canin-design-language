@@ -133,9 +133,11 @@ body::before {
 
 .lock-top-bottom-fixed {
   position: fixed !important;
-  top: get-spacer('small') !important;
-  bottom: get-spacer('small') !important;
-  transform: translateX(-50%) !important;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
 }
 
 %show-at-large-only {

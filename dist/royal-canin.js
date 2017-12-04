@@ -4602,12 +4602,12 @@ RCDL.navigation = {};
 /**
  * Changes all navigation bars on scroll
  *
- * @param {String} headerNavSelector Selector for the header navigation div 
- * 
+ * @param {String} headerNavSelector Selector for the header navigation div
+ *
  * @param {String} mobileFooterNavSelector Selector for the mobile footer navigation div
- * 
+ *
  * @param {String} mainNavSelector Selector for the main navigation div
- * 
+ *
  */
 RCDL.navigation.changeNavigationOnScroll = function (headerNavSelector, mobileFooterNavSelector, mainNavSelector) {
   'use strict';
@@ -4940,6 +4940,7 @@ RCDL.features.sticky = {
    * Either a css selector or an array or selectors.
    */
   init: function (selector) {
+    'use strict';
 
     var h = document.querySelector(selector);
     var stuck = false;
@@ -4950,14 +4951,14 @@ RCDL.features.sticky = {
       return topDist;
     }
 
-    window.onscroll = function(e) {
+    window.onscroll = function (e) {
       var distance = getDistance() - window.pageYOffset;
       var offset = window.pageYOffset;
       var position = h.getAttribute('data-sticky');
       var offsets = setOffsets(position);
 
 
-      if ( (distance <= 0) && !stuck) {
+      if ((distance <= 0) && !stuck) {
         var spacer = document.createElement('div');
         spacer.style.height = h.innerHeight + 'px';
         spacer.style.width = h.innerWidth + 'px';
@@ -4968,7 +4969,7 @@ RCDL.features.sticky = {
 
         h.setAttribute('data-original-position', h.style.position);
         h.style.position = 'fixed';
-        h.style.zIndex = '999';
+        // h.style.zIndex = '999';
 
         h.style[position] = '0px';
         stuck = true;
@@ -4984,7 +4985,7 @@ RCDL.features.sticky = {
 
         document.querySelector('[data-sticky="' + position + '-clone"]').remove();
       }
-    }
+    };
 
 
     function setOffsets (position) {
@@ -5012,10 +5013,8 @@ RCDL.features.sticky = {
       return {
         padding: padding,
         space: space
-      }
+      };
     }
-
-
   }
 };
 

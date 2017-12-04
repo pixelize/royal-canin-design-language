@@ -175,6 +175,7 @@ $nav-heights: (
   }
 
   & + .shade {
+    z-index: z(header-navigation); 
     display: none;
     animation: fadeIn .3s;
     animation-direction: reverse;

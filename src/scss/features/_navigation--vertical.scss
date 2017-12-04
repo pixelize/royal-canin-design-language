@@ -11,6 +11,19 @@
   padding: 0;
 }
 
+%active-menu-item {
+  @extend %rc-icon;
+  @extend .rc-icon-chevron--right--red;
+  @extend %rc-icon--small;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
 .navigation--vertical__list-item {
   list-style: none;
   padding: 0;
@@ -18,10 +31,16 @@
 
   & > a,
   & > .section-title {
+    position: relative;
     display: block;
     text-decoration: none;
     padding: .5rem;
     color: colour('functional', 'text');
+  }
+
+  & > a.active {
+    @extend .colour-grey--light--light__bkgrnd;
+    @extend %active-menu-item;
   }
 
   & > .section-title {
@@ -30,4 +49,98 @@
     padding-bottom: 1rem;
   }
 
+  & > a:hover {
+    @extend %active-menu-item;
+  }
+
+}
+
+
+.navigation--vertical--toggle {
+  @extend %rc-icon;
+  position: absolute;
+  z-index: 99;
+  top: 30px;
+  left: 15px;
+  height: 32px;
+  width: 32px;
+
+  &::after {
+    content: '';
+    display: block;
+    position: relative;
+    @extend .rc-icon-menu--dark::after;
+
+    &:hover,
+    &:focus {
+      @extend .rc-icon-menu--red::after;
+    }
+  }
+
+  @media (get-breakpoint-down('med')) {
+    background-color: transparent;
+
+    &:hover,
+    &:focus {
+      background-color: transparent;
+    }
+  }
+
+  @media (get-breakpoint-up('med')) {
+    height: auto;
+    width: auto;
+    bottom: -60px;
+    left: 15px;
+    top: auto;
+    display: inline-block;
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.navigation--vertical > nav + nav {
+  @media (get-breakpoint-up('med')) {
+    padding-top: 50px;
+  }
+}
+
+
+.page-header .logo-wrapper {
+  @extend .center-align;
+
+  @media (get-breakpoint-up('med')) {
+   position: relative;
+    left: auto;
+    transform: none;
+  }
+}
+
+@media (get-breakpoint-down('med')) {
+  .page-has-no-sidebar {
+
+    & .page-header .align-children--space-between {
+      flex-direction: column;
+      display: block;
+      text-align: center;
+    }
+
+    & .logo-wrapper {
+      position: relative;
+      transform: none;
+      left: auto;
+      top: auto;
+      display: block;
+    }
+
+    & .svg-wrapper-link {
+      display: inline-block;
+    }
+
+    & .primary-navigation {
+      display: inline-block;
+    }
+
+  }
 }

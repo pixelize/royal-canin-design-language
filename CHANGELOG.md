@@ -1,7 +1,7 @@
 
  # Changelog
 All notable changes to Royal Canin Design Language will be documented on this page.
-[View Full](http://developer.royalcanin.com/changelog.html)
+[View Full](http://developer.royalcanin.com/ui_assets/changelog.html)
 
  ## v3.1.0
 This release is all about improving our documentation. We have included a new section on implementation which we hope will clear up how to get your project up and running.
@@ -11,7 +11,7 @@ A whole section dedicated to helping you get up and running with the Design Lang
  ##### Readme Documentation in the Project Repository
 Our readme file for developers has been updated with improved instructions.
  ##### General Layout Improvements
-We are working on incremental layout improvements to the portal, the most notable in this release is the removal of the grey background.
+We are working on incremental layout improvements to the portal, the most notable in this release is the removal of the grey background.,
  ### Minor Updates/Bug fixes
  ##### Slider Bug Fixes
 The slider element has been improved and had some mobile bugs fixed.
@@ -30,7 +30,7 @@ There is a new iconset designed and optimised at 16x16px.
  ##### Search Feature
 A search feature has been implemented to make it easier to find what you need.
  ##### Copy Code to Clipboard
-All code snippets can now be copied instantly via a button.
+All code snippets can now be copied instantly via a button.,
  ### Minor Updates/Bug fixes
  ##### Responsive Typography
 Type scaling has been improved across mobile devices.
@@ -41,12 +41,12 @@ All instances of RCWDL have been renamed to RCDL.
  ##### Renamed Toggle Class Method
 RCDL.toggleClass() has been renamed to RCDL.modifyClass() with added type parameter.
  ##### Icon Class Change
-All Royal Canin icons now require the base class .rc-icon.
+All Royal Canin icons now require the base class .rc-icon.,
  ### New Features
  ##### Changelog page
 Added the current page so that changes are clearly visible and easy to track.
  ##### Alert Functionality
-Added default functionality for closing alerts and storing that decision in the current session.
+Added default functionality for closing alerts and storing that decision in the current session.,
  ### Minor Updates/Bug fixes
  ##### Correct Icon Scaling
-Icon scaling has been improved by targeting the pseudo element.
+Icon scaling has been improved by targeting the psuedo element.

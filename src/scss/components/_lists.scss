@@ -10,10 +10,10 @@
 
 .list--standard {
   font-size: 1em;
-  margin-top: 1em;
+  margin-top: 1em; 
   margin-bottom: 1em;
 
-  .list--standard__item {
+  .list__item--standard {
     position: relative;
     line-height: 1.5;
     margin-bottom: .25em;
@@ -29,7 +29,7 @@
   }
 }
 
-/// ------------------- 
+/// -------------------
 /// List Modifiers
 /// -------------------
 
@@ -61,7 +61,7 @@
   box-shadow: getShadow('black', 'faint');
 }
 
-.list--significance__item {
+.list__item--significance {
   border-bottom: 1px solid colour('brand', 'medium-grey', 'light');
   margin-bottom: 0;
   display: block;
@@ -105,7 +105,7 @@
   }
 }
 
-.list--significance__link {
+.list__link--significance {
   text-decoration: none;
   color: colour('functional', 'text');
 }

@@ -26,6 +26,11 @@
 
 .rc-column {
   position: relative;
+  justify-content: center;
+}
+
+.justify-content-space-around {
+  justify-content: space-around;
 }
 
 @media (get-breakpoint-up('med')) {

@@ -1,0 +1,49 @@
+/// -------------------
+/// Inline style link
+/// -------------------
+
+.styled-link {
+  display: inline-block;
+  vertical-align: bottom;
+  position: relative;
+  z-index: z(default);
+  color: colour('functional', 'text');
+  transition: color .2s ease-in, border-color .2s ease-in;
+  overflow: hidden;
+  background-color: transparent;
+  border: none;
+  user-select: none;
+  text-decoration: none;
+  border-bottom: 1px solid colour('brand', 'medium-grey');
+  padding-bottom: 4px;
+  line-height: .9em;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: colour('brand', 'red');
+    border-bottom: 1px solid colour('brand', 'red');
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    &::before {
+      background-color: colour('functional', 'text', 'dark');
+    }
+  }
+}
+
+nav {
+  & .styled-link {
+    border-bottom: none;
+
+    &:hover,
+    &:focus {
+      border-bottom: none;
+    }
+  }
+}

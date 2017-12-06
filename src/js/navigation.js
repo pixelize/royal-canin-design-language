@@ -3,12 +3,12 @@ RCDL.navigation = {};
 /**
  * Changes all navigation bars on scroll
  *
- * @param {String} headerNavSelector Selector for the header navigation div 
- * 
+ * @param {String} headerNavSelector Selector for the header navigation div
+ *
  * @param {String} mobileFooterNavSelector Selector for the mobile footer navigation div
- * 
+ *
  * @param {String} mainNavSelector Selector for the main navigation div
- * 
+ *
  */
 RCDL.navigation.changeNavigationOnScroll = function (headerNavSelector, mobileFooterNavSelector, mainNavSelector) {
   'use strict';

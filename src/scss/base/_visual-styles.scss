@@ -23,7 +23,7 @@ $borders: ('top', 'bottom', 'left', 'right');
 }
 
 %on-white-outline {
-  border: 1px solid colour('brand', 'light-grey');
+  border: 1px solid colour('secondary', 'interface');
 }
 
 .outline-light {
@@ -31,7 +31,7 @@ $borders: ('top', 'bottom', 'left', 'right');
 }
 
 @mixin red-accent($direction, $width) {
-  border-#{$direction}: $width solid colour('brand', 'red');
+  border-#{$direction}: $width solid colour('primary', 'brand1');
 }
 
 

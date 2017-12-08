@@ -8,29 +8,74 @@
 /// ----------------------------------------------------------------------
 
 /// -------------------
-///  Colours
+///  Colours 
 /// -------------------
 
 $colours: (
-	'brand': (
-		'red':  #EC001A,
-		'medium-grey': #808285,
-		'light-grey':  #EAEAEA,
-		'white': #FFF
-	),
-	'functional': (
-		'text': #666666,
-		'functional': #5ca9ad,
-		'success': #5FCC78,
-		'error': #C71838
-	),
-	'tertiary': (
-		'grey--light': #F6F6F6,
-		'blue--light': #E7F4F7
-	)
+  'primary': (
+    'brand1':         #E2001A,
+    'brand2':         #808285,
+    'brand3':         #FFFFFF,
+    'brand4':         #F6F6F6
+  ),
+  'secondary': (  
+    'text':           #666666,
+    'iconography':    #767676,
+    'hyperlink':      #444444,
+    'interface':      #D7D7D7,
+    'interface-dark': #333333
+  ),
+  'tertiary': (
+    'function':       #5CA9AD,
+    'success':        #47B800,
+    'error':          #EE8B00,
+    'inactive':       #EAEAEA
+  ),
+  'exceptional': (
+    'hover':          #BD0016
+  )
 );
 
-$tint-tone: (
-	'dark': -15,
-	'light': 10
+/// -------------------
+///  Utility Class Rules
+///
+///  Define what colours are generated into utility classes. 
+///  E.g. 'Interface' should only be used as background or border colour.
+///
+/// -------------------
+
+$background: (
+  'primary': (
+    'brand1': '',
+    'brand2': '',
+    'brand3': '',
+    'brand4': ''
+  ),
+  'secondary': (
+    'interface': '',
+    'interface-dark': ''
+  )
 );
+
+$text: (
+  'primary': (
+    'brand1': ''
+  ),
+  'secondary': (
+    'text': '',
+    'iconography': '',
+  ),
+  'tertiary': (
+    'success': '',
+    'error': '',
+    'inactive': '',
+  )
+);
+
+$border: (
+  'secondary': (
+    'interface': ''
+  )
+);
+
+

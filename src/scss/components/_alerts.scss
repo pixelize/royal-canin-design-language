@@ -12,18 +12,18 @@
   }
 
   &.alert--error {
-    background-color: colour('brand', 'red');
-    color: colour('brand', 'white');
+    background-color: colour('primary', 'brand1');
+    color: colour('primary', 'brand3');
   }
 
   &.alert--success {
-    background-color: colour('functional', 'success');
-    color: colour('brand', 'white');
+    background-color: colour('tertiary', 'success');
+    color: colour('primary', 'brand3');
   }
 
   &.alert--info {
-    background-color: colour('functional', 'text');
-    color: colour('brand', 'white');
+    background-color: colour('secondary', 'text');
+    color: colour('primary', 'brand3');
     max-width: 99999px;
     border: none;
     padding-right: 3rem;
@@ -36,7 +36,7 @@
     margin-bottom: 0;
 
     & > a {
-      color: colour('brand', 'white');
+      color: colour('primary', 'brand3');
     }
 
     & .alert__close > .rc-icon-close--light {

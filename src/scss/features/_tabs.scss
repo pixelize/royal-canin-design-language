@@ -50,7 +50,7 @@
 
 // Tabs - Side Triggers
 .rc-tabs--side {
-  background-color: colour('brand', 'light-grey');
+  background-color: colour('primary', 'brand4');
   display: flex;
   @extend %feature-width-restriction;
 
@@ -103,13 +103,13 @@
 
 .rc-tabs__controller {
   background-color: transparent;
-  color: colour('functional' , 'text');
+  color: colour('secondary' , 'text');
   border-radius: 0;
 
   &:hover,
   &:focus {
     background-color: transparent;
-    color: colour('functional' , 'text');
+    color: colour('secondary' , 'text');
   }
 
   &[aria-selected="true"]::after {
@@ -120,7 +120,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background-color: colour('brand', 'red');
+    background-color: colour('primary', 'brand1');
   }
 }
 
@@ -135,7 +135,7 @@
     left: 0;
     width: 100%;
     height: 4px;
-    background-color: colour('brand', 'red');
+    background-color: colour('primary', 'brand1');
     margin: 0;
     transform: scale(1);
   }

@@ -8894,6 +8894,11 @@ video.hero__bg {
     height: 60px;
   }
 
+  .navigation--vertical {
+    position: relative;
+    padding-top: 50px;
+  }
+
   .navigation--vertical--toggle {
     height: auto;
     width: auto;
@@ -8905,10 +8910,6 @@ video.hero__bg {
 
   .navigation--vertical--toggle::after {
     display: none;
-  }
-
-  .navigation--vertical > nav + nav {
-    padding-top: 50px;
   }
 
   .page-header .logo-wrapper {
@@ -9216,6 +9217,10 @@ video.hero__bg {
   [class^="button"].fill-width--just-mobile {
     width: 100%;
     text-align: center;
+  }
+
+  .navigation--vertical {
+    position: fixed;
   }
 
   .navigation--vertical--toggle {

@@ -93,6 +93,10 @@ $styleMapping: (
 /// General
 /// -------------------
 
+body {
+  line-height: 1.5;
+}
+
 body,
 input,
 textarea,
@@ -143,11 +147,6 @@ h1, h2, h3, h4, h5, h6 {
 /// Text blocks
 /// -------------------
 
-p,
-blockquote {
-  line-height: 1.5;
-}
-
 q {
   font-size: 1.25em;
   font-style: italic;
@@ -160,7 +159,6 @@ q {
   margin: auto 0;
   padding: 1em;
   padding-left: 2em;
-  line-height: 140%;
   display: block;
 
   & > p {

@@ -5232,6 +5232,10 @@ figure > figcaption {
   color: #666666;
 }
 
+body {
+  line-height: 1.5;
+}
+
 body,input,textarea,select,button {
   font-family: "RC TYPE", "Avenir", Helvetica, Arial, sans-serif;
   font-weight: 300;
@@ -5259,10 +5263,6 @@ h1,h2,h3,h4,h5,h6 {
   text-align: center;
 }
 
-p,blockquote {
-  line-height: 1.5;
-}
-
 q {
   font-size: 1.25em;
   font-style: italic;
@@ -5274,7 +5274,6 @@ blockquote,q {
   margin: auto 0;
   padding: 1em;
   padding-left: 2em;
-  line-height: 140%;
   display: block;
 }
 
@@ -5327,13 +5326,13 @@ blockquote > p,q > p {
   font-weight: 300;
 }
 
-[role="alert"].alert--error,.alert.alert--error {
-  background-color: #E2001A;
+[role="alert"].alert--success,.alert.alert--success {
+  background-color: #47B800;
   color: #FFFFFF;
 }
 
-[role="alert"].alert--success,.alert.alert--success {
-  background-color: #47B800;
+[role="alert"].alert--error,.alert.alert--error {
+  background-color: #EE8B00;
   color: #FFFFFF;
 }
 
@@ -5358,6 +5357,21 @@ blockquote > p,q > p {
 
 [role="alert"].alert--info .alert__close > .rc-icon-close--light,.alert.alert--info .alert__close > .rc-icon-close--light {
   transform-origin: 16% 42%;
+}
+
+[role="alert"].alert--icon,.alert.alert--icon {
+  background-color: #F6F6F6;
+  color: #333333;
+  text-align: left;
+  padding-left: 3em;
+  border-radius: 0;
+  position: relative;
+}
+
+[role="alert"].alert--icon .rc-icon,.alert.alert--icon .rc-icon {
+  position: absolute;
+  left: .5em;
+  top: .7em;
 }
 
 .alert__close {

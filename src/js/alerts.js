@@ -25,7 +25,7 @@ RCDL.features.alerts = {
           }
 
           var alertClose = alert.querySelector('.alert__close');
-          
+
           if (alertClose) {
             alertClose.addEventListener('click', function (event) {
               sessionStorage.setItem(String(event.currentTarget.parentNode.innerHTML), String(event.currentTarget.parentNode.innerHTML));

@@ -45,7 +45,7 @@
   }
   
   &.alert--icon {
-    background-color: colour('primary', 'brand4');
+    border: solid 1px colour('secondary', 'interface');
     color: colour('secondary', 'interface-dark');
     text-align: left;
     padding-left: 3em;

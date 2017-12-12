@@ -5360,7 +5360,7 @@ blockquote > p,q > p {
 }
 
 [role="alert"].alert--icon,.alert.alert--icon {
-  background-color: #F6F6F6;
+  border: solid 1px #D7D7D7;
   color: #333333;
   text-align: left;
   padding-left: 3em;

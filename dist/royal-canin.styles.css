@@ -1554,7 +1554,7 @@ sup {
 }
 
 .rc-flag::after {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/royal-canin.sprite--flags.png?v=4-0-0");
+  background-image: url("royal-canin.sprite--flags.png");
 }
 
 [class*="rc-flags-"]::after {
@@ -4747,6 +4747,16 @@ sup {
   z-index: 999;
 }
 
+.svg--animated {
+  max-width: 300px;
+  padding: 2rem;
+}
+
+.svg--animated .animate--swing {
+  transform-origin: 50% 0%;
+  animation: swing 1.5s ease-in-out forwards infinite;
+}
+
 .colour-red__bkgrnd {
   background-color: #EC001A;
 }
@@ -5150,7 +5160,7 @@ html {
   width: 32px;
   height: 32px;
   transform-origin: 50% 50%;
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/royal-canin.sprite.svg?v=4-0-0");
+  background-image: url("royal-canin.sprite.svg");
 }
 
 .navigation--vertical__list-item > a.active::after,.navigation--vertical__list-item > a:hover::after,.rc-icon--small::after {
@@ -5563,10 +5573,6 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: 700;
 }
 
-.text-centered {
-  text-align: center;
-}
-
 p,blockquote {
   line-height: 1.5;
 }
@@ -5588,6 +5594,10 @@ blockquote,q {
 
 blockquote > p,q > p {
   color: #666666;
+}
+
+.text--centered {
+  text-align: center;
 }
 
 .border-top {
@@ -7911,27 +7921,27 @@ video.hero__bg {
 }
 
 .region-holder.africa {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/africa.png?v=4-0-0");
+  background-image: url("africa.png");
 }
 
 .region-holder.asia {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/asia.png?v=4-0-0");
+  background-image: url("asia.png");
 }
 
 .region-holder.europe {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/europe.png?v=4-0-0");
+  background-image: url("europe.png");
 }
 
 .region-holder.north-america {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/north-america.png?v=4-0-0");
+  background-image: url("north-america.png");
 }
 
 .region-holder.oceania {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/oceania.png?v=4-0-0");
+  background-image: url("oceania.png");
 }
 
 .region-holder.south-america {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/south-america.png?v=4-0-0");
+  background-image: url("south-america.png");
 }
 
 .body--fixed-top-navigation {
@@ -9320,6 +9330,20 @@ video.hero__bg {
 
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(10deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(10deg);
   }
 }
 

@@ -95,7 +95,7 @@ $social-color-youtube: #CD201F;
   padding: 1em 0;
 }
 
-.social-links--red-bkgrnd {
+.social-links--red-background {
   @extend %social-links;
 
   & .social__network--instagram {
@@ -103,14 +103,14 @@ $social-color-youtube: #CD201F;
   }
 
   .social-links__item > a {
-    background-color: colour('brand', 'red');
+    background-color: colour('primary', 'brand1');
 
     &:hover, &:focus {
-      background-color: colour('brand', 'red', 'dark');
+      background-color: colour('primary', 'brand1');
     }
 
     &:active {
-      background-color: colour('brand', 'red', 'dark');
+      background-color: colour('primary', 'brand1');
     }
   }
 }
@@ -119,15 +119,15 @@ $social-color-youtube: #CD201F;
   @extend %social-links;
 
   .social-links__item > a {
-    background-color: colour('brand', 'white');
+    background-color: colour('primary', 'brand3');
     background-image: none;
 
     &:hover, &:focus {
-      background-color: colour('brand', 'white', 'dark');
+      background-color: colour('primary', 'brand3');
     }
 
     &:active {
-      background-color: colour('brand', 'white', 'dark');
+      background-color: colour('primary', 'brand3');
     }
   }
 }
@@ -142,8 +142,8 @@ $social-color-youtube: #CD201F;
 .social--box {
   ul {
     margin-top: .25em;
-    background-color: colour('brand', 'white');
-    border: 1px solid colour('brand', 'medium-grey', 'light');
+    background-color: colour('primary', 'brand3');
+    border: 1px solid colour('primary', 'brand2');
     padding: .75em;
 
     &:before, &:after {
@@ -153,13 +153,13 @@ $social-color-youtube: #CD201F;
       left: 50%;
       width: 1em;
       height: 1em;
-      background-color: colour('brand', 'white');
+      background-color: colour('primary', 'brand3');
     }
 
     &:before {
       transform: translateX( -.5em ) translateY( -.5em ) rotate( 45deg );
       z-index: z(default);
-      border: 1px solid colour('brand', 'medium-grey', 'light');
+      border: 1px solid colour('primary', 'brand2');
     }
 
     &:after {

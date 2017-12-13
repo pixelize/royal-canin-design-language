@@ -36,8 +36,8 @@ $nav-heights: (
 
 .rc-header-navigation {
   height: get-nav-height('med-down');
-  border-bottom: solid 1px colour('brand', 'light-grey');
-  background-color: colour('brand', 'white');
+  border-bottom: solid 1px colour('secondary', 'interface');
+  background-color: colour('primary', 'brand3');
   position: fixed;
   top: 0;
   max-width: get-maxWidth('x-large');

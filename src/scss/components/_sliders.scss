@@ -73,11 +73,11 @@
   height: 8px;
   top: 50%;
   margin-top: -4px;
-  background-color: colour('brand', 'light-grey');
+  background-color: colour('primary', 'brand4');
 }
 
 .noUi-connect {
-  background-color: colour('brand', 'red');
+  background-color: colour('primary', 'brand1');
   box-shadow: getShadow('grey', 'inset');
   -webkit-transition: background 450ms;
   transition: background 450ms;
@@ -94,7 +94,7 @@
   background-size: 25px;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: colour('brand', 'red');
+  background-color: colour('primary', 'brand1');
   border-radius: 999px;
   height: 20px;
   width: 20px;
@@ -123,7 +123,7 @@
 }
 
 [disabled] .noUi-connect {
-  background-color: colour('brand', 'light-grey', 'light');
+  background-color: colour('primary', 'brand4');
 }
 
 [disabled] .noUi-handle,
@@ -140,7 +140,7 @@
 
 .noUi-pips {
   position: absolute;
-  color: colour('brand', 'light-grey');
+  color: colour('primary', 'brand4');
 }
 
 .noUi-value {
@@ -149,13 +149,13 @@
 }
 
 .noUi-value-sub {
-  color: colour('brand', 'light-grey');
+  color: colour('primary', 'brand4');
   font-size: 10px;
 }
 
 .noUi-marker {
   position: absolute;
-  background-color: colour('brand', 'light-grey', 'light');
+  background-color: colour('primary', 'brand4');
 }
 
 .noUi-pips-horizontal {
@@ -174,9 +174,9 @@
 .noUi-tooltip {
   display: block;
   position: absolute;
-  border: 1px solid colour('brand', 'light-grey', 'light');
+  border: 1px solid colour('secondary', 'interface');
   border-radius: 3px;
-  background-color: colour('brand', 'white');
+  background-color: colour('primary', 'brand3');
   color: black;
   padding: 5px;
   text-align: center;

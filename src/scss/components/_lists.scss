@@ -62,13 +62,13 @@
 }
 
 .list__item--significance {
-  border-bottom: 1px solid colour('brand', 'medium-grey', 'light');
+  border-bottom: 1px solid colour('primary', 'brand2');
   margin-bottom: 0;
   display: block;
   padding: 1em;
   padding-right: 3.5em;
-  color: colour('functional', 'text');
-  background-color: colour('brand', 'white');
+  color: colour('secondary', 'text');
+  background-color: colour('primary', 'brand3');
   transition: movementSettings('transition', 'base');
   position: relative;
 
@@ -83,12 +83,12 @@
 
   &:hover,
   &:focus {
-    background-color: colour('brand', 'light-grey', 'light');
+    background-color: colour('primary', 'brand4');
   }
 
   &.active {
-    background-color: colour('brand', 'light-grey', 'light');
-    border-left: 4px solid colour('brand', 'red');
+    background-color: colour('primary', 'brand4');
+    border-left: 4px solid colour('primary', 'brand1');
 
     &::before {
       content: '';
@@ -99,7 +99,7 @@
       width: 0;
       height: 0;
       border-top: 4px solid transparent;
-      border-left: 4px solid colour('brand', 'red');
+      border-left: 4px solid colour('primary', 'brand1');
       border-bottom: 4px solid transparent;
     }
   }
@@ -107,7 +107,7 @@
 
 .list__link--significance {
   text-decoration: none;
-  color: colour('functional', 'text');
+  color: colour('secondary', 'text');
 }
 
 /// ------------------- 

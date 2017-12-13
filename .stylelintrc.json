@@ -24,7 +24,6 @@
         "block-opening-brace-newline-after": "always",
         "block-closing-brace-newline-before": "always",
         "block-closing-brace-empty-line-before": "never",
-        "scss/operator-no-unspaced": true,
         "function-calc-no-unspaced-operator": true,
         "declaration-block-trailing-semicolon": "always",
         "selector-list-comma-space-before": "never",

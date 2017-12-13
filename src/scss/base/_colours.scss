@@ -35,9 +35,6 @@ $properties: (
   $style: if($shortname == 'bg', $background, if($shortname == 'text', $text, $border));
 
   @each $palette in $style {
-    // Get the index of the current loop, use that to get the key.
-    $i: index($style, $palette);
-  
     @each $color in nth($palette, 2) {
       .#{$shortname}-colour--#{$color} {
         #{$prop}: colour(nth($palette, 1), $color);

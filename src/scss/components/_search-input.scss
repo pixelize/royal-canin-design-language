@@ -9,11 +9,11 @@
     width: 100%;
     padding: 2rem;
     padding-left: 5rem;
-    color: colour('primary', 'brand4');
+    color: colour('secondary', 'interface');
     line-height: 2em;
     
     &::placeholder {
-      color: colour('primary', 'brand4');
+      color: colour('secondary', 'interface');
     }
 
     &:focus + label::after {

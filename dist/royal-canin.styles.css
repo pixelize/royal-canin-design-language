@@ -6667,12 +6667,12 @@ button {
   width: 100%;
   padding: 2rem;
   padding-left: 5rem;
-  color: #F6F6F6;
+  color: #D7D7D7;
   line-height: 2em;
 }
 
 .search-bar > [type="search"]::placeholder {
-  color: #F6F6F6;
+  color: #D7D7D7;
 }
 
 .search-bar > [type="search"]:focus + label::after {

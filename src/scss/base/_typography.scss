@@ -27,7 +27,7 @@ $type-styles: (
 $type-breakpoints: ('small', 'x-large');
 
 %heading-base {
-  color: colour('brand', 'red');
+  color: colour('primary', 'brand1');
   font-weight: 300;
   line-height: 1.25;
   margin-top: 0;
@@ -63,7 +63,7 @@ $type-breakpoints: ('small', 'x-large');
 
   .#{nth($style, 1)}--black {
     @extend .#{nth($style, 1)};
-    color: colour('functional', 'text');
+    color: colour('secondary', 'text');
   }
 }
 
@@ -92,6 +92,10 @@ $styleMapping: (
 /// ------------------- 
 /// General
 /// -------------------
+
+body {
+  line-height: 1.5;
+}
 
 body,
 input,
@@ -139,11 +143,6 @@ h1, h2, h3, h4, h5, h6 {
 /// Text blocks
 /// -------------------
 
-p,
-blockquote {
-  line-height: 1.5;
-}
-
 q {
   font-size: 1.25em;
   font-style: italic;
@@ -152,15 +151,14 @@ q {
 
 blockquote,
 q {
-  border-left: 3px solid colour('brand', 'red');
+  border-left: 3px solid colour('primary', 'brand1');
   margin: auto 0;
   padding: 1em;
   padding-left: 2em;
-  line-height: 140%;
   display: block;
 
   & > p {
-    color: colour('functional', 'text');
+    color: colour('secondary', 'text');
   }
 }
 

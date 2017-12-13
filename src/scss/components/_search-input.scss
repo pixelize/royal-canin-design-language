@@ -1,19 +1,19 @@
 .search-bar {
   display: block;
-  background-color: colour('brand', 'white');
+  background-color: colour('primary', 'brand3');
   max-width: 9999px;
 
   & > [type="search"] {
-    background-color: colour('brand', 'white');
+    background-color: colour('primary', 'brand3');
     display: block;
     width: 100%;
     padding: 2rem;
     padding-left: 5rem;
-    color: colour('brand', 'light-grey');
+    color: colour('primary', 'brand4');
     line-height: 2em;
     
     &::placeholder {
-      color: colour('brand', 'light-grey', 'dark');
+      color: colour('primary', 'brand4');
     }
 
     &:focus + label::after {

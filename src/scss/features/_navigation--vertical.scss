@@ -76,7 +76,7 @@
     }
   }
 
-  @media (get-breakpoint-down('med')) {
+  @media (get-breakpoint-down('medium')) {
     background-color: transparent;
 
     &:hover,
@@ -85,7 +85,7 @@
     }
   }
 
-  @media (get-breakpoint-up('med')) {
+  @media (get-breakpoint-up('medium')) {
     height: auto;
     width: auto;
     bottom: -60px;
@@ -100,7 +100,7 @@
 }
 
 .navigation--vertical > nav + nav {
-  @media (get-breakpoint-up('med')) {
+  @media (get-breakpoint-up('medium')) {
     padding-top: 50px;
   }
 }
@@ -112,14 +112,14 @@
 .page-header .logo-wrapper {
   @extend .center-align;
 
-  @media (get-breakpoint-up('med')) {
+  @media (get-breakpoint-up('medium')) {
    position: relative;
     left: auto;
     transform: none;
   }
 }
 
-@media (get-breakpoint-down('med')) {
+@media (get-breakpoint-down('medium')) {
   .page-has-no-sidebar {
 
     & .page-header .align-children--space-between {

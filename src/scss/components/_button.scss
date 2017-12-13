@@ -65,7 +65,7 @@
     text-align: center;
   }
 
-  @media (get-breakpoint-down('med')) {
+  @media (get-breakpoint-down('medium')) {
     &.fill-width--just-mobile {
       width: 100%;
       text-align: center;

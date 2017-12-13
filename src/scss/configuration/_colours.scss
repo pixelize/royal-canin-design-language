@@ -45,37 +45,18 @@ $colours: (
 /// -------------------
 
 $background: (
-  'primary': (
-    'brand1': '',
-    'brand2': '',
-    'brand3': '',
-    'brand4': ''
-  ),
-  'secondary': (
-    'interface': '',
-    'interface-dark': ''
-  )
+  ('primary', ('brand1', 'brand2', 'brand3', 'brand4')),
+  ('secondary', ('interface', 'interface-dark'))
 );
 
 $text: (
-  'primary': (
-    'brand1': ''
-  ),
-  'secondary': (
-    'text': '',
-    'iconography': '',
-  ),
-  'tertiary': (
-    'success': '',
-    'error': '',
-    'inactive': '',
-  )
+  ('primary', ('brand1')),
+  ('secondary', ('text', 'iconography')),
+  ('tertiary', ('success', 'error', 'inactive')),
 );
 
 $border: (
-  'secondary': (
-    'interface': ''
-  )
+  ('secondary', ('interface')),
 );
 
 

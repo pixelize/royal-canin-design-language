@@ -23,6 +23,7 @@
 ///
 ///
 
+
 $properties: (
   ('bg', 'background-color')
   ('text', 'color')
@@ -32,23 +33,14 @@ $properties: (
 @each $shortname, $prop in $properties {
   
   $style: if($shortname == 'bg', $background, if($shortname == 'text', $text, $border));
-  
+
   @each $palette in $style {
     // Get the index of the current loop, use that to get the key.
     $i: index($style, $palette);
   
-    // Fetch the stylees list from the current palette.
-    $getPalette: map-get($style, nth(map-keys($style), $i));
-  
-    @each $colour in $getPalette {
-  
-      // For each colour get the key to be used in stylees.
-      $n: index($getPalette, $colour);
-      $colourName: nth(map-keys($getPalette), $n);
-  
-      // Loop through the properties list to generate a style for each property and each variant.
-      .#{$shortname}-colour--#{$colourName} {
-        #{$prop}: colour(nth(map-keys($style), $i), $colourName);
+    @each $color in nth($palette, 2) {
+      .#{$shortname}-colour--#{$color} {
+        #{$prop}: colour(nth($palette, 1), $color);
       }
     }
   }

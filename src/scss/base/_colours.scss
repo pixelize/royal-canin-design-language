@@ -1,6 +1,9 @@
 /// ----------------------------------------------------------------------
 
-/// Colours
+/// Colour Classes
+///
+/// Config file containing sass maps: 
+/// ./configuration/_colours.scss
 
 /// ----------------------------------------------------------------------
 
@@ -9,63 +12,67 @@
 /// @group First 10 Digital
 ///
 
-/// Manage colours by grouping and looping variables.
-/// Utility classes are also generated:
-///  .colour-bkgrnd-red {
-///   background-color: #E2001A;
+///
+/// Utility classes are generated based on the allowed colours for
+/// that property. Rules are defined in the config file.
+///
+/// @example scss
+///  .text--brand1 {
+///      color: colour('primary', 'brand1');
 ///  }
 ///
-///  .colour-text-red {
-///   color: #E2001A;
-///  }
-///
-/// @example scss - Basic Usage Sass
-///    .component-id-like-red-text {
-///        color: colour('brand', 'red');
-///    }
-///
-/// @example scss - Tint/tone usage. Outputs the target colour at -10% lightness.
-///    .component-id-like--dark-red-text {
-///        color: colour('brand', 'red', 'dark');
-///    }
 ///
 
+
 $properties: (
-  ('bkgrnd', 'background-color')
+  ('bg', 'background-color')
   ('text', 'color')
   ('border', 'border-color')
 );
 
-@each $palette in $colours {
-  // Get the index of the current loop, use that to get the key.
-  $i: index($colours, $palette);
+@each $shortname, $prop in $properties {
+  
+  $style: if($shortname == 'bg', $background, if($shortname == 'text', $text, $border));
 
-  // Fetch the colours list from the current palette.
-  $getPalette: map-get($colours, nth(map-keys($colours), $i));
-
-  @each $colour in $getPalette {
-
-    // For each colour get the key to be used in classes.
-    $n: index($getPalette, $colour);
-    $colourName: nth(map-keys($getPalette), $n);
-
-    // Loop through the properties list to generate a class for each property and each variant.
-    @each $shortname, $prop in $properties {
-
-      .colour-#{$colourName}__#{$shortname} {
-        #{$prop}: colour(nth(map-keys($colours), $i), $colourName);
-      }
-      @if nth(map-keys($colours), $i) == 'brand' or $colourName != 'white' {
-
-        @each $value in $tint-tone {
-          $v: index($tint-tone, $value);
-          $name: nth(map-keys($tint-tone), $v);
-
-          .colour-#{$colourName}--#{$name}__#{$shortname} {
-            #{$prop}: colour(nth(map-keys($colours), $i), $colourName, #{$name});
-          }
-        }
+  @each $palette in $style {
+    @each $color in nth($palette, 2) {
+      .#{$shortname}-colour--#{$color} {
+        #{$prop}: colour(nth($palette, 1), $color);
       }
     }
+  }
+}
+
+/// -------------------
+///  Gradients
+/// -------------------
+
+$gradients: ('horizontal', colour('primary', 'brand3'), colour('primary', 'brand4')),
+            ('vertical', colour('primary', 'brand3'), colour('primary', 'brand4'));
+
+@mixin linear-gradient($direction, $from, $to) {
+  background: linear-gradient(
+    is-direction($direction), $from 0%, $to 100%);
+}
+
+@function is-direction($value) {
+  $conversion-map: (
+    horizontal    : 90deg,
+    vertical      : 180deg
+  );
+
+  @if map-has-key($conversion-map, $value) {
+    @return map-get($conversion-map, $value);
+  }
+
+  @return $value;
+}
+
+@each $gradient in $gradients {
+  .bg-gradient--#{nth($gradient, 1)} {
+    @include linear-gradient(
+      nth($gradient, 1),
+      nth($gradient, 2),
+      nth($gradient, 3));
   }
 }

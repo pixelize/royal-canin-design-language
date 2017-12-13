@@ -36,7 +36,7 @@
     font-size: 1em;
     margin: .25em 0 1em;
     font-weight: 300;
-    color: colour('functional', 'text');
+    color: colour('secondary', 'text');
   }
 
   // Fallback
@@ -144,7 +144,7 @@
     vertical-align: middle;
     width: 1.5em;
     height: 1.5em;
-    fill: colour('brand', 'medium-grey');
+    fill: colour('primary', 'brand2');
   }
 
   .card__meta, .card__title {
@@ -157,7 +157,7 @@
   }
 
   .card__title {
-    border-top: 1px solid colour('brand', 'light-grey');
+    border-top: 1px solid colour('secondary', 'interface');
     margin: 0;
     font-weight: 700;
   }

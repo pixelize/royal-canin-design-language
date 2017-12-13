@@ -5,7 +5,7 @@
 .tippy-tooltip {
   z-index: z(tooltip);
   display: block;
-  background-color: colour('brand', 'white');
+  background-color: colour('primary', 'brand3');
   width: auto;
   box-shadow: getShadow('black', 'soft');
 
@@ -27,7 +27,7 @@
 }
 
 .tippy-tooltip {
-  color: colour('functional', 'text');
+  color: colour('secondary', 'text');
   padding: 0;
   box-shadow: getShadow('black', 'soft');
 }

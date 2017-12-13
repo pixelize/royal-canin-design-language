@@ -7,22 +7,22 @@
   vertical-align: bottom;
   position: relative;
   z-index: z(default);
-  color: colour('functional', 'text');
+  color: colour('secondary', 'text');
   transition: color .2s ease-in, border-color .2s ease-in;
   overflow: hidden;
   background-color: transparent;
   border: none;
   user-select: none;
   text-decoration: none;
-  border-bottom: 1px solid colour('brand', 'medium-grey');
+  border-bottom: 1px solid colour('primary', 'brand2');
   padding-bottom: 4px;
   line-height: .9em;
   cursor: pointer;
 
   &:hover,
   &:focus {
-    color: colour('brand', 'red');
-    border-bottom: 1px solid colour('brand', 'red');
+    color: colour('primary', 'brand1');
+    border-bottom: 1px solid colour('primary', 'brand1');
     text-decoration: none;
   }
 
@@ -32,7 +32,7 @@
 
   &:active {
     &::before {
-      background-color: colour('functional', 'text', 'dark');
+      background-color: colour('secondary', 'text');
     }
   }
 }

@@ -3,7 +3,7 @@
   width: 1em;
   height: 1em;
   margin: 0 .25em;
-  background-color: colour('brand', 'light-grey');
+  background-color: colour('primary', 'brand4');
   border: 2px solid transparent;
   border-radius: 100%;
   overflow: hidden;
@@ -13,13 +13,13 @@
   cursor: pointer;
 
   &:hover, &:focus {
-    border-color: colour('brand', 'red');
+    border-color: colour('primary', 'brand1');
   }
 }
 
 %floating-button {
   box-shadow: getShadow('grey', 'faint');
-  background-color: colour('brand', 'white');
+  background-color: colour('primary', 'brand3');
 }
 
 .pager {
@@ -37,15 +37,15 @@
 }
 
 %pager--active {
-  background-color: colour('brand', 'red');
+  background-color: colour('primary', 'brand1');
 
   &:hover,
   &:focus {
-    background-color: colour('brand', 'red', 'dark');
+    background-color: colour('primary', 'brand1');
   }
 
   &:active {
-    background-color: colour('brand', 'red', 'dark');
+    background-color: colour('primary', 'brand1');
   }
 }
 
@@ -57,23 +57,23 @@
 %interactive--navigation {
   display: inline-block;
   transition: background-color .2s ease-in-out;
-  background-color: colour('brand', 'red');
+  background-color: colour('primary', 'brand1');
   overflow: hidden;
   border: 1px solid rgba( 0, 0, 0, .15 );
   cursor: pointer;
 
   &:hover,
   &:focus {
-    background-color: colour('brand', 'red', 'dark');
+    background-color: colour('primary', 'brand1');
   }
 
   &:active {
-    background-color: colour('brand', 'red', 'dark');
+    background-color: colour('primary', 'brand1');
   }
 }
 
 .interactive-grey {
-  background-color: colour('brand', 'red');
+  background-color: colour('primary', 'brand1');
 }
 
 %interactive--navigation--round {
@@ -82,7 +82,7 @@
 }
 
 %response {
-  border: 1px solid colour('brand', 'light-grey');
+  border: 1px solid colour('secondary', 'interface');
   @extend %interactive--navigation--round;
   background-color: white;
   height: auto;
@@ -90,26 +90,26 @@
   padding: .5rem;
 
   &:hover, &:focus {
-    background-color: colour('brand', 'white', 'dark');
+    background-color: colour('primary', 'brand3');
   }
 
   &:active {
-    background-color: colour('brand', 'white', 'dark');
+    background-color: colour('primary', 'brand3');
   }
 }
 
 .navigation--round {
   @extend %interactive--navigation--round;
   overflow: hidden;
-  background-color: colour('brand', 'red');
+  background-color: colour('primary', 'brand1');
 
   &:hover,
   &:focus {
-    background-color: colour('brand', 'red', 'dark');
+    background-color: colour('primary', 'brand1');
   }
 
   &:active {
-    background-color: colour('brand', 'red', 'dark');
+    background-color: colour('primary', 'brand1');
   }
 }
 
@@ -222,7 +222,7 @@
 ////////// Styles used to animate the toggle svg //////////
 
 .toggle-svg .bar {
-  fill: colour('brand', 'light-grey');
+  fill: colour('primary', 'brand4');
   pointer-events: all;
   cursor: pointer;
   transition: .2s ease;

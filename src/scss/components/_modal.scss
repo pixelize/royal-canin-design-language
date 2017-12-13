@@ -11,7 +11,7 @@
   animation-direction: reverse;
 
   transform: translateX(-50%);
-  background-color: colour('brand', 'white');
+  background-color: colour('primary', 'brand3');
   padding: get-spacer('small');
 
   @media (get-breakpoint-up('large')) {

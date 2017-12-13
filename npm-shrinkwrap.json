@@ -2158,12 +2158,6 @@
         "write": "0.2.1"
       }
     },
-    "flatten": {
-      "version": "1.0.2",
-      "resolved": "https://registry.npmjs.org/flatten/-/flatten-1.0.2.tgz",
-      "integrity": "sha1-2uRqnXj74lKSJYzB54CkHZXAN4I=",
-      "dev": true
-    },
     "fontconvert-tool": {
       "version": "1.0.2",
       "resolved": "https://registry.npmjs.org/fontconvert-tool/-/fontconvert-tool-1.0.2.tgz",
@@ -6730,12 +6724,12 @@
       }
     },
     "postcss-selector-parser": {
-      "version": "2.2.3",
-      "resolved": "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-2.2.3.tgz",
-      "integrity": "sha1-+UN3iGBsPJrO4W/+jYsWKX8nu5A=",
+      "version": "3.1.1",
+      "resolved": "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-3.1.1.tgz",
+      "integrity": "sha1-T4dfSvsMllc9XPTXQBGu4lCn6GU=",
       "dev": true,
       "requires": {
-        "flatten": "1.0.2",
+        "dot-prop": "4.2.0",
         "indexes-of": "1.0.1",
         "uniq": "1.0.1"
       }
@@ -7808,15 +7802,15 @@
       }
     },
     "stylelint-scss": {
-      "version": "2.1.0",
-      "resolved": "https://registry.npmjs.org/stylelint-scss/-/stylelint-scss-2.1.0.tgz",
-      "integrity": "sha512-xlaN1tdMj3mlNtw1pAjbIQqThghU3e+XGyHwhyr/obtB0R+Vt9VF3F3oYaVawx1JAzW78CuDku/CkPlnrgmHZA==",
+      "version": "2.2.0",
+      "resolved": "https://registry.npmjs.org/stylelint-scss/-/stylelint-scss-2.2.0.tgz",
+      "integrity": "sha512-O3jIpujSDrMHlGoXT3AYsOz2DPb49Y+0rCPGU34BHrbMBWSciwkvtm4WFrYi/cDnbpkXFemC0lHwmtspK8IQEA==",
       "dev": true,
       "requires": {
         "lodash": "4.17.4",
         "postcss-media-query-parser": "0.2.3",
         "postcss-resolve-nested-selector": "0.1.1",
-        "postcss-selector-parser": "2.2.3",
+        "postcss-selector-parser": "3.1.1",
         "postcss-value-parser": "3.3.0"
       }
     },

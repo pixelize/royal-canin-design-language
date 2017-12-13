@@ -54,7 +54,6 @@ $type-styles: (
     $breakpointNames: map-keys($sizes);
 
     @each $breakpoint in $sizes {
-      @debug $sizes;
       @media (get-breakpoint-up(#{nth($breakpointNames, index($sizes, $breakpoint))})) {
         font-size: nth($breakpoint, 2);
         line-height: nth($breakpoint, 1);
@@ -156,7 +155,7 @@ h1, h2, h3, h4, h5, h6 {
   color: colour('functional', 'text');
 
   &:hover {
-    color: colour('brand', 'Brand1');
+    color: colour('brand', 'red');
   }
 }
 

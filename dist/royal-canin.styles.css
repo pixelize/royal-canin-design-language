@@ -4763,16 +4763,20 @@ sup {
   background-color: #F6F6F6;
 }
 
-.bg-colour--interface {
-  background-color: #D7D7D7;
-}
-
 .bg-colour--interface-dark {
   background-color: #333333;
 }
 
 .text-colour--brand1 {
   color: #E2001A;
+}
+
+.text-colour--brand3 {
+  color: #FFFFFF;
+}
+
+.text-colour--brand4 {
+  color: #F6F6F6;
 }
 
 .text-colour--text {

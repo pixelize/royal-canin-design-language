@@ -4799,6 +4799,14 @@ sup {
   border-color: #D7D7D7;
 }
 
+.bg-gradient--horizontal {
+  background: linear-gradient(90deg, #FFFFFF 0%, #F6F6F6 100%);
+}
+
+.bg-gradient--vertical {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F6F6F6 100%);
+}
+
 .rc-type--300 {
   font-family: "RC TYPE";
   font-style: normal;

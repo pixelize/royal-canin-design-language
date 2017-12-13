@@ -8,7 +8,7 @@ table	{
   white-space: nowrap;
 
   th, td {
-    border-right: 1px solid colour('brand', 'light-grey', 'light');
+    border-right: 1px solid colour('secondary', 'interface');
     padding: .875em 1em;
 
     &:first-child {
@@ -21,29 +21,29 @@ table	{
   }
 
   .table--highlight {
-    background-color: colour('brand', 'red');
-    color: colour('brand', 'white');
+    background-color: colour('primary', 'brand1');
+    color: colour('primary', 'brand3');
   }
 
   thead {
     .table--highlight {
-      background-color: colour('brand', 'red', 'dark');
+      background-color: colour('primary', 'brand1');
     }
   }
 
   tbody {
     tr:nth-child( even ) {
-      background-color: colour('brand', 'light-grey');
+      background-color: colour('primary', 'brand4');
 
       .table--highlight {
-        background-color: colour('brand', 'red', 'dark');
+        background-color: colour('primary', 'brand1');
       }
     }
   }
 
   th {
-    background-color: colour('brand', 'light-grey');
-    color: colour('brand', 'red');
+    background-color: colour('primary', 'brand4');
+    color: colour('primary', 'brand1');
   }
 
   // Removes margin from custom checkbox element, where used.

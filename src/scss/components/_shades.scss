@@ -8,7 +8,7 @@
 }
 
 .shade--grey {
-  background-color: rgba(colour('brand', 'medium-grey'), 0.75);
+  background-color: rgba(colour('primary', 'brand2'), 0.75);
   @extend %shade;
 }
 

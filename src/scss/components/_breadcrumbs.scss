@@ -38,17 +38,17 @@
 }
 
 .breadcrumb__link {
-  color: colour('brand', 'medium-grey', 'light');
+  color: colour('primary', 'brand2');
   text-decoration: none;
 
   &:hover,
   &:focus {
-    color: colour('brand', 'red');
+    color: colour('primary', 'brand1');
   }
 }
 
 .breadcrumbs__current {
-  color: colour('brand', 'medium-grey');
+  color: colour('primary', 'brand2');
   font-weight: 500;
 }
 

@@ -11,7 +11,7 @@
 }
 
 .navigation-list__link {
-  color: colour('functional', 'text');
+  color: colour('secondary', 'text');
   text-decoration: none;
   font-size: 1rem;
 }
@@ -29,7 +29,7 @@
 
 .sub-navigation__link {
   text-decoration: none;
-  color: colour('functional', 'text');
+  color: colour('secondary', 'text');
 }
 
 .sub-navigation__list-item::after {
@@ -37,7 +37,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  color: colour('functional', 'text');
+  color: colour('secondary', 'text');
   display: none;
 
   @media (get-breakpoint-up('x-large')) {

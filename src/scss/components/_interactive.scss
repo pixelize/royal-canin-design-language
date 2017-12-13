@@ -1,3 +1,13 @@
+/// ----------------------------------------------------------------------
+
+/// Interactive
+
+/// ----------------------------------------------------------------------
+
+/// ------------------- 
+/// Pager
+/// -------------------
+
 %pager__item__link {
   display: inline-block;
   width: 1em;
@@ -12,7 +22,8 @@
   padding: 0;
   cursor: pointer;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border-color: colour('primary', 'brand1');
   }
 }
@@ -53,55 +64,20 @@
   @extend %pager--active;
 }
 
+/// ------------------- 
+/// Navigation Button
+/// -------------------
 
 %interactive--navigation {
   display: inline-block;
   transition: background-color .2s ease-in-out;
   background-color: colour('primary', 'brand1');
+  width: 35px;
+  height: 35px;
   overflow: hidden;
   border: 1px solid rgba( 0, 0, 0, .15 );
   cursor: pointer;
-
-  &:hover,
-  &:focus {
-    background-color: colour('primary', 'brand1');
-  }
-
-  &:active {
-    background-color: colour('primary', 'brand1');
-  }
-}
-
-.interactive-grey {
-  background-color: colour('primary', 'brand1');
-}
-
-%interactive--navigation--round {
-  @extend %interactive--navigation;
   border-radius: 100%;
-}
-
-%response {
-  border: 1px solid colour('secondary', 'interface');
-  @extend %interactive--navigation--round;
-  background-color: white;
-  height: auto;
-  width: auto;
-  padding: .5rem;
-
-  &:hover, &:focus {
-    background-color: colour('primary', 'brand3');
-  }
-
-  &:active {
-    background-color: colour('primary', 'brand3');
-  }
-}
-
-.navigation--round {
-  @extend %interactive--navigation--round;
-  overflow: hidden;
-  background-color: colour('primary', 'brand1');
 
   &:hover,
   &:focus {
@@ -118,7 +94,7 @@
 
   &::after {
     @extend %rc-icon;
-    @extend .rc-icon-chevron--left--light::after;
+    @extend .rc-icon-chevron--left--small--light::after;
   }
 }
 
@@ -127,7 +103,7 @@
 
   &::after {
     @extend %rc-icon;
-    @extend .rc-icon-chevron--right--light::after;
+    @extend .rc-icon-chevron--right--small--light::after;
   }
 }
 
@@ -139,6 +115,25 @@
   @extend %navigation--prev;
 }
 
+
+%response {
+  display: inline-block;
+  border: 1px solid colour('secondary', 'interface');
+  background-color: colour('primary', 'brand3');
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  padding: .5rem;
+
+  &:hover,
+  &:focus {
+    background-color: colour('primary', 'brand3');
+  }
+
+  &:active {
+    background-color: colour('primary', 'brand3');
+  }
+}
 
 .response--affirmative {
   @extend %response;
@@ -168,18 +163,6 @@
   &:focus,
   &.interactive--response--active {
   }
-}
-
-.navigation--round--prev {
-  border-radius: 100%;
-  @extend %navigation--next;
-
-}
-
-.navigation--round--next {
-  border-radius: 100%;
-  @extend %navigation--prev;
-
 }
 
 %menu-toggle {
@@ -219,7 +202,9 @@
 }
 
 
-////////// Styles used to animate the toggle svg //////////
+/// ------------------- 
+/// Toggle SVG
+/// -------------------
 
 .toggle-svg .bar {
   fill: colour('primary', 'brand4');

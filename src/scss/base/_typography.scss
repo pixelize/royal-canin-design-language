@@ -4,27 +4,22 @@
 
 /// ----------------------------------------------------------------------
 
-/// ------------------- 
+/// -------------------
 /// Type Style Settings
 /// -------------------
 
-//                                                                 Size at each breakpoint
-//               Class                    Base styles              Default     Small       X-large
+//                                                                                                      Breakpoint changes
+//               Class                    Base styles            Line height          Default           Breakpoint name / line height / font-size
 $type-styles: (
-                ('alpha',                'heading-base',           2.1em,      2.5em,      3.125em),
-                ('beta',                 'heading-base',           1.85em,     2.25em,     2.625em),
-                ('gamma',                'heading-base',           1.5em,      2em,        2.25em),
-                ('delta',                'heading-base',           1.2em,      1.875em,    2em),
-                ('espilon',              'heading-base',           1.1em,      1.625em,    1.75em),
-                ('zeta',                 'heading-base',           1em,        1.5em,      1.625em),
-                ('rc-head--display',     'heading--heavy-upper',   2.1em,      2.5em,      3.125em),
-                ('rc-head--headline',    'heading--heavy-upper',   1.85em,     1.75em,     2em),
-                ('rc-head--subheadline', 'heading-base',           1.5em,      1.375em,    1.5em),
-                ('rc-head--article',     'heading-base',           1em,        1.25em,     1.375em),
-                ('label',                'emphasised-text',        1em,        1.1em,      1.2em)
+                ('alpha',                'heading-base',         2.125rem,            1.875rem,        ('medium':    (2.75rem,  2.5rem))    ),
+                ('beta',                 'heading-base',         2rem,                1.625rem,        ('medium':    (1.875rem, 1.875rem))  ),
+                ('gamma',                'heading-base',         1.75rem,             1.375rem,        ('medium':    (1rem,     1.625rem))  ),
+                ('delta',                'heading-base',         1.625rem,            1.125rem,        ('medium':    (1.5rem,   1.25rem))   ),
+                ('espilon',              'heading-base',         1.5rem,              1rem,            ('medium':    (1.625rem, 1.125rem))  ),
+                ('zeta',                 'heading-base',         1.5rem,              0.875rem,        ('medium':    (1.5rem,   1rem))      ),
+                ('intro',                'heading-base',         1.5rem,              1rem,            ('medium':    (1.625rem, 1.125rem))  ),
+                ('body',                 'heading-base',         1.5rem,              0.875rem,        ('medium':    (1.5rem,   1rem))      )
 );
-
-$type-breakpoints: ('small', 'x-large');
 
 %heading-base {
   color: colour('brand', 'red');
@@ -49,22 +44,28 @@ $type-breakpoints: ('small', 'x-large');
 ///
 /// Takes above settings and generates a class for each type style.
 ///
-@each $style in $type-styles {
-  .#{nth($style, 1)} {
-    @extend %#{nth($style, 2)};
-    font-size: nth($style, 3);
+@each $name, $baseStyle, $lineHeight, $defaultSize, $sizes in $type-styles {
 
-    @each $breakpoint in $type-breakpoints {
-      @media (get-breakpoint-up($breakpoint)) {
-        font-size: nth($style, index($type-breakpoints, $breakpoint) + 3);
+  .#{$name} {
+    @extend %#{$baseStyle};
+    font-size: $defaultSize;
+    line-height: $lineHeight;
+
+    $breakpointNames: map-keys($sizes);
+
+    @each $breakpoint in $sizes {
+      @debug $sizes;
+      @media (get-breakpoint-up(#{nth($breakpointNames, index($sizes, $breakpoint))})) {
+        font-size: nth($breakpoint, 2);
+        line-height: nth($breakpoint, 1);
       }
     }
   }
 
-  .#{nth($style, 1)}--black {
-    @extend .#{nth($style, 1)};
-    color: colour('functional', 'text');
-  }
+  //.#{nth($style, 1)}--black {
+  //  @extend .#{nth($style, 1)};
+  //  color: colour('functional', 'text');
+  //}
 }
 
 ///
@@ -73,23 +74,23 @@ $type-breakpoints: ('small', 'x-large');
 /// Takes settings and generates a class that overrides h tags.
 ///
 $styleMapping: (
-  ('h1', 'alpha'),
-  ('h2', 'beta'),
-  ('h3', 'gamma'),
-  ('h4', 'delta'),
-  ('h5', 'espilon'),
-  ('h6', 'zeta')
+                ('h1', 'alpha'),
+                ('h2', 'beta'),
+                ('h3', 'gamma'),
+                ('h4', 'delta'),
+                ('h5', 'espilon'),
+                ('h6', 'zeta')
 );
 
-.rc-replace-header-styles {
-  @each $tag, $style in $styleMapping {
+@each $tag, $style in $styleMapping {
+  .rc-replace-header-styles {
     #{$tag} {
       @extend .#{$style};
     }
   }
 }
 
-/// ------------------- 
+/// -------------------
 /// General
 /// -------------------
 
@@ -119,8 +120,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
 }
 
-/// ------------------- 
-/// Font weights
+/// -------------------
+/// Type style modifiers
 /// -------------------
 
 .font--regular {
@@ -139,7 +140,27 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
-/// ------------------- 
+.hero {
+  text-transform: uppercase;
+}
+
+.dark {
+  color: colour('functional', 'text');
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.interactive {
+  color: colour('functional', 'text');
+
+  &:hover {
+    color: colour('brand', 'Brand1');
+  }
+}
+
+/// -------------------
 /// Text blocks
 /// -------------------
 

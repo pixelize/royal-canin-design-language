@@ -5775,13 +5775,8 @@ button {
   border-bottom: 2px solid #E2001A;
 }
 
-.input--white {
+.input--white input {
   background-color: #FFFFFF;
-}
-
-.input--btn {
-  display: block;
-  max-width: 300px;
 }
 
 .input__password__toggle {
@@ -5873,6 +5868,10 @@ button {
   border-radius: 0;
 }
 
+.select--white .choices__inner,.select--white .select__label {
+  background-color: #FFFFFF;
+}
+
 .choices:focus + .select__label,.choices.is-open + .select__label,.choices.has-changed + .select__label {
   background: none;
 }
@@ -5884,7 +5883,6 @@ button {
 }
 
 [role="listbox"].choices {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   margin: 0;
 }

@@ -4910,11 +4910,11 @@ body::before {
 }
 
 .stick-left,.stick-right,.stick-bottom,.stick-top {
-  position: absolute;
+  position: absolute !important;
 }
 
 .fixed-bottom,.fixed-top,.fixed-vertically {
-  position: fixed;
+  position: fixed !important;
 }
 
 .stick-left {
@@ -6441,12 +6441,11 @@ button {
 }
 
 .modal__content {
-  padding: 3rem 0;
+  padding: 0;
 }
 
 .modal__title {
   display: block;
-  text-align: center;
 }
 
 .modal__close {

@@ -54,9 +54,10 @@ $type-styles: (
     $breakpointNames: map-keys($sizes);
 
     @each $breakpoint in $sizes {
+      $breakpointSizes: map-get($sizes, nth($breakpointNames, index($sizes, $breakpoint)));
       @media (get-breakpoint-up(#{nth($breakpointNames, index($sizes, $breakpoint))})) {
-        font-size: nth($breakpoint, 2);
-        line-height: nth($breakpoint, 1);
+        font-size: nth($breakpointSizes, 2);
+        line-height: nth($breakpointSizes, 1);
       }
     }
   }
@@ -143,7 +144,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dark {
-  color: colour('functional', 'text');
+  color: colour('secondary', 'text');
 }
 
 .medium {
@@ -151,10 +152,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .interactive {
-  color: colour('functional', 'text');
+  color: colour('secondary', 'text');
 
   &:hover {
-    color: colour('brand', 'red');
+    color: colour('primary', 'brand1');
   }
 }
 

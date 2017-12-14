@@ -5134,7 +5134,7 @@ figure > figcaption {
   height: 100%;
 }
 
-.alpha,.alpha--black,.rc-replace-header-styles h1,.beta,.beta--black,.rc-replace-header-styles h2,.gamma,.gamma--black,.rc-replace-header-styles h3,.delta,.delta--black,.rc-replace-header-styles h4,.espilon,.espilon--black,.rc-replace-header-styles h5,.zeta,.zeta--black,.rc-replace-header-styles h6,.rc-head--subheadline,.rc-head--subheadline--black,.rc-head--article,.rc-head--article--black {
+.alpha,.rc-replace-header-styles h1,.beta,.rc-replace-header-styles h2,.gamma,.rc-replace-header-styles h3,.delta,.rc-replace-header-styles h4,.espilon,.rc-replace-header-styles h5,.zeta,.rc-replace-header-styles h6,.intro,.body {
   color: #E2001A;
   font-weight: 300;
   line-height: 1.25;
@@ -5142,102 +5142,44 @@ figure > figcaption {
   margin-bottom: .5em;
 }
 
-.rc-head--display,.rc-head--display--black,.rc-head--headline,.rc-head--headline--black {
-  font-weight: 700;
-  text-transform: uppercase;
+.alpha,.rc-replace-header-styles h1 {
+  font-size: 1.875rem;
+  line-height: 2.125rem;
 }
 
-.label,.label--black {
-  font-weight: 500;
-  margin-bottom: .75em;
+.beta,.rc-replace-header-styles h2 {
+  font-size: 1.625rem;
+  line-height: 2rem;
 }
 
-.alpha,.alpha--black,.rc-replace-header-styles h1 {
-  font-size: 2.1em;
+.gamma,.rc-replace-header-styles h3 {
+  font-size: 1.375rem;
+  line-height: 1.75rem;
 }
 
-.alpha--black {
-  color: #666666;
+.delta,.rc-replace-header-styles h4 {
+  font-size: 1.125rem;
+  line-height: 1.625rem;
 }
 
-.beta,.beta--black,.rc-replace-header-styles h2 {
-  font-size: 1.85em;
+.espilon,.rc-replace-header-styles h5 {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
-.beta--black {
-  color: #666666;
+.zeta,.rc-replace-header-styles h6 {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
 }
 
-.gamma,.gamma--black,.rc-replace-header-styles h3 {
-  font-size: 1.5em;
+.intro {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
-.gamma--black {
-  color: #666666;
-}
-
-.delta,.delta--black,.rc-replace-header-styles h4 {
-  font-size: 1.2em;
-}
-
-.delta--black {
-  color: #666666;
-}
-
-.espilon,.espilon--black,.rc-replace-header-styles h5 {
-  font-size: 1.1em;
-}
-
-.espilon--black {
-  color: #666666;
-}
-
-.zeta,.zeta--black,.rc-replace-header-styles h6 {
-  font-size: 1em;
-}
-
-.zeta--black {
-  color: #666666;
-}
-
-.rc-head--display,.rc-head--display--black {
-  font-size: 2.1em;
-}
-
-.rc-head--display--black {
-  color: #666666;
-}
-
-.rc-head--headline,.rc-head--headline--black {
-  font-size: 1.85em;
-}
-
-.rc-head--headline--black {
-  color: #666666;
-}
-
-.rc-head--subheadline,.rc-head--subheadline--black {
-  font-size: 1.5em;
-}
-
-.rc-head--subheadline--black {
-  color: #666666;
-}
-
-.rc-head--article,.rc-head--article--black {
-  font-size: 1em;
-}
-
-.rc-head--article--black {
-  color: #666666;
-}
-
-.label,.label--black {
-  font-size: 1em;
-}
-
-.label--black {
-  color: #666666;
+.body {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
 }
 
 body {
@@ -5269,6 +5211,26 @@ h1,h2,h3,h4,h5,h6 {
 
 .text-centered {
   text-align: center;
+}
+
+.hero {
+  text-transform: uppercase;
+}
+
+.dark {
+  color: #666666;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.interactive {
+  color: #666666;
+}
+
+.interactive:hover {
+  color: #E2001A;
 }
 
 q {
@@ -8146,50 +8108,6 @@ video.hero__bg {
     margin: 1em auto;
   }
 
-  .alpha,.alpha--black,.rc-replace-header-styles h1 {
-    font-size: 2.5em;
-  }
-
-  .beta,.beta--black,.rc-replace-header-styles h2 {
-    font-size: 2.25em;
-  }
-
-  .gamma,.gamma--black,.rc-replace-header-styles h3 {
-    font-size: 2em;
-  }
-
-  .delta,.delta--black,.rc-replace-header-styles h4 {
-    font-size: 1.875em;
-  }
-
-  .espilon,.espilon--black,.rc-replace-header-styles h5 {
-    font-size: 1.625em;
-  }
-
-  .zeta,.zeta--black,.rc-replace-header-styles h6 {
-    font-size: 1.5em;
-  }
-
-  .rc-head--display,.rc-head--display--black {
-    font-size: 2.5em;
-  }
-
-  .rc-head--headline,.rc-head--headline--black {
-    font-size: 1.75em;
-  }
-
-  .rc-head--subheadline,.rc-head--subheadline--black {
-    font-size: 1.375em;
-  }
-
-  .rc-head--article,.rc-head--article--black {
-    font-size: 1.25em;
-  }
-
-  .label,.label--black {
-    font-size: 1.1em;
-  }
-
   body,input,textarea,select,button {
     font-size: 16px;
   }
@@ -8376,8 +8294,48 @@ video.hero__bg {
     margin-bottom: 1rem;
   }
 
-  .med-down {
+  .medium-down {
     display: none;
+  }
+
+  .alpha,.rc-replace-header-styles h1 {
+    font-size: 2.5rem;
+    line-height: 2.75rem;
+  }
+
+  .beta,.rc-replace-header-styles h2 {
+    font-size: 1.875rem;
+    line-height: 1.875rem;
+  }
+
+  .gamma,.rc-replace-header-styles h3 {
+    font-size: 1.625rem;
+    line-height: 1rem;
+  }
+
+  .delta,.rc-replace-header-styles h4 {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+
+  .espilon,.rc-replace-header-styles h5 {
+    font-size: 1.125rem;
+    line-height: 1.625rem;
+  }
+
+  .zeta,.rc-replace-header-styles h6 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .intro {
+    font-size: 1.125rem;
+    line-height: 1.625rem;
+  }
+
+  .body {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .layout-container {
@@ -8762,50 +8720,6 @@ video.hero__bg {
     display: none;
   }
 
-  .alpha,.alpha--black,.rc-replace-header-styles h1 {
-    font-size: 3.125em;
-  }
-
-  .beta,.beta--black,.rc-replace-header-styles h2 {
-    font-size: 2.625em;
-  }
-
-  .gamma,.gamma--black,.rc-replace-header-styles h3 {
-    font-size: 2.25em;
-  }
-
-  .delta,.delta--black,.rc-replace-header-styles h4 {
-    font-size: 2em;
-  }
-
-  .espilon,.espilon--black,.rc-replace-header-styles h5 {
-    font-size: 1.75em;
-  }
-
-  .zeta,.zeta--black,.rc-replace-header-styles h6 {
-    font-size: 1.625em;
-  }
-
-  .rc-head--display,.rc-head--display--black {
-    font-size: 3.125em;
-  }
-
-  .rc-head--headline,.rc-head--headline--black {
-    font-size: 2em;
-  }
-
-  .rc-head--subheadline,.rc-head--subheadline--black {
-    font-size: 1.5em;
-  }
-
-  .rc-head--article,.rc-head--article--black {
-    font-size: 1.375em;
-  }
-
-  .label,.label--black {
-    font-size: 1.2em;
-  }
-
   .modal {
     min-width: 70%;
     padding: 4rem;
@@ -8924,7 +8838,7 @@ video.hero__bg {
 }
 
 @media (max-width: 800px) {
-  .med-up {
+  .medium-up {
     display: none;
   }
 

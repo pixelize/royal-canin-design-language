@@ -82,11 +82,11 @@ body::before {
 /// -------------------
 
 %stick {
-  position: absolute;
+  position: absolute !important; // Override position: relative;
 }
 
 %fixed {
-  position: fixed;
+  position: fixed !important; // Same as above
 }
 
 .stick-left {
@@ -138,10 +138,6 @@ body::before {
   left: 0;
   right: 0;
   overflow-y: scroll;
-}
-
-%show-at-large-only {
-  display: none;
 }
 
 /// -------------------

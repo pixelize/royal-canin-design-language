@@ -29,11 +29,6 @@ $type-styles: (
   margin-bottom: .5em;
 }
 
-%heading--heavy-upper {
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
 %emphasised-text {
   font-weight: 500;
   margin-bottom: .75em;
@@ -123,18 +118,6 @@ h1, h2, h3, h4, h5, h6 {
 /// Type style modifiers
 /// -------------------
 
-.font--regular {
-  font-weight: 300;
-}
-
-.font--medium {
-  font-weight: 500;
-}
-
-.font--bold {
-  font-weight: 700;
-}
-
 .text-centered {
   text-align: center;
 }
@@ -143,15 +126,15 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
 
-.dark {
+.heading--dark {
   color: colour('secondary', 'text');
 }
 
-.medium {
+.headin--medium {
   font-weight: 500;
 }
 
-.interactive {
+.heading--interactive {
   color: colour('secondary', 'text');
 
   &:hover {

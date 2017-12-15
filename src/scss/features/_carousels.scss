@@ -262,21 +262,6 @@ video.hero__bg {
   top: 50%;
   margin-top: -16px;
   cursor: pointer;
-
-  & .navigation--prev,
-  & .navigation--next {
-
-    padding: 0;
-
-    &::after {
-      @extend %rc-icon;
-      @extend .rc-icon-chevron--left--light::after;
-    }
-  }
-
-  & .navigation--next::after {
-    transform: rotate(180deg);
-  }
 }
 
 [data-controls="prev"] {

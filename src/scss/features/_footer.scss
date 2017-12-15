@@ -46,7 +46,7 @@
 .rc-navigation--footer {
   text-align: center;
 
-  @media (get-breakpoint-up('med')) {
+  @media (get-breakpoint-up('medium')) {
     text-align: left;
   }
 }

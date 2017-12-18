@@ -22,7 +22,7 @@ $nav-heights: (
   margin-top: get-nav-height('med-down');
 }
 
-@media (get-breakpoint-up('med')) {
+@media (get-breakpoint-up('medium')) {
   .body--fixed-top-navigation {
     margin-top: get-nav-height('med-up');
   }
@@ -44,10 +44,10 @@ $nav-heights: (
   width: 100%;
   z-index: z(header-navigation);
   transition: movementSetting('transition', 'base');
-  
-  @media (get-breakpoint-up('med')) {
+
+  @media (get-breakpoint-up('medium')) {
     height: get-nav-height('med-up');
-    
+
     &.scrolled {
       height: get-nav-height('med-up-scrolled');
     }
@@ -55,7 +55,7 @@ $nav-heights: (
 
   @media (get-breakpoint-up('large')) {
     height: get-nav-height('large-up');
-    
+
     &.scrolled {
       height: get-nav-height('large-up-scrolled');
     }
@@ -86,7 +86,7 @@ $nav-heights: (
 }
 
 .rc-header-navigation__item {
-  @media (get-breakpoint-up('med')) {
+  @media (get-breakpoint-up('medium')) {
     margin: 0 get-spacer('small') / 4;
   }
 
@@ -96,7 +96,7 @@ $nav-heights: (
     filter: saturate(0);
     transition: movementSetting('transition', 'base');
 
-    @media (get-breakpoint-up('med')) {
+    @media (get-breakpoint-up('medium')) {
       transform: scale(.8);
     }
   }
@@ -121,15 +121,15 @@ $nav-heights: (
     height: 60px;
 
     &::after {
-      content: ''; 
-      position: absolute; 
-      top: 0; 
-      right: 0; 
-      bottom: 0; 
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
       left: 0;
     }
   }
-  
+
   & .switch {
     pointer-events: none;
 
@@ -137,11 +137,11 @@ $nav-heights: (
       height: 45px;
       transition: movementSetting('transition', 'base');
 
-      @media (get-breakpoint-up('med')) {
+      @media (get-breakpoint-up('medium')) {
         height: 60px;
       }
     }
-    
+
     &:last-of-type {
       height: 30px;
       opacity: 0;
@@ -175,7 +175,7 @@ $nav-heights: (
   }
 
   & + .shade {
-    z-index: z(header-navigation); 
+    z-index: z(header-navigation);
     display: none;
     animation: fadeIn .3s;
     animation-direction: reverse;

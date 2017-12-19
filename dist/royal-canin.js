@@ -5099,11 +5099,12 @@ RCDL.features.Slider = {
 RCDL.ready(RCDL.features.Slider.init('[data-js-slider]'));
 
 RCDL.features.sticky = {
+
   /**
    * Add the default functionality for alerts. Remove alert if close button clicked.
    * Store this decision in the local session and hide the alerts if they've already been closed.
    *
-   * @param {String|Array} selectors
+   * @param {String|Array} selector
    * Either a css selector or an array or selectors.
    */
   init: function (selector) {
@@ -5114,7 +5115,7 @@ RCDL.features.sticky = {
     var stickPoint = getDistance();
 
     function getDistance() {
-      return sticky.offsetTop + 1;
+      return sticky ? sticky.offsetTop + 1 : null;
     }
 
     function getDimentions(selector) {
@@ -5125,43 +5126,44 @@ RCDL.features.sticky = {
       };
     }
 
-    window.onscroll = function (e) {
-      var distance = getDistance() - window.pageYOffset;
-      var offset = window.pageYOffset;
-      var position = sticky.getAttribute('data-sticky');
-      var offsets = setOffsets(position);
+    if (sticky !== null) {
+      window.onscroll = function (e) {
+        var distance = getDistance() - window.pageYOffset;
+        var offset = window.pageYOffset;
+        var position = sticky.getAttribute('data-sticky');
+        var offsets = setOffsets(position);
 
-      if ((distance <= 0) && !stuck) {
+        if ((distance <= 0) && !stuck) {
 
-        // Create a temporary element to take up the space lost when the sticky
-        // item becomes fixed.
-        var spacer = document.createElement('div');
-        spacer.setAttribute('data-sticky', position + '-clone');
-        spacer.style.height = getDimentions(selector).height + 'px';
-        spacer.style.width = getDimentions(selector).width + 'px';
+          // Create a temporary element to take up the space lost when the sticky
+          // item becomes fixed.
+          var spacer = document.createElement('div');
+          spacer.setAttribute('data-sticky', position + '-clone');
+          spacer.style.height = getDimentions(selector).height + 'px';
+          spacer.style.width = getDimentions(selector).width + 'px';
 
-        // Insert the temporary item before the sticky item.
-        sticky.parentNode.insertBefore(spacer, sticky);
+          // Insert the temporary item before the sticky item.
+          sticky.parentNode.insertBefore(spacer, sticky);
 
-        sticky.setAttribute('data-original-position', sticky.style.position);
-        sticky.style.position = 'fixed';
+          sticky.setAttribute('data-original-position', sticky.style.position);
+          sticky.style.position = 'fixed';
 
-        sticky.style[position] = '0px';
-        stuck = true;
+          sticky.style[position] = '0px';
+          stuck = true;
 
-        sticky.parentNode.style[offsets.padding] = sticky[offsets.space];
-      }
-      else if (stuck && (offset <= stickPoint)) {
-        sticky.style.position = sticky.getAttribute('data-original-position');
-        sticky.style[position] = 'auto';
-        stuck = false;
+          sticky.parentNode.style[offsets.padding] = sticky[offsets.space];
+        }
+        else if (stuck && (offset <= stickPoint)) {
+          sticky.style.position = sticky.getAttribute('data-original-position');
+          sticky.style[position] = 'auto';
+          stuck = false;
 
-        sticky.parentNode.style[offsets.padding] = 'auto';
+          sticky.parentNode.style[offsets.padding] = 'auto';
 
-        document.querySelector('[data-sticky="' + position + '-clone"]').remove();
-      }
-    };
-
+          document.querySelector('[data-sticky="' + position + '-clone"]').remove();
+        }
+      };
+    }
 
     function setOffsets (position) {
       var padding = null;

@@ -32,7 +32,8 @@ location['js-dependencies'] = [
   'node_modules/pikaday/pikaday.js',
   'node_modules/tiny-slider/dist/tiny-slider.js',
   'node_modules/nouislider/distribute/nouislider.min.js',
-  'node_modules/tippy.js/dist/tippy.min.js'
+  'node_modules/tippy.js/dist/tippy.min.js',
+  'node_modules/rellax/rellax.min.js'
 ];
 
 location['jsdest'] = 'dist';

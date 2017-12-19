@@ -1,14 +1,14 @@
 .navigation--vertical {
   display: block;
-  color: colour('functional', 'text');
+  color: colour('secondary', 'text');
   width: 100%;
   z-index: z(side-navigation);
 
-  @media (get-breakpoint-down('med')) {
+  @media (get-breakpoint-down('medium')) {
     position: fixed;
   }
 
-  @media (get-breakpoint-up('med')) {
+  @media (get-breakpoint-up('medium')) {
     position: relative;
     padding-top: 50px;
   }
@@ -44,11 +44,11 @@
     display: block;
     text-decoration: none;
     padding: .5rem;
-    color: colour('functional', 'text');
+    color: colour('secondary', 'text');
   }
 
   & > a.active {
-    @extend .colour-grey--light--light__bkgrnd;
+    // @extend .colour-brand4__background;
     @extend %active-menu-item;
   }
 
@@ -85,7 +85,7 @@
     }
   }
 
-  @media (get-breakpoint-down('med')) {
+  @media (get-breakpoint-down('medium')) {
     background-color: transparent;
 
     &:hover,
@@ -94,7 +94,7 @@
     }
   }
 
-  @media (get-breakpoint-up('med')) {
+  @media (get-breakpoint-up('medium')) {
     height: auto;
     width: auto;
     bottom: -60px;
@@ -108,6 +108,12 @@
   }
 }
 
+.navigation--vertical > nav + nav {
+  @media (get-breakpoint-up('medium')) {
+    padding-top: 50px;
+  }
+}
+
 .page-header {
   z-index: z(header-navigation) + 1;
 }
@@ -115,14 +121,14 @@
 .page-header .logo-wrapper {
   @extend .center-align;
 
-  @media (get-breakpoint-up('med')) {
+  @media (get-breakpoint-up('medium')) {
    position: relative;
     left: auto;
     transform: none;
   }
 }
 
-@media (get-breakpoint-down('med')) {
+@media (get-breakpoint-down('medium')) {
   .page-has-no-sidebar {
 
     & .page-header .align-children--space-between {

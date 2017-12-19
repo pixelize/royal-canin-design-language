@@ -7,7 +7,7 @@
 .container {
   height: 100%;
   max-width: get-maxWidth('x-large');
-  background-color: colour('brand', 'white');
+  background-color: colour('primary', 'brand3');
   margin: auto;
   position: relative;
 }
@@ -82,11 +82,11 @@ body::before {
 /// -------------------
 
 %stick {
-  position: absolute;
+  position: absolute !important; // Override position: relative;
 }
 
 %fixed {
-  position: fixed;
+  position: fixed !important; // Same as above
 }
 
 .stick-left {
@@ -140,6 +140,15 @@ body::before {
   overflow-y: scroll;
 }
 
+%cover,
+.cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 %show-at-large-only {
   display: none;
 }
@@ -168,7 +177,7 @@ body::before {
 }
 
 
-@media (get-breakpoint-up('med')) {
+@media (get-breakpoint-up('medium')) {
   .center-align--med-up {
     position: absolute;
     top: 50%;
@@ -227,7 +236,7 @@ body::before {
 /// -------------------
 /// Max-widths
 /// -------------------
-
+%max-width--large,
 .max-width--large {
   max-width: get-maxWidth('large');
   margin-left: auto;

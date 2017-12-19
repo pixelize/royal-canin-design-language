@@ -9,8 +9,8 @@
   text-decoration: none;
   position: relative;
   cursor: pointer;
-  background-color: colour('brand', 'red');
-  color: colour('brand', 'white');
+  background-color: colour('primary', 'brand1');
+  color: colour('primary', 'brand3');
   font-weight: 500;
   font-size: .675em;
   padding: .3rem 1rem;
@@ -34,8 +34,8 @@
 
   &:hover,
   &:focus {
-    background-color: colour('brand', 'red', 'dark');
-    color: colour('brand', 'white');
+    background-color: colour('exceptional', 'hover');
+    color: colour('primary', 'brand3');
   }
 
   &:focus {
@@ -43,20 +43,20 @@
   }
 
   &:active {
-    background-color: colour('brand', 'red', 'dark');
+    background-color: colour('primary', 'brand1');
   }
 
   &:disabled {
-    background-color: colour('brand', 'light-grey');
-    color: colour('brand', 'medium-grey');
+    background-color: colour('primary', 'brand4');
+    color: colour('primary', 'brand2');
     border-color: transparent;
     cursor: not-allowed;
 
     &:hover,
     &:focus,
     &:active {
-      background-color: colour('brand', 'light-grey');
-      color: colour('brand', 'medium-grey');
+      background-color: colour('primary', 'brand4');
+      color: colour('primary', 'brand2');
     }
   }
 
@@ -65,7 +65,7 @@
     text-align: center;
   }
 
-  @media (get-breakpoint-down('med')) {
+  @media (get-breakpoint-down('medium')) {
     &.fill-width--just-mobile {
       width: 100%;
       text-align: center;
@@ -132,19 +132,19 @@ button {
 /// -------------------
 
 %button--secondary {
-  border-color: colour('brand', 'red');
-  color: colour('brand', 'red');
+  border-color: colour('primary', 'brand1');
+  color: colour('primary', 'brand1');
   background-color: transparent;
 
   &:hover,
   &:focus {
-    background-color: colour('brand', 'red');
-    color: colour('brand', 'white');
+    background-color: colour('primary', 'brand1');
+    color: colour('primary', 'brand3');
   }
 
   &:active {
-    background-color: colour('brand', 'red', 'dark');
-    border-color: colour('brand', 'red', 'dark');
+    background-color: colour('primary', 'brand1');
+    border-color: colour('primary', 'brand1');
   }
 }
 
@@ -187,19 +187,19 @@ $icons: ('icon-arrow--go', 'icon-chevron--right');
 /// -------------------
 
 %button--tertiary {
-  border-color: colour('functional', 'text');
-  color: colour('functional', 'text');
+  border-color: colour('secondary', 'text');
+  color: colour('secondary', 'text');
   background-color: transparent;
 
   &:hover,
   &:focus {
-    background-color: colour('functional', 'text');
-    color: colour('brand', 'white');
+    background-color: colour('secondary', 'text');
+    color: colour('primary', 'brand3');
   }
 
   &:active {
-    background-color: colour('functional', 'text', 'dark');
-    border-color: colour('functional', 'text', 'dark');
+    background-color: colour('secondary', 'text');
+    border-color: colour('secondary', 'text');
   }
 }
 
@@ -240,7 +240,7 @@ $variants: ('large', 'medium', 'small');
 /// -------------------
 
 .button--functional {
-  background-color: colour('functional', 'functional');
+  background-color: colour('tertiary', 'function');
 
   &::after {
     @extend %rc-icon;
@@ -250,7 +250,7 @@ $variants: ('large', 'medium', 'small');
   &:hover,
   &:focus,
   &:active {
-    background-color: colour('functional', 'functional', 'dark');
+    background-color: colour('tertiary', 'function');
   }
 }
 
@@ -258,12 +258,12 @@ $variants: ('large', 'medium', 'small');
 @include generateAnimation(steady-spin, translateY, translateY(-50%));
 
 .button--functional--loading {
-  background-color: colour('functional', 'functional', 'dark');
+  background-color: colour('tertiary', 'function');
 
   &:hover,
   &:focus,
   &:active {
-    background-color: colour('functional', 'functional', 'dark');
+    background-color: colour('tertiary', 'function');
   }
 
   &::after {
@@ -293,12 +293,12 @@ $variants: ('large', 'medium', 'small');
 }
 
 .button--functional--success {
-  background-color: colour('functional', 'success');
+  background-color: colour('tertiary', 'success');
 
   &:hover,
   &:focus,
   &:active {
-    background-color: colour('functional', 'success', 'dark');
+    background-color: colour('tertiary', 'success');
   }
 
   &::after {
@@ -309,12 +309,12 @@ $variants: ('large', 'medium', 'small');
 
 
 .button--functional--fail {
-  background-color: colour('functional', 'error');
+  background-color: colour('tertiary', 'error');
 
   &:hover,
   &:focus,
   &:active {
-    background-color: colour('functional', 'error', 'dark');
+    background-color: colour('tertiary', 'error');
   }
 
   &::after {
@@ -340,9 +340,9 @@ $variants: ('large', 'medium', 'small');
 /// -------------------
 
 .button--panel {
-  background-color: colour('brand', 'white');
+  background-color: colour('primary', 'brand3');
   border-radius: 0;
-  color: colour('brand', 'red');
+  color: colour('primary', 'brand1');
   padding: 0;
   width: 100%;
   font-size: 2em;
@@ -358,8 +358,8 @@ $variants: ('large', 'medium', 'small');
   &:hover,
   &:focus,
   &:active {
-    color: colour('brand', 'red');
-    background-color: colour('brand', 'white');
+    color: colour('primary', 'brand1');
+    background-color: colour('primary', 'brand3');
     text-decoration: underline;
   }
 }

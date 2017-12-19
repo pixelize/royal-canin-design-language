@@ -1,3 +1,13 @@
+/// ----------------------------------------------------------------------
+
+/// Modal
+
+/// ----------------------------------------------------------------------
+
+/// -------------------
+/// Modal
+/// -------------------
+
 .modal {
   display: none;
   position: fixed;
@@ -11,7 +21,7 @@
   animation-direction: reverse;
 
   transform: translateX(-50%);
-  background-color: colour('brand', 'white');
+  background-color: colour('primary', 'brand3');
   padding: get-spacer('small');
 
   @media (get-breakpoint-up('large')) {
@@ -57,12 +67,11 @@
 }
 
 .modal__content {
-  padding: get-spacer('medium') 0;
+  padding: 0;
 }
 
 .modal__title {
   display: block;
-  text-align: center;
 }
 
 .modal__close {

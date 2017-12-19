@@ -27,13 +27,14 @@
 .rc-column {
   position: relative;
   justify-content: center;
+  z-index: 1;
 }
 
 .justify-content-space-around {
   justify-content: space-around;
 }
 
-@media (get-breakpoint-up('med')) {
+@media (get-breakpoint-up('medium')) {
 
   .layout-container {
     display: flex;

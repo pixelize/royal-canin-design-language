@@ -34,14 +34,14 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: colour('brand', 'medium-grey');
+    background-color: colour('primary', 'brand2');
     height: 2px;
     z-index: z(default);
     transition: movementSetting('transition', 'base');
   }
   
   &::after {
-    background-color: colour('functional', 'functional');
+    background-color: colour('tertiary', 'function');
     z-index: z(default) + 1;
     width: 0;
   }
@@ -106,7 +106,7 @@
   margin-bottom: 0;
   padding: .75em;
   box-shadow: none;
-  background-color: colour('tertiary', 'grey--light');
+  background-color: colour('primary', 'brand4');
   display: block;
   width: 100%;
   font-size: 1.125em;
@@ -122,8 +122,8 @@
 /// -------------------
 
 %error {
-  border: 1px solid colour('brand', 'red');
-  background-color: lighten(colour('brand', 'red'), 50%);
+  border: 1px solid colour('primary', 'brand1');
+  background-color: lighten(colour('primary', 'brand1'), 50%);
 }
 
 .input {
@@ -135,9 +135,9 @@
   
   & .error {
     @extend %error;
-    color: colour('brand', 'red');
+    color: colour('primary', 'brand1');
     & + .input__label::after {
-      background-color: colour('brand', 'red');
+      background-color: colour('primary', 'brand1');
       width: 100%;
     }
   }
@@ -145,7 +145,7 @@
 
 .choices.error + .select__label {
   @extend %error;
-  border-bottom: 2px solid colour('brand', 'red');
+  border-bottom: 2px solid colour('primary', 'brand1');
 }
 
 /// ------------------- 
@@ -185,12 +185,9 @@
 /// -------------------
 
 .input--white {
-  background-color: colour('brand', 'white');
-}
-
-.input--btn {
-  display: block;
-  max-width: 300px;
+  & input {
+    background-color: colour('primary', 'brand3');
+  }
 }
 
 /// ------------------- 
@@ -229,7 +226,7 @@
   @extend %input-base;
   resize: vertical;
   height: 200px;
-  background-color: colour('tertiary', 'grey--light');
+  background-color: colour('primary', 'brand4');
 }
 
 /// ------------------- 
@@ -250,8 +247,8 @@
     &::before {
       content: '';
       display: inline-block;
-      border: 1px solid colour('brand', 'medium-grey');
-      background-color: colour('tertiary', 'grey--light');
+      border: 1px solid colour('primary', 'brand2');
+      background-color: colour('primary', 'brand4');
       width: 1.5rem;
       height: 1.5rem;
       position: absolute;
@@ -311,7 +308,7 @@
   
   &:checked + .input__label--inline::after {
     content: '';
-    background-color: colour('brand', 'red');
+    background-color: colour('primary', 'brand1');
     border-radius: 1rem;
     width: 1rem;
     height: 1rem;
@@ -331,7 +328,7 @@
 .select__label {
   @extend %label; 
   z-index: z(select-box);
-  background-color: colour('tertiary', 'grey--light');
+  background-color: colour('primary', 'brand4');
   border: none;
   border-bottom: 2px solid #87888A;
   border-radius: 0;
@@ -340,6 +337,21 @@
     @extend %label__text;
   }
 }
+
+/// ------------------- 
+/// Select modifiers
+/// -------------------
+
+.select--white {
+  & .choices__inner,
+  & .select__label {
+    background-color: colour('primary', 'brand3');
+  }
+}
+
+/// ------------------- 
+/// Choices.js
+/// -------------------
 
 .choices:focus,
 .choices.is-open,
@@ -356,7 +368,6 @@
 }
 
 [role="listbox"].choices {
-  box-shadow: getShadow('black', 'faint');
   cursor: pointer;
   margin: 0;
   
@@ -386,24 +397,24 @@
 
 [role="listbox"].choices--white {
   & > .choices__inner {
-    background-color: colour('brand', 'white');
+    background-color: colour('primary', 'brand3');
   }
 }
 
 .choices__item--selectable.is-highlighted {
-  background-color: colour('tertiary', 'blue--light');
+  background-color: colour('primary', 'brand4');
 }
 
 .choices__list--multiple {
   & .choices__item {
-    background-color: colour('brand', 'red');
+    background-color: colour('primary', 'brand1');
     border: none;
     border-radius: 0;
     padding: .75em;
   }
   
   & .choices__item.is-highlighted {
-    background-color: colour('brand', 'red', 'dark');
+    background-color: colour('primary', 'brand1');
     border: none;
   }
 } 
@@ -434,12 +445,12 @@
 /// -------------------
 
 ::-webkit-calendar-picker-indicator {
-  color: colour('brand', 'red');
+  color: colour('primary', 'brand1');
   cursor: pointer;
 }
 
 /// ------------------- 
-/// Datepicker - fallback
+/// Datepicker - pikaday.js
 /// -------------------
 
 .pika-lendar > table {
@@ -457,7 +468,7 @@
 }
 
 .is-today .pika-button {
-  color: colour('brand', 'red');
+  color: colour('primary', 'brand1');
 }
 
 .pika-table abbr {
@@ -466,11 +477,11 @@
 }
 
 .pika-single .is-selected .pika-button {
-  background-color: colour('functional', 'functional');
+  background-color: colour('tertiary', 'function');
 }
 
 .pika-button:hover {
-  background-color: colour('brand', 'red');
+  background-color: colour('primary', 'brand1');
 }
 
 .pika-button {

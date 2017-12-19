@@ -64,11 +64,11 @@ $hero-bp-large: 1000px;
 .hero__title {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  color: colour('brand', 'red');
+  color: colour('primary', 'brand1');
 }
 
 .hero__description {
-  color: colour('brand', 'medium-grey');
+  color: colour('primary', 'brand2');
 }
 
 figure.hero__bg {
@@ -251,7 +251,7 @@ video.hero__bg {
 
 [data-tns-hidden="x"] {
   position: relative;
-  border: 1px solid colour('brand', 'light-grey');
+  border: 1px solid colour('secondary', 'interface');
 }
 
 [data-controls] {
@@ -262,21 +262,6 @@ video.hero__bg {
   top: 50%;
   margin-top: -16px;
   cursor: pointer;
-
-  & .navigation--prev,
-  & .navigation--next {
-
-    padding: 0;
-
-    &::after {
-      @extend %rc-icon;
-      @extend .rc-icon-chevron--left--light::after;
-    }
-  }
-
-  & .navigation--next::after {
-    transform: rotate(180deg);
-  }
 }
 
 [data-controls="prev"] {
@@ -301,5 +286,5 @@ video.hero__bg {
 }
 
 [data-tns-role="nav"] > button[aria-selected="true"] {
-  background-color: colour('brand', 'red');
+  background-color: colour('primary', 'brand1');
 }

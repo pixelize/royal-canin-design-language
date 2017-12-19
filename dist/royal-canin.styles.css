@@ -831,6 +831,7 @@ sup {
 }
 
 [data-tns-mode="carousel"][data-tns-axis="horizontal"] {
+  white-space: nowrap;
   left: 0;
 }
 
@@ -841,7 +842,9 @@ sup {
 }
 
 [data-tns-mode="carousel"][data-tns-axis="horizontal"] > div,[data-tns-mode="carousel"][data-tns-axis="horizontal"] > li,[data-tns-mode="carousel"][data-tns-axis="horizontal"] > span,[data-tns-mode="carousel"][data-tns-axis="horizontal"] > a {
-  float: left;
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;

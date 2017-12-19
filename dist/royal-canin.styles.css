@@ -7486,6 +7486,14 @@ video.hero__bg {
   overflow: hidden;
 }
 
+.layout-container.two-column.stacked {
+  flex-direction: column;
+}
+
+.layout-container.two-column.stacked .rc-column {
+  width: 100%;
+}
+
 .site-footer {
   background-color: #666666;
   position: relative;

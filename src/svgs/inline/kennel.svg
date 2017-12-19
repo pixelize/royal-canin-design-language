@@ -1,5 +1,24 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 260 265" xml:space="preserve">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 260 265" xml:space="preserve">
+   <style>
+
+      @keyframes swing {
+        0% {
+          transform: rotate(10deg);
+        }
+        50% {
+          transform: rotate(-5deg);
+        }
+        100% {
+          transform: rotate(10deg);
+        }
+      }
+
+      .animate--swing {
+        transform-origin: 50% 0%;
+        animation: swing 1.5s ease-in-out forwards infinite;
+      }
+
+  </style>
   <g id="kennel">
     <polygon style="fill:#E2001A;" points="234.7,265 25.3,265 25.3,90 130.3,13.3 234.7,90 	"/>
     <g>

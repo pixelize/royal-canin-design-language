@@ -4839,11 +4839,6 @@ sup {
   padding: 2rem;
 }
 
-.svg--animated .animate--swing {
-  transform-origin: 50% 0%;
-  animation: swing 1.5s ease-in-out forwards infinite;
-}
-
 .bg-colour--brand1 {
   background-color: #E2001A;
 }
@@ -8998,20 +8993,6 @@ video.hero__bg {
 
   100% {
     opacity: 1;
-  }
-}
-
-@keyframes swing {
-  0% {
-    transform: rotate(10deg);
-  }
-
-  50% {
-    transform: rotate(-5deg);
-  }
-
-  100% {
-    transform: rotate(10deg);
   }
 }
 

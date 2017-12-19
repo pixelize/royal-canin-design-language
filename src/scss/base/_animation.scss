@@ -46,18 +46,6 @@
   }
 }
 
-@keyframes swing {
-  0% {
-    transform: rotate(10deg);
-  }
-  50% {
-    transform: rotate(-5deg);
-  }
-  100% {
-    transform: rotate(10deg);
-  }
-}
-
 @mixin generateAnimation($animate, $transform, $transformPlusValue) {
   @if $animate == steady-spin {
     @keyframes steady-spin-#{$transform} {
@@ -78,9 +66,4 @@
 .svg--animated {
   max-width: 300px;
   padding: 2rem;
-
-  & .animate--swing {
-    transform-origin: 50% 0%;
-    animation: swing 1.5s ease-in-out forwards infinite;
-  }
 }

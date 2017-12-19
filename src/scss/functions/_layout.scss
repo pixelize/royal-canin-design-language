@@ -110,7 +110,7 @@
 }
 
 %sixteen-to-nine--medium-up {
-  @media (get-breakpoint-up('med')) {
+  @media (get-breakpoint-up('medium')) {
     @include aspect-ratio(16, 9);
   }
 }

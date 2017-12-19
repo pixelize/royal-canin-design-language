@@ -4822,6 +4822,11 @@ sup {
   z-index: 999;
 }
 
+.svg--animated {
+  max-width: 300px;
+  padding: 2rem;
+}
+
 .bg-colour--brand1 {
   background-color: #E2001A;
 }

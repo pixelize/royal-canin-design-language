@@ -33,3 +33,12 @@
   overflow: hidden;
   @extend %max-width--large;
 }
+
+
+.layout-container.two-column.stacked {
+  flex-direction: column;
+
+  & .rc-column {
+    width: 100%;
+  }
+}

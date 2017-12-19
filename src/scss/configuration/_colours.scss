@@ -46,11 +46,11 @@ $colours: (
 
 $background: (
   ('primary', ('brand1', 'brand2', 'brand3', 'brand4')),
-  ('secondary', ('interface', 'interface-dark'))
+  ('secondary', ('interface-dark'))
 );
 
 $text: (
-  ('primary', ('brand1')),
+  ('primary', ('brand1', 'brand3', 'brand4')),
   ('secondary', ('text', 'iconography')),
   ('tertiary', ('success', 'error', 'inactive')),
 );

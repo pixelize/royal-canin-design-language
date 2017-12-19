@@ -185,12 +185,9 @@
 /// -------------------
 
 .input--white {
-  background-color: colour('primary', 'brand3');
-}
-
-.input--btn {
-  display: block;
-  max-width: 300px;
+  & input {
+    background-color: colour('primary', 'brand3');
+  }
 }
 
 /// ------------------- 
@@ -341,6 +338,21 @@
   }
 }
 
+/// ------------------- 
+/// Select modifiers
+/// -------------------
+
+.select--white {
+  & .choices__inner,
+  & .select__label {
+    background-color: colour('primary', 'brand3');
+  }
+}
+
+/// ------------------- 
+/// Choices.js
+/// -------------------
+
 .choices:focus,
 .choices.is-open,
 .choices.has-changed {
@@ -356,7 +368,6 @@
 }
 
 [role="listbox"].choices {
-  box-shadow: getShadow('black', 'faint');
   cursor: pointer;
   margin: 0;
   
@@ -439,7 +450,7 @@
 }
 
 /// ------------------- 
-/// Datepicker - fallback
+/// Datepicker - pikaday.js
 /// -------------------
 
 .pika-lendar > table {

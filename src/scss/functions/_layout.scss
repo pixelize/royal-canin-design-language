@@ -97,22 +97,20 @@
 ///		@include aspect-ratio(16, 9);
 ///
 @mixin aspect-ratio($width, $height) {
-  position: relative;
-  &:before {
-    display: block;
-    content: "";
-    width: 100%;
-    padding-top: ($height / $width) * 100%;
-  }
-  > .content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
+  $ratio: $height / $width;
+    width: 100vw;
+    max-width: get-maxWidth('large');
+    height: calc(100vw * #{$ratio});
+    max-height: get-maxWidth('large') * #{$ratio};
 }
 
+%sixteen-to-nine,
 .sixteen-to-nine {
   @include aspect-ratio(16, 9);
+}
+
+%sixteen-to-nine--medium-up {
+  @media (get-breakpoint-up('med')) {
+    @include aspect-ratio(16, 9);
+  }
 }

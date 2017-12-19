@@ -82,11 +82,11 @@ body::before {
 /// -------------------
 
 %stick {
-  position: absolute;
+  position: absolute !important; // Override position: relative;
 }
 
 %fixed {
-  position: fixed;
+  position: fixed !important; // Same as above
 }
 
 .stick-left {

@@ -113,16 +113,16 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
   margin-top: 0;
 }
-
+ 
 /// -------------------
 /// Type style modifiers
 /// -------------------
 
-.text-centered {
+.text--centered {
   text-align: center;
 }
 
-.hero {
+.text--hero {
   text-transform: uppercase;
 }
 
@@ -130,7 +130,7 @@ h1, h2, h3, h4, h5, h6 {
   color: colour('secondary', 'text');
 }
 
-.headin--medium {
+.heading--medium {
   font-weight: 500;
 }
 

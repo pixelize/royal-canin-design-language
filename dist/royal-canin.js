@@ -4367,11 +4367,7 @@ RCDL.features.Selects = function (selector) {
           placeholderValue: 'Select an option',
           searchEnabled: false,
           removeItemButton: true,
-          shouldSort: false,
-          // Check if different colour scheme has been applied
-          classNames: {
-            containerOuter: RCDL.utilities.hasClass(select, 'input--white') ? 'choices choices--white' : 'choices'
-          }
+          shouldSort: false
         },
         select.addEventListener('choice', function () {
           RCDL.utilities.modifyClass('add', select.parentNode.parentNode, 'has-changed');

@@ -1557,7 +1557,7 @@ sup {
 }
 
 .rc-flag::after {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/royal-canin.sprite--flags.png?v=5-0-0");
+  background-image: url("royal-canin.sprite--flags.png");
 }
 
 [class*="rc-flags-"]::after {
@@ -4934,7 +4934,7 @@ html {
   width: 32px;
   height: 32px;
   transform-origin: 50% 50%;
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/royal-canin.sprite.svg?v=5-0-0");
+  background-image: url("royal-canin.sprite.svg");
 }
 
 .navigation--vertical__list-item > a.active::after,.navigation--vertical__list-item > a:hover::after,.rc-icon--small::after {
@@ -5168,6 +5168,7 @@ body::before {
   padding-bottom: 4px;
   line-height: .9em;
   cursor: pointer;
+  font-weight: 500;
 }
 
 .styled-link:hover,.styled-link:focus {
@@ -5276,6 +5277,7 @@ figure > figcaption {
 
 body {
   line-height: 1.5;
+  color: #666666;
 }
 
 body,input,textarea,select,button {
@@ -6530,6 +6532,7 @@ button {
   color: #666666;
   text-decoration: none;
   font-size: 1rem;
+  font-weight: 300;
 }
 
 .sub-navigation__list {
@@ -7694,27 +7697,27 @@ video.hero__bg {
 }
 
 .region-holder.africa {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/africa.png?v=5-0-0");
+  background-image: url("africa.png");
 }
 
 .region-holder.asia {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/asia.png?v=5-0-0");
+  background-image: url("asia.png");
 }
 
 .region-holder.europe {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/europe.png?v=5-0-0");
+  background-image: url("europe.png");
 }
 
 .region-holder.north-america {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/north-america.png?v=5-0-0");
+  background-image: url("north-america.png");
 }
 
 .region-holder.oceania {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/oceania.png?v=5-0-0");
+  background-image: url("oceania.png");
 }
 
 .region-holder.south-america {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/south-america.png?v=5-0-0");
+  background-image: url("south-america.png");
 }
 
 .body--fixed-top-navigation {
@@ -7866,6 +7869,7 @@ video.hero__bg {
   text-decoration: none;
   padding: .5rem;
   color: #666666;
+  font-weight: 300;
 }
 
 .navigation--vertical__list-item > .section-title {

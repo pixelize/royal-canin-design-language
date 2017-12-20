@@ -1557,7 +1557,7 @@ sup {
 }
 
 .rc-flag::after {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/royal-canin.sprite--flags.png?v=");
+  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/royal-canin.sprite--flags.png?v=5-0-0");
 }
 
 [class*="rc-flags-"]::after {
@@ -4839,7 +4839,7 @@ sup {
   background-color: #FFFFFF;
 }
 
-.bg-colour--brand4 {
+.bg-colour--brand4,.navigation--vertical__list-item > a.active {
   background-color: #F6F6F6;
 }
 
@@ -4934,7 +4934,7 @@ html {
   width: 32px;
   height: 32px;
   transform-origin: 50% 50%;
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/royal-canin.sprite.svg?v=");
+  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/royal-canin.sprite.svg?v=5-0-0");
 }
 
 .navigation--vertical__list-item > a.active::after,.navigation--vertical__list-item > a:hover::after,.rc-icon--small::after {
@@ -7694,27 +7694,27 @@ video.hero__bg {
 }
 
 .region-holder.africa {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/africa.png?v=");
+  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/africa.png?v=5-0-0");
 }
 
 .region-holder.asia {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/asia.png?v=");
+  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/asia.png?v=5-0-0");
 }
 
 .region-holder.europe {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/europe.png?v=");
+  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/europe.png?v=5-0-0");
 }
 
 .region-holder.north-america {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/north-america.png?v=");
+  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/north-america.png?v=5-0-0");
 }
 
 .region-holder.oceania {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/oceania.png?v=");
+  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/oceania.png?v=5-0-0");
 }
 
 .region-holder.south-america {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/south-america.png?v=");
+  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/south-america.png?v=5-0-0");
 }
 
 .body--fixed-top-navigation {
@@ -8693,10 +8693,6 @@ video.hero__bg {
 
   .navigation--vertical--toggle::after {
     display: none;
-  }
-
-  .navigation--vertical > nav + nav {
-    padding-top: 50px;
   }
 
   .page-header .logo-wrapper {

@@ -48,7 +48,7 @@
   }
 
   & > a.active {
-    // @extend .colour-brand4__background;
+    @extend .bg-colour--brand4;
     @extend %active-menu-item;
   }
 
@@ -105,12 +105,6 @@
     &::after {
       display: none;
     }
-  }
-}
-
-.navigation--vertical > nav + nav {
-  @media (get-breakpoint-up('medium')) {
-    padding-top: 50px;
   }
 }
 

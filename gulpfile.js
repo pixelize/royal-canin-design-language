@@ -41,8 +41,7 @@
       pretasks: ['sass', 'jsProcessing'],
       orderedTasks: ['svgo', 'convertType', 'svgSprites', 'flags'],
       watch: {
-        active: false,
-        // files: [sitesettings.watch.sass, sitesettings.watch.js]
+        active: false
       },
       linting: {
         testSass: false

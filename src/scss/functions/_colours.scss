@@ -39,3 +39,21 @@
     @error 'The palette #{$palette} doesn\'t exsist';
   }
 }
+
+///
+/// Gradient direction
+///
+/// Gets the correct gradient angle in degrees.
+///
+/// @param {String} $value Direction name, found in $conversion-map sass map.
+/// @returns {String}
+///
+
+@function is-direction($value) {
+
+  @if map-has-key($conversion-map, $value) {
+    @return map-get($conversion-map, $value);
+  }
+
+  @return $value;
+}

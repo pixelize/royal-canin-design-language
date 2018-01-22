@@ -379,6 +379,7 @@
   &::after {
     @extend %rc-icon;
     @extend .rc-icon-chevron--down--small--red;
+    pointer-events: none;
     height: 32px;
     width: 32px;
     border: none;

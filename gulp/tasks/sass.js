@@ -61,6 +61,10 @@ module.exports = function (task, gulp, sitesettings, need, taskObj) {
       if (taskObj[global.process.argv[2]]['env'] === 'production') {
         execute(`git describe --exact-match --tags $(git log -n1 --pretty='%h')`, function(res) {
           version = res.slice(3).replace(/\./g, '-').replace(/\n/g, '');
+
+          if (res.startsWith('beta-')) {
+            version = res;
+          }
           resolve(version);
         })
       }

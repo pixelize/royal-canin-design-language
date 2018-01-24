@@ -25,13 +25,24 @@
   &::first-letter {
     text-transform: uppercase;
   }
-  
+
+  // Icon initial position
   &::after {
     @extend %rc-icon;
     position: absolute;
     right: -32px;
     top: 50%;
     transform: translateY(-50%);
+  }
+
+  // Icon transition
+  &:hover:not(:disabled) {
+    transition: movementSetting('transition', 'base');
+    cursor: pointer;
+
+    &::after {
+      transition: movementSetting('transition', 'base');
+    }
   }
 }
 
@@ -44,11 +55,12 @@
 
   @media (get-breakpoint-up('small')) {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-right: -#{get-spacer('small')};
 
     & .button {
       flex: 1;
+      max-width: 250px;
       margin-top: 0;
       margin-right: get-spacer('small');
     }
@@ -75,6 +87,10 @@
       @extend .rc-icon-chevron--right--small--#{$icon-colour};
     }
 
+    /// -------------------
+    ///  States
+    /// -------------------
+
     &:active {
       border-color: darken($border-colour, 15%);
       @if ($background-colour == 'transparent') {
@@ -82,6 +98,16 @@
       }
       @else {
         background-color: darken($background-colour, 15%);
+      }
+    }
+
+    &:disabled {
+      border-color: colour('secondary', 'interface');
+      @if ($background-colour == 'transparent') {
+        color: colour('secondary', 'interface');
+      }
+      @else {
+        background-color: colour('secondary', 'interface');
       }
     }
   }
@@ -101,31 +127,16 @@
     padding: 0 $padding;
     height: $height;
 
-    &:hover,
+    // Button text hover position
+    &:hover:not(:disabled),
     &:focus {
       padding-left: $padding - 8;
       padding-right: $padding + 8;
 
+      // Icon hover position
       &::after {
         right: ( $padding / 2 ) - 8px;
       }
     }
   }
-}
-
-
-/// -------------------
-///  Button states
-/// -------------------
-
-.button:hover {
-  transition: movementSetting('transition', 'base');
-  cursor: pointer;
-
-  &::after {
-    transition: movementSetting('transition', 'base');
-  }
-}
-
-.button:disabled {
 }

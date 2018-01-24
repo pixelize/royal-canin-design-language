@@ -1,0 +1,31 @@
+/// ----------------------------------------------------------------------
+
+/// Button configuration
+
+/// ----------------------------------------------------------------------
+
+$buttonColours: (
+  'one': (
+    'bg-colour': colour('primary', 'brand1'),
+    'text-colour': colour('primary', 'brand3'),
+    'border-colour': colour('primary', 'brand1'),
+    'icon-colour': 'light'
+  ),
+  'two': (
+    'bg-colour': colour('primary', 'brand3'),
+    'text-colour': colour('primary', 'brand1'),
+    'border-colour': colour('primary', 'brand1'),
+    'icon-colour': 'red'
+  )
+);
+
+$buttonSizes: (
+  'base': (
+    'padding': 32px,
+    'height': 48px
+  ),
+  'small': (
+    'padding': 16px,
+    'height': 32px
+  )
+);

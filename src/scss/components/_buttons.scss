@@ -1,0 +1,120 @@
+/// ----------------------------------------------------------------------
+
+/// Buttons
+///
+/// Config file containing sass maps:
+/// ./configuration/_buttons.scss
+
+/// ----------------------------------------------------------------------
+
+.button {
+  position: relative;
+  width: 100%;
+  height: 38px;
+  padding: 0 16px;
+  margin-bottom: get-spacer('small');
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-transform: lowercase;
+  overflow: hidden;
+  border: solid 2px;
+  border-radius: borderRadius('button');
+
+  @media (get-breakpoint-up('small')) {
+    width: auto;
+    // max-width: 250px;
+    height: 48px;
+    padding: 0 32px;
+  }
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
+  
+  &::after {
+    @extend %rc-icon;
+    position: absolute;
+    right: -32px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+/// -------------------
+///  Button group
+/// -------------------
+
+.button-group {
+  margin-bottom: get-spacer('small');
+
+  @media (get-breakpoint-up('small')) {
+    display: flex;
+    justify-content: space-between;
+    margin-right: -#{get-spacer('small')};
+
+    & .button {
+      flex: 1;
+      margin-top: 0;
+      margin-right: get-spacer('small');
+    }
+  }
+}
+
+/// -------------------
+///  Button modifiers
+/// -------------------
+
+@each $colour in $buttonColours {
+  .button--#{nth($colour, 1)} {
+    background-color: map-get(map-get($buttonColours, #{nth($colour, 1)}), 'bg-colour');
+    color: map-get(map-get($buttonColours, #{nth($colour, 1)}), 'text-colour');
+    border-color: map-get(map-get($buttonColours, #{nth($colour, 1)}), 'border-colour');
+
+    &::after {
+      @extend .rc-icon-chevron--right--small--#{map-get(map-get($buttonColours, #{nth($colour, 1)}), 'icon-colour')};
+    }
+  }
+}
+
+@each $size in $buttonSizes {
+
+  $modifier: if(nth($size, 1) == 'base', 'button', 'button--#{nth($size, 1)}' );
+
+  .#{$modifier} {
+    padding: 0 map-get(map-get($buttonSizes, #{nth($size, 1)}), 'padding');
+    height: map-get(map-get($buttonSizes, #{nth($size, 1)}), 'height');
+  }
+
+  .#{$modifier}:hover {
+    padding-left: map-get(map-get($buttonSizes, #{nth($size, 1)}), 'padding') - 8;
+    padding-right: map-get(map-get($buttonSizes, #{nth($size, 1)}), 'padding') + 8;
+  }
+
+  .#{$modifier}:hover::after {
+    right: ( map-get(map-get($buttonSizes, #{nth($size, 1)}), 'padding') / 2 ) - 8px;
+  }
+}
+
+
+/// -------------------
+///  Button states
+/// -------------------
+
+.button:hover {
+  transition: movementSetting('transition', 'base');
+  cursor: pointer;
+
+  &::after {
+    transition: movementSetting('transition', 'base');
+  }
+}
+
+.button:focus {
+}
+
+.button:active {
+}
+
+.button:disabled {
+}

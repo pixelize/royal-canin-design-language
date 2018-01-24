@@ -2,28 +2,33 @@
 /// Inline style link
 /// -------------------
 
-.styled-link {
+.styled-link,
+%styled-link {
   display: inline-block;
   vertical-align: bottom;
   position: relative;
   z-index: z(default);
-  color: colour('secondary', 'text');
+  color: colour('secondary', 'hyperlink');
   transition: color .2s ease-in, border-color .2s ease-in;
   overflow: hidden;
   background-color: transparent;
   border: none;
   user-select: none;
   text-decoration: none;
-  border-bottom: 1px solid colour('primary', 'brand2');
+  border-bottom: 1px solid colour('secondary', 'interface');
   padding-bottom: 4px;
   line-height: .9em;
   cursor: pointer;
   font-weight: 500;
 
+  &:visited {
+    color: colour('secondary', 'text');
+  }
+
   &:hover,
   &:focus {
     color: colour('primary', 'brand1');
-    border-bottom: 1px solid colour('primary', 'brand1');
+    border-bottom: 1px solid colour('secondary', 'interface');
     text-decoration: none;
   }
 
@@ -38,6 +43,20 @@
   }
 }
 
+.styled-link--cta {
+  @extend %styled-link;
+  color: colour('primary', 'brand1');
+  border-bottom: 1px solid rgba(colour('primary', 'brand1'), 0.15);
+
+  &:hover {
+    border-bottom: 1px solid rgba(colour('primary', 'brand1'), 1);
+  }
+
+  &:visited {
+    color: colour('primary', 'brand1');
+  }
+}
+
 nav {
   & .styled-link {
     border-bottom: none;
@@ -46,5 +65,20 @@ nav {
     &:focus {
       border-bottom: none;
     }
+  }
+}
+
+.styled-link--external {
+  @extend %styled-link;
+
+  &::after {
+    @extend %rc-icon;
+    @extend .rc-icon-external--small--dark;
+    position: relative;
+    bottom: -.7rem;
+  }
+
+  &:hover::after {
+    @extend .rc-icon-external--small--red;
   }
 }

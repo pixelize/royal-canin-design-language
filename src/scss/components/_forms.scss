@@ -379,6 +379,7 @@
   &::after {
     @extend %rc-icon;
     @extend .rc-icon-chevron--down--small--red;
+    pointer-events: none;
     height: 32px;
     width: 32px;
     border: none;
@@ -430,6 +431,7 @@
   width: 1.5rem;
   margin: 0;
   padding: 0;
+  pointer-events: none;
 
   &::after {
     @extend %rc-icon;

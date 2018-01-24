@@ -6,8 +6,8 @@
 
             // Font name             weight     style
 $typefaces: ('RC TYPE',              300,       normal),
-            ('RC TYPE',              500,       normal),
-            ('RC TYPE',              700,       normal);
+            ('RC TYPE',              500,       normal);
+
 
 // Font stack variable
 $font-din: "RC TYPE", 'Avenir', Helvetica, Arial, sans-serif;
@@ -21,9 +21,5 @@ $font-din: "RC TYPE", 'Avenir', Helvetica, Arial, sans-serif;
     font-family: $familyname;
     font-style: $style;
     font-weight: $weight;
-  }
-
-    .#{$className}--#{$weight} {
-      @extend %#{$className}--#{$weight};
   }
 }

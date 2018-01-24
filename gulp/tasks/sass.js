@@ -60,7 +60,11 @@ module.exports = function (task, gulp, sitesettings, need, taskObj) {
       // If we're about to do a release make sure the version number is passed for use in url string replacements.
       if (taskObj[global.process.argv[2]]['env'] === 'production') {
         execute(`git describe --exact-match --tags $(git log -n1 --pretty='%h')`, function(res) {
-          version = res.slice(3).replace(/\./g, '-').replace(/\n/g, '');
+          version = res.slice(3).replace(/\./g, '-').replace(/\\n/g, '').replace(/\\a/g, '').trim();
+
+          if (res.startsWith('beta-')) {
+            version = res.replace(/\./g, '-').replace(/\\n/g, '').replace(/\\a/g, '').trim();
+          }
           resolve(version);
         })
       }

@@ -5482,8 +5482,6 @@ blockquote > p,q > p {
 .button {
   position: relative;
   width: 100%;
-  height: 38px;
-  padding: 0 16px;
   margin-bottom: 1rem;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -5514,10 +5512,20 @@ blockquote > p,q > p {
   border-color: #E2001A;
 }
 
+.button--one:active {
+  border-color: #960011;
+  background-color: #960011;
+}
+
 .button--two {
-  background-color: #FFFFFF;
+  background-color: "transparent";
   color: #E2001A;
   border-color: #E2001A;
+}
+
+.button--two:active {
+  border-color: #960011;
+  color: #960011;
 }
 
 .button {
@@ -5525,12 +5533,12 @@ blockquote > p,q > p {
   height: 48px;
 }
 
-.button:hover {
+.button:hover,.button:focus {
   padding-left: 24px;
   padding-right: 40px;
 }
 
-.button:hover::after {
+.button:hover::after,.button:focus::after {
   right: 8px;
 }
 
@@ -5539,12 +5547,12 @@ blockquote > p,q > p {
   height: 32px;
 }
 
-.button--small:hover {
+.button--small:hover,.button--small:focus {
   padding-left: 8px;
   padding-right: 24px;
 }
 
-.button--small:hover::after {
+.button--small:hover::after,.button--small:focus::after {
   right: 0px;
 }
 
@@ -8080,8 +8088,6 @@ video.hero__bg {
 
   .button {
     width: auto;
-    height: 48px;
-    padding: 0 32px;
   }
 
   .button-group {

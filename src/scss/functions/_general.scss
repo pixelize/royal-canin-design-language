@@ -1,0 +1,18 @@
+/// ----------------------------------------------------------------------
+
+/// General Helper Functions
+
+/// ----------------------------------------------------------------------
+
+///
+/// Get Property
+///
+/// Used to get a property from a nested map when used in a loop.
+///
+/// @param {String} $map Name of map.
+///
+/// @param {String} $var Variable of current loop.
+///
+@function getProperty($map, $var, $prop) {
+  @return map-get(map-get($map, #{nth($var, 1)}), $prop);
+}

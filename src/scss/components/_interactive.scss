@@ -4,7 +4,7 @@
 
 /// ----------------------------------------------------------------------
 
-/// ------------------- 
+/// -------------------
 /// Pager
 /// -------------------
 
@@ -64,7 +64,7 @@
   @extend %pager--active;
 }
 
-/// ------------------- 
+/// -------------------
 /// Navigation Button
 /// -------------------
 
@@ -72,10 +72,9 @@
   display: inline-block;
   transition: background-color .2s ease-in-out;
   background-color: colour('primary', 'brand1');
-  width: 35px;
-  height: 35px;
+  width: 32px;
+  height: 32px;
   overflow: hidden;
-  border: 1px solid rgba( 0, 0, 0, .15 );
   cursor: pointer;
   border-radius: 100%;
 
@@ -202,7 +201,7 @@
 }
 
 
-/// ------------------- 
+/// -------------------
 /// Toggle SVG
 /// -------------------
 

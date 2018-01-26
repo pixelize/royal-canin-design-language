@@ -3,6 +3,27 @@
 All notable changes to Royal Canin Design Language will be documented on this page.
 [View Full](http://developer.royalcanin.com/changelog.html)
 
+ ## v5.1.0
+A refinement on version 5 with the addition of some new hyperlink styles.
+ ### Breaking Changes
+ ##### New Hyperlink styles
+We've added icons for hyperlinks that generate new pages and lead to external sites..
+ ## v5.0.0
+With the growing need for visual elements we've added various multimedia elements.
+ ### Breaking Changes
+ ##### Colour naming conventions
+We've had an overhaul of how we name our colours. They're now a lot more logical and abstract.
+ ### New Features
+ ##### Content Blocks
+Content blocks make up a large proportion of many consumer facing websites. They are one of the most powerful assets we have to create a consistent visual style to landing pages, campaigns and content. This is why we have taken the time to carefully define and develop a collection of ready to use variations of content blocks for use across Royal Canin digital projects.
+ ##### 404 template
+Usual page not found but with a nice animated svg image.
+ ##### Media elements
+We've added an array of new media elements. Including items like the <picture> element for true responsive image and parallax media elements for when a page needs a bit of extra flare.
+ ##### Responsive typography
+Headings now grow/shrink depending on the device/screen sizes.
+ ##### Design Language tips/alerts
+We've now added tip and alerts across the Design Language to highlight important information.
  ## v4.0.0
 On our quest for design system utopia we are extremely happy to announce the release of a brand new website. The new site design makes it easier to get started in design and development projects, and to find exactly what you are looking for.
  ### Breaking Changes
@@ -42,19 +63,3 @@ All code snippets can now be copied instantly via a button.
  ### Minor Updates/Bug fixes
  ##### Responsive Typography
 Type scaling has been improved across mobile devices.
- ## v2.0.0
- ### Breaking Changes
- ##### Renamed Javascript Object
-All instances of RCWDL have been renamed to RCDL.
- ##### Renamed Toggle Class Method
-RCDL.toggleClass() has been renamed to RCDL.modifyClass() with added type parameter.
- ##### Icon Class Change
-All Royal Canin icons now require the base class .rc-icon.
- ### New Features
- ##### Changelog page
-Added the current page so that changes are clearly visible and easy to track.
- ##### Alert Functionality
-Added default functionality for closing alerts and storing that decision in the current session.
- ### Minor Updates/Bug fixes
- ##### Correct Icon Scaling
-Icon scaling has been improved by targeting the psuedo element.

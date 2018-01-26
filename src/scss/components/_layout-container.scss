@@ -126,3 +126,8 @@
     flex-direction: row-reverse;
   }
 }
+
+
+.layout-container > .rc-column.no-gutter  {
+  padding: 0;
+}

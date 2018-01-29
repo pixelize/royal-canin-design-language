@@ -337,7 +337,7 @@ $spacingTypes: map-keys($spacers);
 @each $breakpoint in $breakpoints {
   @media (get-breakpoint-up('#{nth($breakpoint, 1)}')) {
     .#{nth($breakpoint, 1)}-down {
-      display: none;
+      display: none !important;
     }
   }
 }
@@ -345,7 +345,7 @@ $spacingTypes: map-keys($spacers);
 @each $breakpoint in $breakpoints {
   @media (get-breakpoint-down('#{nth($breakpoint, 1)}')) {
     .#{nth($breakpoint, 1)}-up {
-      display: none;
+      display: none !important;
     }
   }
 }

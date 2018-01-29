@@ -7,50 +7,126 @@
 
 /// ----------------------------------------------------------------------
 
-.button {
+/// -------------------
+///  Button setup
+/// -------------------
+
+$font-size: getProperty($buttonSizes, 'base', 'font-size');
+$border-radius: borderRadius('button');
+$border-width: 2px;
+
+$padding-x--base: getProperty($buttonSizes, 'base', 'padding-x');
+$padding-y--base: getProperty($buttonSizes, 'base', 'padding-y');
+
+$padding-x--small: getProperty($buttonSizes, 'small', 'padding-x');
+$padding-y--small: getProperty($buttonSizes, 'small', 'padding-y');
+
+
+%button--base {
+  display: inline-block;
   position: relative;
   width: 100%;
-  margin-bottom: get-spacer('small');
+  vertical-align: middle;
   white-space: nowrap;
   text-overflow: ellipsis;
+  line-height: inherit;
+  font-size: $font-size;
+  text-align: center;
   text-transform: lowercase;
+  padding: $padding-y--small $padding-x--small;
   overflow: hidden;
-  border: solid 2px;
-  border-radius: borderRadius('button');
-
+  border-radius: $border-radius;
+  text-decoration: none;
+  cursor: pointer;
+  
   @media (get-breakpoint-up('small')) {
     width: auto;
+    padding: $padding-y--base $padding-x--base;
   }
 
   &::first-letter {
     text-transform: uppercase;
   }
 
-  // Icon initial position
-  &::after {
-    @extend %rc-icon;
-    position: absolute;
-    right: -32px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  // Icon transition
   &:hover:not(:disabled) {
     transition: movementSetting('transition', 'base');
-    cursor: pointer;
+  }
+}
 
+%button--reset {
+  border-radius: 0;
+  padding: 0;
+
+  &:active {
+    background-color: colour('primary', 'brand4');
+  }
+}
+
+%button--fixed-ratio {
+  width: $padding-x--small * 2.36;
+  height: $padding-x--small * 2.36;
+
+  @media (get-breakpoint-up('small')) {
+    width: $padding-x--base * 1.5;
+    height: $padding-x--base * 1.5;
+  }
+
+  &::after {
+    @extend .center-align;
+  }
+}
+
+/// -------------------
+///  Button icon
+/// -------------------
+
+@mixin buttonIcon($position, $pad-x, $animate) {
+  $icon-width: .5; // 8px - half size of icon
+  $calc1: if($position == 'left', '-', '+');
+  $calc2: if($position == 'left', '+', '-');
+  $pos: if($position == 'left', 'left', 'right');
+
+  @if ($animate) {
     &::after {
+      @extend %rc-icon;
+      position: absolute;
+      right: -3rem;
+      top: 50%;
+      transform: translateY(-50%);
       transition: movementSetting('transition', 'base');
     }
+    &:hover:not(:disabled) {
+      padding-left: #{$pad-x $calc2 $icon-width};
+      padding-right: #{$pad-x $calc1 $icon-width};
+
+      &::after {
+        #{$pos}: ( $pad-x / 2 ) #{$calc2} $icon-width;
+      }
+    }
   }
+  @else {
+    padding-left: #{$pad-x $calc2 $icon-width};
+    padding-right: #{$pad-x $calc1 $icon-width};
+  
+    &::after {
+      #{$pos}: ( $pad-x / 2 ) #{$calc2} $icon-width;
+    }
+  }
+}
+
+/// -------------------
+///  Button base class
+/// -------------------
+
+.btn {
+  @extend %button--base;
 }
 
 /// -------------------
 ///  Button group
 /// -------------------
 
-.button-group {
+.btn-group {
   margin-bottom: get-spacer('small');
 
   @media (get-breakpoint-up('small')) {
@@ -58,7 +134,7 @@
     justify-content: center;
     margin-right: -#{get-spacer('small')};
 
-    & .button {
+    & .btn {
       flex: 1;
       max-width: 250px;
       margin-top: 0;
@@ -76,15 +152,21 @@
   $background-colour: getProperty($buttonColours, $colour, 'bg-colour');
   $text-colour: getProperty($buttonColours, $colour, 'text-colour');
   $border-colour: getProperty($buttonColours, $colour, 'border-colour');
-  $icon-colour: getProperty($buttonColours, $colour, 'icon-colour');
+  $icon-colour: if($background-colour == transparent, 'red', 'light');
+  $animate-icon: getProperty($buttonColours, $colour, 'animate-icon');
 
-  .button--#{nth($colour, 1)} {
+  .btn--#{nth($colour, 1)} {
     background-color: $background-colour;
     color: $text-colour;
+    border: solid $border-width;
     border-color: $border-colour;
 
-    &::after {
-      @extend .rc-icon-chevron--right--small--#{$icon-colour};
+    @if ($animate-icon) {
+      @include buttonIcon('right', $padding-x--base, $animate-icon);
+
+      &::after {
+        @extend .rc-icon-chevron--right--small--#{$icon-colour};
+      }
     }
 
     /// -------------------
@@ -93,7 +175,7 @@
 
     &:active {
       border-color: darken($border-colour, 15%);
-      @if ($background-colour == 'transparent') {
+      @if ($background-colour == transparent) {
         color: darken($text-colour, 15%);
       }
       @else {
@@ -103,7 +185,8 @@
 
     &:disabled {
       border-color: colour('secondary', 'interface');
-      @if ($background-colour == 'transparent') {
+      cursor: not-allowed;
+      @if ($background-colour == transparent) {
         color: colour('secondary', 'interface');
       }
       @else {
@@ -119,33 +202,70 @@
 
 @each $size in $buttonSizes {
 
-  $modifier: if(nth($size, 1) == 'base', '.button', '.button--#{nth($size, 1)}' );
-  $padding: getProperty($buttonSizes, $size, 'padding');
-  $height: getProperty($buttonSizes, $size, 'height');
+  $modifier: nth($size, 1);
+  $padding-x: getProperty($buttonSizes, $size, 'padding-x');
+  $padding-y: getProperty($buttonSizes, $size, 'padding-y');
+  $font-size: getProperty($buttonSizes, $size, 'font-size');
 
-  #{$modifier} {
-    padding: 0 $padding;
-    height: $height;
+  @if ($modifier != 'base') {
+    .btn--#{$modifier} {
+      padding: $padding-y $padding-x;
+      font-size: $font-size;
 
-    // Button text hover position
-    &:hover:not(:disabled),
-    &:focus {
-      padding-left: $padding - 8;
-      padding-right: $padding + 8;
-
-      // Icon hover position
-      &::after {
-        right: ( $padding / 2 ) - 8px;
-      }
+      @include buttonIcon('right', $padding-x, true);
     }
   }
 }
 
+/// -------------------
+///  Icon button
+/// -------------------
+
+.btn--icon {
+  @extend %button--reset;
+  @extend %button--fixed-ratio;
+
+  &::after {
+    @extend %rc-icon;
+  }
+}
 
 /// -------------------
-///  Icon Buttons
+///  Icon button with label
 /// -------------------
 
-.button--icon {
+.btn--icon-label {
   border-radius: 0;
+  @include buttonIcon('left', $padding-x--base, false);
+
+  &:hover:not(:disabled),
+  &:focus {
+    color: colour('primary', 'brand1');
+  }
+
+  &:active {
+    background-color: colour('primary', 'brand4');
+  }
+
+  &::after {
+    @extend %rc-icon;
+    @extend .center-align;
+  }
+}
+
+/// -------------------
+///  Action button
+/// -------------------
+
+.btn--action {
+  @extend %button--fixed-ratio;
+  padding: 0;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &::after {
+    @extend %rc-icon;
+  }
 }

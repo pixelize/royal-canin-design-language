@@ -7,12 +7,26 @@
 ///
 /// Get Property
 ///
-/// Used to get a property from a nested map when used in a loop.
+/// Used to get a property from a map..
 ///
 /// @param {String} $map Name of map.
 ///
-/// @param {String} $var Variable of current loop.
+/// @param {String} $key.
 ///
-@function getProperty($map, $var, $prop) {
-  @return map-get(map-get($map, #{nth($var, 1)}), $prop);
+@function getProperty($map, $key, $prop) {
+  $getKey: map-get($map, #{nth($key, 1)});
+
+  @if $getKey != null {
+    $getProp: map-get(map-get($map, #{nth($key, 1)}), $prop);
+
+    @if $getProp != null {
+      @return $getProp;
+    }
+    @else {
+      @error 'The #{$prop} isn''t in map #{$key}';
+    }
+  }
+  @else {
+    @error 'The map #{$map} doesn\'t exist';
+  }
 }

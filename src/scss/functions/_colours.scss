@@ -54,6 +54,7 @@
   @if map-has-key($conversion-map, $value) {
     @return map-get($conversion-map, $value);
   }
-
-  @return $value;
+  @else {
+    @error 'The direction #{$value} doesn\'t exist';
+  }
 }

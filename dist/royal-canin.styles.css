@@ -5661,19 +5661,19 @@ blockquote > p,q > p {
   color: #D7D7D7;
 }
 
-.btn--icon--label {
+.btn--icon-label {
   background-color: transparent;
   color: #666666;
   border: solid 2px;
   border-color: transparent;
 }
 
-.btn--icon--label:active {
+.btn--icon-label:active {
   border-color: transparent;
   color: #404040;
 }
 
-.btn--icon--label:disabled {
+.btn--icon-label:disabled {
   border-color: #D7D7D7;
   cursor: not-allowed;
   color: #D7D7D7;

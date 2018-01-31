@@ -95,7 +95,7 @@ $social-color-youtube: #CD201F;
   padding: 1em 0;
 }
 
-.social-links--red-background {
+.social-links--brand1-background {
   @extend %social-links;
 
   & .social__network--instagram {
@@ -115,7 +115,7 @@ $social-color-youtube: #CD201F;
   }
 }
 
-.social-links--red-icons {
+.social-links--brand1-icons {
   @extend %social-links;
 
   .social-links__item > a {

@@ -4,17 +4,33 @@
 
 /// ----------------------------------------------------------------------
 
+$icon-size: 32px;
+
 %rc-icon,
 .rc-icon {
+  display: inline-block;
+  position: relative;
+  background-repeat: no-repeat;
+  width: $icon-size;
+  height: $icon-size;
+  transform-origin: 50% 50%;
+  background-image: url('royal-canin.sprite.svg');
+
   &::after {
     content: '';
-    display: inline-block;
-    background-repeat: no-repeat;
-    width: 32px;
-    height: 32px;
-    transform-origin: 50% 50%;
     background-image: url('royal-canin.sprite.svg');
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    width: $icon-size;
+    height: $icon-size;
   }
+}
+
+.rc-icon--interactive:hover::after {
+  opacity: 1;
+  transition: opacity .3s ease;
+  // transition: movementSettings('transition', 'base');
 }
 
 /// ------------------- 

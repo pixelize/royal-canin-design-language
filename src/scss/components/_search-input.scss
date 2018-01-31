@@ -53,13 +53,13 @@
 
     &::after {
       @extend %rc-icon;
-      @extend .rc-icon-close--small--red::after;
+      @extend .rc-icon-close--xs--brand1;
     }
   }
 
   & > [type="submit"]::after {
     @extend %rc-icon;
-    @extend .rc-icon-search--red::after;
+    @extend .rc-icon-search--brand1;
     // This is overridden to stop the top of the icon being clipped.
     // ToDo: Investigate why clipping occurs.
     height: 33px;

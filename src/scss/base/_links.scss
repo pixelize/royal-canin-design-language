@@ -73,12 +73,12 @@ nav {
 
   &::after {
     @extend %rc-icon;
-    @extend .rc-icon-external--small--dark;
+    @extend .rc-icon-external--xs--iconography;
     position: relative;
     bottom: -.7rem;
   }
 
   &:hover::after {
-    @extend .rc-icon-external--small--red;
+    @extend .rc-icon-external--xs--brand1;
   }
 }

@@ -22,7 +22,7 @@
 
 %active-menu-item {
   @extend %rc-icon;
-  @extend .rc-icon-chevron--right--red;
+  @extend .rc-icon-right--brand1;
   @extend %rc-icon--small;
 
   &::after {
@@ -78,11 +78,11 @@
     content: '';
     display: block;
     position: relative;
-    @extend .rc-icon-menu--dark::after;
+    @extend .rc-icon-menu--iconography;
 
     &:hover,
     &:focus {
-      @extend .rc-icon-menu--red::after;
+      @extend .rc-icon-menu--brand1;
     }
   }
 

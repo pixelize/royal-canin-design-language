@@ -75,7 +75,7 @@ nav {
   
   &::after {
     @extend %rc-icon;
-    @extend .rc-icon-external--small--dark;
+    @extend .rc-icon-external--xs--iconography;
     @extend .rc-icon--interactive;
     position: absolute;
     vertical-align: middle;

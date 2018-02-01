@@ -18,9 +18,8 @@ $border-width: 2px;
 $padding-x--base: getProperty($buttonSizes, 'base', 'padding-x');
 $padding-y--base: getProperty($buttonSizes, 'base', 'padding-y');
 
-$padding-x--small: getProperty($buttonSizes, 'small', 'padding-x');
-$padding-y--small: getProperty($buttonSizes, 'small', 'padding-y');
-
+$padding-x--small: getProperty($buttonSizes, 'sm', 'padding-x');
+$padding-y--small: getProperty($buttonSizes, 'sm', 'padding-y');
 
 %button--base {
   display: inline-block;
@@ -152,7 +151,7 @@ $padding-y--small: getProperty($buttonSizes, 'small', 'padding-y');
   $background-colour: getProperty($buttonColours, $colour, 'bg-colour');
   $text-colour: getProperty($buttonColours, $colour, 'text-colour');
   $border-colour: getProperty($buttonColours, $colour, 'border-colour');
-  $icon-colour: if($background-colour == transparent, 'red', 'light');
+  $icon-colour: if($background-colour == transparent, 'brand1', 'brand3');
   $animate-icon: getProperty($buttonColours, $colour, 'animate-icon');
 
   .btn--#{nth($colour, 1)} {
@@ -165,7 +164,7 @@ $padding-y--small: getProperty($buttonSizes, 'small', 'padding-y');
       @include buttonIcon('right', $padding-x--base, $animate-icon);
 
       &::after {
-        @extend .rc-icon-chevron--right--small--#{$icon-colour};
+        @extend .rc-icon-right--xs--#{$icon-colour};
       }
     }
 
@@ -227,6 +226,7 @@ $padding-y--small: getProperty($buttonSizes, 'small', 'padding-y');
 
   &::after {
     @extend %rc-icon;
+    @extend .rc-icon--interactive;
   }
 }
 
@@ -249,6 +249,7 @@ $padding-y--small: getProperty($buttonSizes, 'small', 'padding-y');
 
   &::after {
     @extend %rc-icon;
+    @extend .rc-icon--interactive;
     @extend .center-align;
   }
 }

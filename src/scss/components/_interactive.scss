@@ -93,7 +93,7 @@
 
   &::after {
     @extend %rc-icon;
-    @extend .rc-icon-chevron--left--small--light::after;
+    @extend .rc-icon-left--xs--brand3;
   }
 }
 
@@ -102,7 +102,7 @@
 
   &::after {
     @extend %rc-icon;
-    @extend .rc-icon-chevron--right--small--light::after;
+    @extend .rc-icon-right--xs--brand3;
   }
 }
 
@@ -140,7 +140,7 @@
 
   &::after {
     @extend %rc-icon;
-    @extend .rc-icon-feedback--success--dark::after;
+    @extend .rc-icon-success--iconography;
   }
 
   &:hover,
@@ -155,7 +155,7 @@
 
   &::after {
     @extend %rc-icon;
-    @extend .rc-icon-feedback--failure--red::after;
+    @extend .rc-icon-failure--brand1;
   }
 
   &:hover,

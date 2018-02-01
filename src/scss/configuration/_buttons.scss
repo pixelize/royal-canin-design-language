@@ -1,0 +1,51 @@
+/// ----------------------------------------------------------------------
+
+/// Button configuration
+
+/// ----------------------------------------------------------------------
+
+$buttonColours: (
+  'one': (
+    'bg-colour': colour('primary', 'brand1'),
+    'text-colour': colour('primary', 'brand3'),
+    'border-colour': colour('primary', 'brand1'),
+    'animate-icon': true
+  ),
+  'two': (
+    'bg-colour': transparent,
+    'text-colour': colour('primary', 'brand1'),
+    'border-colour': colour('primary', 'brand1'),
+    'animate-icon': true
+  ),
+  'icon': (
+    'bg-colour': transparent,
+    'text-colour': colour('secondary', 'text'),
+    'border-colour': transparent,
+    'animate-icon': false
+  ),
+  'icon-label': (
+    'bg-colour': transparent,
+    'text-colour': colour('secondary', 'text'),
+    'border-colour': transparent,
+    'animate-icon': false
+  ),
+  'action': (
+    'bg-colour': colour('primary', 'brand1'),
+    'text-colour': colour('primary', 'brand3'),
+    'border-colour': transparent,
+    'animate-icon': false
+  ),
+);
+
+$buttonSizes: (
+  'base': (
+    'padding-x': 2rem,
+    'padding-y': .6rem,
+    'font-size': inherit
+  ),
+  'sm': (
+    'padding-x': 1rem,
+    'padding-y': .4rem,
+    'font-size': 14px // Fixed to override breakpoint styles
+  )
+);

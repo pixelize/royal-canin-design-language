@@ -6,11 +6,6 @@ $hero-bp-large: 1000px;
   position: relative;
   overflow: hidden;
 
-  .button {
-    margin-top: .5rem;
-    margin-bottom: 1.5rem;
-  }
-
   img {
     margin: 0 auto;
   }
@@ -24,13 +19,6 @@ $hero-bp-large: 1000px;
   @media( min-width: $hero-bp-medium ) {
     .hero__fg {
       padding: 0 4em;
-    }
-  }
-
-  @media( min-width: $hero-bp-large ) {
-    .button {
-      font-size: 1.125em;
-      padding: .75rem 2rem;
     }
   }
 }

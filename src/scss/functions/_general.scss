@@ -1,0 +1,32 @@
+/// ----------------------------------------------------------------------
+
+/// General Helper Functions
+
+/// ----------------------------------------------------------------------
+
+///
+/// Get Property
+///
+/// Used to get a property from a map..
+///
+/// @param {String} $map Name of map.
+///
+/// @param {String} $key.
+///
+@function getProperty($map, $key, $prop) {
+  $getKey: map-get($map, #{nth($key, 1)});
+
+  @if $getKey != null {
+    $getProp: map-get(map-get($map, #{nth($key, 1)}), $prop);
+
+    @if $getProp != null {
+      @return $getProp;
+    }
+    @else {
+      @error 'The #{$prop} isn''t in map #{$key}';
+    }
+  }
+  @else {
+    @error 'The map #{$map} doesn\'t exist';
+  }
+}

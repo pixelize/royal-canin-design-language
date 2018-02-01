@@ -1,0 +1,272 @@
+/// ----------------------------------------------------------------------
+
+/// Buttons
+///
+/// Config file containing sass maps:
+/// ./configuration/_buttons.scss
+
+/// ----------------------------------------------------------------------
+
+/// -------------------
+///  Button setup
+/// -------------------
+
+$font-size: getProperty($buttonSizes, 'base', 'font-size');
+$border-radius: borderRadius('button');
+$border-width: 2px;
+
+$padding-x--base: getProperty($buttonSizes, 'base', 'padding-x');
+$padding-y--base: getProperty($buttonSizes, 'base', 'padding-y');
+
+$padding-x--small: getProperty($buttonSizes, 'sm', 'padding-x');
+$padding-y--small: getProperty($buttonSizes, 'sm', 'padding-y');
+
+%button--base {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: inherit;
+  font-size: $font-size;
+  text-align: center;
+  text-transform: lowercase;
+  padding: $padding-y--small $padding-x--small;
+  overflow: hidden;
+  border-radius: $border-radius;
+  text-decoration: none;
+  cursor: pointer;
+  
+  @media (get-breakpoint-up('small')) {
+    width: auto;
+    padding: $padding-y--base $padding-x--base;
+  }
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
+  &:hover:not(:disabled) {
+    transition: movementSetting('transition', 'base');
+  }
+}
+
+%button--reset {
+  border-radius: 0;
+  padding: 0;
+
+  &:active {
+    background-color: colour('primary', 'brand4');
+  }
+}
+
+%button--fixed-ratio {
+  width: $padding-x--small * 2.36;
+  height: $padding-x--small * 2.36;
+
+  @media (get-breakpoint-up('small')) {
+    width: $padding-x--base * 1.5;
+    height: $padding-x--base * 1.5;
+  }
+
+  &::after {
+    @extend .center-align;
+  }
+}
+
+/// -------------------
+///  Button icon
+/// -------------------
+
+@mixin buttonIcon($position, $pad-x, $animate) {
+  $icon-width: .5; // 8px - half size of icon
+  $calc1: if($position == 'left', '-', '+');
+  $calc2: if($position == 'left', '+', '-');
+  $pos: if($position == 'left', 'left', 'right');
+
+  @if ($animate) {
+    &::after {
+      @extend %rc-icon;
+      position: absolute;
+      right: -3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: movementSetting('transition', 'base');
+    }
+    &:hover:not(:disabled) {
+      padding-left: #{$pad-x $calc2 $icon-width};
+      padding-right: #{$pad-x $calc1 $icon-width};
+
+      &::after {
+        #{$pos}: ( $pad-x / 2 ) #{$calc2} $icon-width;
+      }
+    }
+  }
+  @else {
+    padding-left: #{$pad-x $calc2 $icon-width};
+    padding-right: #{$pad-x $calc1 $icon-width};
+  
+    &::after {
+      #{$pos}: ( $pad-x / 2 ) #{$calc2} $icon-width;
+    }
+  }
+}
+
+/// -------------------
+///  Button base class
+/// -------------------
+
+.btn {
+  @extend %button--base;
+}
+
+/// -------------------
+///  Button group
+/// -------------------
+
+.btn-group {
+  margin-bottom: get-spacer('small');
+
+  @media (get-breakpoint-up('small')) {
+    display: flex;
+    justify-content: center;
+    margin-right: -#{get-spacer('small')};
+
+    & .btn {
+      flex: 1;
+      max-width: 250px;
+      margin-top: 0;
+      margin-right: get-spacer('small');
+    }
+  }
+}
+
+/// -------------------
+///  Button colour modifiers
+/// -------------------
+
+@each $colour in $buttonColours {
+
+  $background-colour: getProperty($buttonColours, $colour, 'bg-colour');
+  $text-colour: getProperty($buttonColours, $colour, 'text-colour');
+  $border-colour: getProperty($buttonColours, $colour, 'border-colour');
+  $icon-colour: if($background-colour == transparent, 'brand1', 'brand3');
+  $animate-icon: getProperty($buttonColours, $colour, 'animate-icon');
+
+  .btn--#{nth($colour, 1)} {
+    background-color: $background-colour;
+    color: $text-colour;
+    border: solid $border-width;
+    border-color: $border-colour;
+
+    @if ($animate-icon) {
+      @include buttonIcon('right', $padding-x--base, $animate-icon);
+
+      &::after {
+        @extend .rc-icon-right--xs--#{$icon-colour};
+      }
+    }
+
+    /// -------------------
+    ///  States
+    /// -------------------
+
+    &:active {
+      border-color: darken($border-colour, 15%);
+      @if ($background-colour == transparent) {
+        color: darken($text-colour, 15%);
+      }
+      @else {
+        background-color: darken($background-colour, 15%);
+      }
+    }
+
+    &:disabled {
+      border-color: colour('secondary', 'interface');
+      cursor: not-allowed;
+      @if ($background-colour == transparent) {
+        color: colour('secondary', 'interface');
+      }
+      @else {
+        background-color: colour('secondary', 'interface');
+      }
+    }
+  }
+}
+
+/// -------------------
+///  Button size modifiers
+/// -------------------
+
+@each $size in $buttonSizes {
+
+  $modifier: nth($size, 1);
+  $padding-x: getProperty($buttonSizes, $size, 'padding-x');
+  $padding-y: getProperty($buttonSizes, $size, 'padding-y');
+  $font-size: getProperty($buttonSizes, $size, 'font-size');
+
+  @if ($modifier != 'base') {
+    .btn--#{$modifier} {
+      padding: $padding-y $padding-x;
+      font-size: $font-size;
+
+      @include buttonIcon('right', $padding-x, true);
+    }
+  }
+}
+
+/// -------------------
+///  Icon button
+/// -------------------
+
+.btn--icon {
+  @extend %button--reset;
+  @extend %button--fixed-ratio;
+
+  &::after {
+    @extend %rc-icon;
+    @extend .rc-icon--interactive;
+  }
+}
+
+/// -------------------
+///  Icon button with label
+/// -------------------
+
+.btn--icon-label {
+  border-radius: 0;
+  @include buttonIcon('left', $padding-x--base, false);
+
+  &:hover:not(:disabled),
+  &:focus {
+    color: colour('primary', 'brand1');
+  }
+
+  &:active {
+    background-color: colour('primary', 'brand4');
+  }
+
+  &::after {
+    @extend %rc-icon;
+    @extend .rc-icon--interactive;
+    @extend .center-align;
+  }
+}
+
+/// -------------------
+///  Action button
+/// -------------------
+
+.btn--action {
+  @extend %button--fixed-ratio;
+  padding: 0;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &::after {
+    @extend %rc-icon;
+  }
+}

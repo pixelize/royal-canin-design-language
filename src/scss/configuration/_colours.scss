@@ -37,6 +37,19 @@ $colours: (
 );
 
 /// -------------------
+///  Shortname properties
+///
+///  Map to convert classname to correct CSS property.
+///
+/// -------------------
+
+$properties: (
+  ('bg', 'background-color')
+  ('text', 'color')
+  ('border', 'border-color')
+);
+
+/// -------------------
 ///  Utility Class Rules
 ///
 ///  Define what colours are generated into utility classes. 
@@ -60,3 +73,22 @@ $border: (
 );
 
 
+/// -------------------
+///  Gradients
+/// -------------------
+
+$gradients: (
+  'horizontal' : (
+    'colour-from': colour('primary', 'brand3'),
+    'colour-to': colour('primary', 'brand4')
+  ),
+  'vertical' : (
+    'colour-from': colour('primary', 'brand3'),
+    'colour-to': colour('primary', 'brand4')
+  )
+);
+
+$conversion-map: (
+  horizontal    : 90deg,
+  vertical      : 180deg
+);

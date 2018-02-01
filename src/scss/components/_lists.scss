@@ -131,7 +131,7 @@
   @extend %list--icon;
 
   &::after {
-    @extend .rc-icon-feedback--success--small--dark::after;
+    @extend .rc-icon-success--xs--iconography;
   }
 }
 
@@ -139,7 +139,7 @@
   @extend %list--icon;
 
   &::after {
-    @extend .rc-icon-arrow--go--small--dark::after;
+    @extend .rc-icon-arrow--xs--iconography;
   }
 }
 
@@ -147,7 +147,7 @@
   @extend %list--icon;
 
   &::after {
-    @extend .rc-icon-chevron--down--small--dark::after;
+    @extend .rc-icon-down--xs--iconography;
   }
 }
 
@@ -155,7 +155,7 @@
   @extend %list--icon;
 
   &::after {
-    @extend .rc-icon-chevron--right--small--dark::after;
+    @extend .rc-icon-right--xs--iconography;
   }
 }
 

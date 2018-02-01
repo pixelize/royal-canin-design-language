@@ -44,21 +44,8 @@
   }
 
   & > [aria-label="Close"] {
-    left: auto !important;
+    left: auto;
     right: 1rem;
-
-    &::after {
-      @extend %rc-icon;
-      @extend .rc-icon-close--xs--brand1;
-    }
-  }
-
-  & > [type="submit"]::after {
-    @extend %rc-icon;
-    @extend .rc-icon-search--brand1;
-    // This is overridden to stop the top of the icon being clipped.
-    // ToDo: Investigate why clipping occurs.
-    height: 33px;
   }
 
   & > label::before {

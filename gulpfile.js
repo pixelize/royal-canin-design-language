@@ -48,18 +48,6 @@
       },
       env: 'production'
     },
-    'iconTest': {
-      subtasks: [],
-      pretasks: ['sass'],
-      orderedTasks: ['svgo', 'svgSprites'],
-      watch: {
-        active: false
-      },
-      linting: {
-        testSass: false
-      },
-      env: 'development'
-    },
     'tasklist': {
       subtasks: [],
       pretasks: ['tasklist'],

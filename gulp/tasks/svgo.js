@@ -30,9 +30,10 @@ module.exports = function (task, gulp, sitesettings, need, taskObj) {
         gulp.src(path.join(__dirname, '../../' + sitesettings.location['rawfiles']['svgs'] + '/for_colouring/**/*.svg'))
           .pipe(tap(function(file, t) {
             recolour(file, t,
-              [ { suffix: "--dark", colour: "#444444" },
-                { suffix: "--light", colour: "#FFF" },
-                { suffix: "--red", colour: "#E2001A" }
+              [ { suffix: "--iconography", colour: "#767676" },
+                { suffix: "--brand1", colour: "#E2001A" },
+                { suffix: "--brand4", colour: "#F6F6F6" },
+                { suffix: "--brand3", colour: "#FFF" }
               ],
               './src/svgs/output/')
           })).on('data', function (file) {

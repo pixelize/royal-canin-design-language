@@ -31,6 +31,7 @@ need.inline = require('gulp-inline-fonts');
 need.fontconvert = require('fontconvert-tool');
 
 need.svgSprite = require('gulp-svg-sprite');
+need.svgSprites = require('gulp-svg-sprites');
 need.recolorSvg = require('gulp-recolor-svg');
 need.svgmin = require('gulp-svgmin');
 need.svgexport = require('svgexport');

@@ -66,7 +66,7 @@
 
   &::after {
     @extend %rc-icon;
-    @extend .rc-icon-chevron--right--light::after;
+    @extend .rc-icon-right--brand3;
     display: none;
   }
 

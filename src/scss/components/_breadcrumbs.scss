@@ -27,7 +27,7 @@
   
   &::after {
     @extend %rc-icon;
-    @extend .rc-icon-chevron--right--small--dark::after;
+    @extend .rc-icon-right--xs--iconography;
     display: inline-block;
     vertical-align: middle;
   }
@@ -57,5 +57,5 @@
 /// -------------------
 
 .breadcrumbs--inverse .breadcrumb__list-item::after {
-  @extend .rc-icon-chevron--right--light::after;
+  @extend .rc-icon-right--brand3;
 }

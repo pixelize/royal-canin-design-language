@@ -70,15 +70,12 @@ nav {
 
 .styled-link--external {
   @extend %styled-link;
-
+  
   &::after {
-    @extend %rc-icon;
-    @extend .rc-icon-external--xs--iconography;
     position: relative;
     bottom: -.7rem;
-  }
-
-  &:hover::after {
-    @extend .rc-icon-external--xs--brand1;
+    @extend %rc-icon;
+    @extend .rc-icon-external--xs--iconography;
+    @extend .rc-icon--interactive;
   }
 }

@@ -21,15 +21,13 @@
 }
 
 %active-menu-item {
-  @extend %rc-icon;
-  @extend .rc-icon-right--brand1;
-  @extend %rc-icon--small;
-
   &::after {
     content: '';
     position: absolute;
     right: 0;
     top: 0;
+    @extend %rc-icon;
+    @extend .rc-icon-right--xs--brand1;
   }
 }
 
@@ -66,7 +64,6 @@
 
 
 .navigation--vertical--toggle {
-  @extend %rc-icon;
   position: absolute;
   z-index: z(side-navigation);
   top: 30px;
@@ -78,6 +75,7 @@
     content: '';
     display: block;
     position: relative;
+    @extend %rc-icon;
     @extend .rc-icon-menu--iconography;
 
     &:hover,

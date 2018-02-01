@@ -50,7 +50,7 @@
     },
     'iconTest': {
       subtasks: [],
-      pretasks: [],
+      pretasks: ['sass'],
       orderedTasks: ['svgo', 'svgSprites'],
       watch: {
         active: false

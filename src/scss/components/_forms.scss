@@ -199,15 +199,12 @@
 }
 
 .input__password__toggle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  @extend .vertical-align;
+  right: .5rem;
   opacity: .3;
-  width: 3em;
   transition: movementSetting('transition', 'base');
   border: none;
-  background: none;
+  background-color: transparent;
   @extend %rc-icon;
   @extend .rc-icon-show--iconography;
 

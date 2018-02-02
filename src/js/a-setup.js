@@ -213,7 +213,14 @@ RCDL.utilities.modifyClass = function (type, target, className) {
 
   else if (type === 'add') {
     if (target.classList) {
-      target.classList.add(className);
+      if (typeof className == 'string') {
+        target.classList.add(className);
+      }
+      else {
+        className.forEach(function (name) {
+          target.classList.add(name);
+        });
+      }
     }
     // IE 8+ support.
     else {
@@ -223,7 +230,14 @@ RCDL.utilities.modifyClass = function (type, target, className) {
 
   else if (type === 'remove') {
     if (target.classList) {
-      target.classList.remove(className);
+      if (typeof className == 'string') {
+        target.classList.remove(className);
+      }
+      else {
+        className.forEach(function (name) {
+          target.classList.remove(name);
+        });
+      }
     }
     // IE 8+ support.
     else {

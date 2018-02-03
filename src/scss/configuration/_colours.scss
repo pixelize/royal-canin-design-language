@@ -28,7 +28,8 @@ $colours: (
   'tertiary': (
     'function':       #5CA9AD,
     'success':        #47B800,
-    'error':          #EE8B00,
+    'warning':        #EE8B00,
+    'error':          #C03344,
     'inactive':       #EAEAEA
   ),
   'exceptional': (
@@ -65,7 +66,7 @@ $background: (
 $text: (
   ('primary', ('brand1', 'brand3', 'brand4')),
   ('secondary', ('text', 'iconography')),
-  ('tertiary', ('success', 'error', 'inactive')),
+  ('tertiary', ('success', 'error', 'warning', 'inactive')),
 );
 
 $border: (

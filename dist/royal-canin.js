@@ -3893,7 +3893,14 @@ RCDL.utilities.modifyClass = function (type, target, className) {
 
   else if (type === 'add') {
     if (target.classList) {
-      target.classList.add(className);
+      if (typeof className == 'string') {
+        target.classList.add(className);
+      }
+      else {
+        className.forEach(function (name) {
+          target.classList.add(name);
+        });
+      }
     }
     // IE 8+ support.
     else {
@@ -3903,7 +3910,14 @@ RCDL.utilities.modifyClass = function (type, target, className) {
 
   else if (type === 'remove') {
     if (target.classList) {
-      target.classList.remove(className);
+      if (typeof className == 'string') {
+        target.classList.remove(className);
+      }
+      else {
+        className.forEach(function (name) {
+          target.classList.remove(name);
+        });
+      }
     }
     // IE 8+ support.
     else {
@@ -4322,8 +4336,7 @@ RCDL.features.FormElements = {
 
       // Initial styles and screen reader text for label.
       eye.innerHTML = '<span class="screen-reader-text">Toggle password visibility</span>';
-      eye.classList.add('input__password__toggle');
-
+      RCDL.utilities.modifyClass('add', eye, ['btn', 'btn--icon', 'rc-icon-show--xs--iconography', 'input__password-toggle']);
       inputs[input].parentNode.appendChild(eye);
 
       eye.addEventListener('click', function (event) {
@@ -4333,10 +4346,43 @@ RCDL.features.FormElements = {
         switch (input.getAttribute('type')) {
           case 'password':
             input.setAttribute('type', 'text');
+            RCDL.utilities.modifyClass('toggle', eye, 'rc-icon-hide--xs--iconography');
+            RCDL.utilities.modifyClass('toggle', eye, 'rc-icon-show--xs--iconography');
             break;
           case 'text':
+            RCDL.utilities.modifyClass('toggle', eye, 'rc-icon-hide--xs--iconography');
+            RCDL.utilities.modifyClass('toggle', eye, 'rc-icon-show--xs--iconography');
             input.setAttribute('type', 'password');
             break;
+        }
+      });
+    });
+  },
+
+  /**
+   * Adds show/hide toggle to password inputs.
+   * @param {String} target
+   * Css selector for targeting.
+   */
+  passwordMatch: function (target) {
+    'use strict';
+    var inputs = document.querySelectorAll(target);
+    var validationMessage = document.createElement('span');
+    RCDL.utilities.modifyClass('add', validationMessage, 'input__validation-message');
+    
+    inputs.forEach(function (input) {
+      var passwordOne = input.getAttribute('data-pwd-match');
+      var passwordTwo = document.getElementById(passwordOne);
+      validationMessage.innerHTML = 'Your passwords do not match';
+
+      passwordTwo.addEventListener('keyup', function (event) {
+        if (passwordTwo.value === input.value) {
+          RCDL.utilities.modifyClass('remove', passwordTwo.parentNode, 'input--error');
+          passwordTwo.parentNode.removeChild(validationMessage);
+        }
+        else {
+          RCDL.utilities.modifyClass('add', passwordTwo.parentNode, 'input--error');
+          passwordTwo.parentNode.appendChild(validationMessage);
         }
       });
     });
@@ -4345,6 +4391,7 @@ RCDL.features.FormElements = {
 
 RCDL.ready(RCDL.features.FormElements.labels('.input'));
 RCDL.ready(RCDL.features.FormElements.passwordField('[type="password"]'));
+RCDL.ready(RCDL.features.FormElements.passwordMatch('[data-pwd-match]'));
 
 /**
  * Converts selector element into Choices.js selectors with improved accessibility and styling.
@@ -4358,17 +4405,25 @@ RCDL.features.Selects = function (selector) {
   selector = selector || '[data-js-select]';
   var selects = document.querySelectorAll(selector);
 
+  var singleConfig = {
+    placeholderValue: 'Please select...',
+    searchEnabled: false
+  };
+
+  var multipleConfig = {
+    placeholderValue: 'Please select...',
+    searchEnabled: false,
+    removeItemButton: false,
+    classNames: {
+      button: 'choices__btn'
+    }
+  };
+
   // Check if we actually have any selects on the page.
   if (selects !== null && selects.length > 0) {
     selects.forEach(function (select) {
-      new Choices(select,
-        {
-          placeholder: true,
-          placeholderValue: 'Select an option',
-          searchEnabled: false,
-          removeItemButton: true,
-          shouldSort: false
-        },
+      var currentConfig = select.hasAttribute('multiple') ? multipleConfig : singleConfig;
+      new Choices(select, currentConfig,
         select.addEventListener('choice', function () {
           RCDL.utilities.modifyClass('add', select.parentNode.parentNode, 'has-changed');
         })

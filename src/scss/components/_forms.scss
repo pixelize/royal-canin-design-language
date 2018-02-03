@@ -7,40 +7,14 @@
 /// Forms setup
 /// -------------------
 
-$font-size: 1rem;
-//$border-radius: borderRadius('input'); // @todo use sass map 
-$border-radius: 3px;
-$border-width: 2px;
-$border-colour: transparent;
-$bg-colour: transparent;
-$padding-x--base: 0;
-$padding-y--base: .8em;
+$font-size: getProperty($inputSizes, 'base', 'font-size');
+$font-size-transform: $font-size * .7;
+$padding-x--base: getProperty($inputSizes, 'base', 'padding-x');
+$padding-y--base: getProperty($inputSizes, 'base', 'padding-y');
 
-$line-thickness: 2px;
-
-%line-effect {
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: $line-thickness;
-    z-index: z(default);
-    transition: movementSetting('transition', 'base');
-  }
-  
-  &::before {
-    background-color: colour('secondary', 'interface');
-  }
-  
-  &::after {
-    background-color: colour('secondary', 'text');
-    z-index: z(default) + 1;
-    width: 0;
-  }
-}
+$base-border-width: getProperty($inputEffect, 'control', 'border-width');
+$base-colourFrom: getProperty($inputStates, 'base', 'colourFrom');
+$base-colourTo: getProperty($inputStates, 'base', 'colourTo');
 
 %label {
   position: absolute;
@@ -54,34 +28,89 @@ $line-thickness: 2px;
 %label-text {
   display: inline-block;
   padding: $padding-y--base $padding-x--base;
-  pointer-events: none;
+  text-indent: 1px; // So the cursor lines up nicely.
   font-weight: 500;
-  color: colour('secondary', 'interface');
   transition: movementSetting('transition', 'base');
 }
 
-%input-wrapper {
+%input {
   display: block;
   position: relative;
-  margin-top: 3rem;
-  margin-bottom: 1em;
+  margin-top: get-spacer('medium'); // Allow space for label
+}
+
+%input-inline {
+  display: inline-block;
+  margin-right: 2rem;
+}
+
+%input-stacked {
+  margin-top: get-spacer('small');
 }
 
 %input-base {
   display: block;
+  width: 100%;
   margin-bottom: 0;
   padding: $padding-y--base $padding-x--base;
-  box-shadow: none;
-  width: 100%;
-  font-size: $font-size;
   font-weight: 300;
-  color: colour('secondary', 'text');
-  background-color: $bg-colour;
-  border-radius: $border-radius;
-  border: $border-width solid $border-colour;
+  box-shadow: none;
+  border: none;
+  @include inputColour($base-colourFrom, $base-colourTo);
+}
 
-  &:focus {
-    outline: none;
+/// ------------------- 
+/// Line animation
+/// -------------------
+
+%line-animation {
+  & + .input__label::before,
+  & + .input__label::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    z-index: z(default);
+    transition: movementSetting('transition', 'base');
+  }
+
+  & + .input__label::before {
+    width: 100%;
+  }
+
+  & + .input__label::after {
+    z-index: z(default) + 1;
+    width: 0;
+  }
+
+  &:focus + .input__label::after,
+  &:not([value=""]) ~ .input__label::after {
+    width: 100%;
+  }
+}
+
+%label-animation {
+  &:not([value=""]) ~ .input__label .input__label-text {
+    font-size: $font-size-transform;
+    transform: translateY(-2.8em);
+    padding-left: 0;
+  }
+}
+
+@each $input in $inputEffect {
+  $line-animation: getProperty($inputEffect, $input, 'line-animation');
+  $label-animation: getProperty($inputEffect, $input, 'label-animation');
+
+  @if ($line-animation) {
+    .input__#{$input} + .input__label {
+      @extend %line-animation;
+    }
+  }
+  @if ($label-animation) {
+    .input__#{$input} + .input__label {
+      @extend %label-animation;
+    }
   }
 }
 
@@ -89,46 +118,12 @@ $line-thickness: 2px;
 /// Labels
 /// -------------------
 
-
 .input__label {
   @extend %label;
-  @extend %line-effect;
 }
 
-.input__label__text {
+.input__label-text {
   @extend %label-text;
- }
-
-/// ------------------- 
-/// Label transition
-/// -------------------
-
-.input input:focus,
-.input textarea:focus {
-  & + .input__label {
-    & > .input__label__text {
-      color: colour('secondary', 'text');
-    }
-
-    &::after {
-      width: 100%;
-    }
-  }
-}
-
-.input input:not([value=""]),
-.input textarea:not([value=""]) {
-  & + .input__label {
-    & > .input__label__text {
-      color: colour('secondary', 'text');
-      font-size: .7rem;
-      transform: translateY(-2em);
-    }
-
-    &::after {
-      width: 100%;
-    }
-  }
 }
 
 /// ------------------- 
@@ -147,75 +142,15 @@ $line-thickness: 2px;
 }
 
 /// ------------------- 
-/// Input wrapper & base styles
+/// Inputs - Standard (text, email, url, number etc)
 /// -------------------
 
 .input {
-  @extend %input-wrapper;
   max-width: 300px;
+  @extend %input;
 }
 
-
-/// ------------------- 
-/// Input states
-/// -------------------
-
-%error {
-  border: 1px solid colour('primary', 'brand1');
-  background-color: lighten(colour('primary', 'brand1'), 50%);
-}
-
-.input {
-  & :disabled {
-    & + .input__label {
-      opacity: .3;
-    }
-  }
-  
-  & .error {
-    @extend %error;
-    color: colour('primary', 'brand1');
-    & + .input__label::after {
-      background-color: colour('primary', 'brand1');
-      width: 100%;
-    }
-  }
-}
-
-.choices.error + .select__label {
-  @extend %error;
-  border-bottom: 2px solid colour('primary', 'brand1');
-}
-
-/// ------------------- 
-/// Common inputs
-/// -------------------
-
-.input__text {
-  @extend %input-base;
-}
-
-.input__email {
-  @extend %input-base;
-}
-
-.input__number {
-  @extend %input-base;
-}
-
-.input__search {
-  @extend %input-base;
-}
-
-.input__tel {
-  @extend %input-base;
-}
-
-.input__url {
-  @extend %input-base;
-}
-
-.input__date {
+.input__control {
   @extend %input-base;
 }
 
@@ -223,9 +158,49 @@ $line-thickness: 2px;
 /// Input modifiers
 /// -------------------
 
-.input--white {
-  & input {
-    background-color: colour('primary', 'brand3');
+.input--inline {
+  @extend %input-inline;
+}
+
+.input--stacked {
+  @extend %input-stacked;
+}
+
+/// ------------------- 
+/// Textarea
+/// -------------------
+
+.input__textarea {
+  padding: $padding-y--base;
+  resize: vertical;
+  height: 200px;
+  border-style: solid;
+  border-width: $base-border-width;
+  @extend %input-base;
+
+  & + .input__label > .input__label-text {
+    padding-left: $padding-y--base;
+  }
+
+  &:not([value=""]) ~ .input__label .input__label-text {
+    margin-bottom: $padding-y--base;
+  }
+}
+
+/// ------------------- 
+/// Date
+/// -------------------
+
+.input__date {
+  text-indent: 1rem;
+  @extend %input-base;
+
+  &::after {
+    left: 0;
+    @extend .vertical-align;
+    @extend %rc-icon;
+    @extend .rc-icon--interactive;
+    @extend .rc-icon-calendar--xs--iconography;
   }
 }
 
@@ -234,35 +209,66 @@ $line-thickness: 2px;
 /// -------------------
 
 .input__password {
+  margin-right: 2.5rem;
   @extend %input-base;
-}
 
-.input__password__toggle {
-  @extend .vertical-align;
-  right: .5rem;
-  opacity: .3;
-  transition: movementSetting('transition', 'base');
-  border: none;
-  background-color: transparent;
-  @extend %rc-icon;
-  @extend .rc-icon-show--iconography;
-
-  &:hover,
-  &:focus,
-  &:active {
-    opacity: 1;
+  & ~ .input__password-toggle {
+    right: -2.5rem;
+    border: none;
+    background-color: transparent;
+    opacity: .5;
+    transition: movementSetting('transition', 'base');
+    @extend .vertical-align;
+  
+    &:hover,
+    &:focus,
+    &:active {
+      opacity: 1;
+    }
   }
 }
 
+
 /// ------------------- 
-/// Textarea
+/// Input states
 /// -------------------
 
-.input__textarea {
-  @extend %input-base;
-  resize: vertical;
-  height: 200px;
-  background-color: colour('primary', 'brand4');
+@each $state in $inputStates {
+  $state: nth($state, 1);
+  $colourFrom: getProperty($inputStates, $state, 'colourFrom');
+  $colourTo: getProperty($inputStates, $state, 'colourTo');
+  $icon: getProperty($inputStates, $state, 'icon');
+
+  @if ($state != 'base') {
+    .input--#{$state} {
+      & > [class^="input"] {
+        @include inputColour($colourFrom, $colourTo);
+      }
+
+      &::after {
+        right: $padding-x--base;
+        @extend .vertical-align;
+        @extend %rc-icon;
+        @extend .#{$icon};
+      }
+    }
+  }
+}
+
+.input__control:disabled {
+  background-color: colour('secondary', 'interface');
+  cursor: not-allowed;
+
+  & + .input__label > .input__label-text {
+    color: colour('secondary', 'text');
+    opacity: .5;
+  }
+}
+
+.input__validation-message {
+  position: absolute;
+  font-size: $font-size-transform;
+  margin-top: $font-size / 2;
 }
 
 /// ------------------- 
@@ -283,8 +289,8 @@ $line-thickness: 2px;
     &::before {
       content: '';
       display: inline-block;
-      border: 1px solid colour('primary', 'brand2');
-      background-color: colour('primary', 'brand4');
+      border: 1px solid colour('secondary', 'interface');
+      background-color: colour('primary', 'brand3');
       width: 1.5rem;
       height: 1.5rem;
       position: absolute;
@@ -301,7 +307,7 @@ $line-thickness: 2px;
 /// Checkbox modifiers
 /// -------------------
 
-.input__checkbox--custom {
+.input__checkbox {
   @extend %rc-checkbox-radio;
 
   & + .input__label--inline::before {
@@ -309,25 +315,10 @@ $line-thickness: 2px;
   }
   
   &:checked + .input__label--inline::after {
-    @extend %rc-icon;
-    @extend .rc-icon-success--xs--brand1;
     top: -4px;
     left: -4px;
-  }
-}
-
-.input__checkbox--featured {
-  @extend %rc-checkbox-radio;
-
-  & + .input__label--inline::before {
-    border: none;
-  }
-  
-  &:checked + .input__label--inline::after {
     @extend %rc-icon;
-    @extend .rc-icon-success--xs--brand1;
-    top: -4px;
-    left: -4px;
+    @extend .rc-icon-tick--xs--brand1;
   }
 }
 
@@ -335,7 +326,7 @@ $line-thickness: 2px;
 /// Radio modifiers
 /// -------------------
 
-.input__radio--custom {
+.input__radio {
   @extend %rc-checkbox-radio;
 
   & + .input__label--inline::before {
@@ -346,10 +337,10 @@ $line-thickness: 2px;
     content: '';
     background-color: colour('primary', 'brand1');
     border-radius: 1rem;
-    width: 1rem;
-    height: 1rem;
-    top: 4px;
-    left: 4px;
+    width: .6rem;
+    height: .6rem;
+    top: 7px;
+    left: 7px;
   }
 }
 
@@ -358,123 +349,117 @@ $line-thickness: 2px;
 /// -------------------
 
 .select {
-  @extend %input-wrapper;
-}
+  @extend %input;
 
-.select__label {
-  @extend %label; 
-  z-index: z(select-box);
-  background-color: colour('primary', 'brand4');
-  border: none;
-  border-bottom: 2px solid #87888A;
-  border-radius: 0;
-  
-  .select__label__text {
+  & .select__label {
+    padding: 0;
+    font-size: $font-size-transform;
     @extend %label-text;
   }
-}
 
-/// ------------------- 
-/// Select modifiers
-/// -------------------
+  & .choices {
+    margin: 0;
+    border-bottom: solid 2px;
+    border-color: $base-colourFrom;
+    cursor: pointer;
 
-.select--white {
-  & .choices__inner,
-  & .select__label {
-    background-color: colour('primary', 'brand3');
-  }
-}
+    & .choices__list--dropdown {
+      border-radius: 4px;
+      margin-top: -4px;
+      border-color: colour('secondary', 'interface');
+    }
+    
+    & .choices__inner {
+      font-size: $font-size;
+      border: none;
+      background: none;
+      padding: .6rem $padding-x--base;
+    }
+    
+    &::after {
+      border: none;
+      right: .5rem;
+      z-index: z(select-box) + 1;
+      @extend .vertical-align;
+      @extend %rc-icon;
+      @extend .rc-icon--interactive;
+      @extend .rc-icon-down--xs--iconography;
+    }
 
-/// ------------------- 
-/// Choices.js
-/// -------------------
-
-.choices:focus,
-.choices.is-open,
-.choices.has-changed {
-  & + .select__label {
-    background: none;
-
-    .select__label__text {
-        transform: translate(0, -3em);
-        padding-left: 0;
-        background: none;
+    &.is-open::after {
+      transform: translateY(-50%) rotate(180deg);
     }
   }
 }
 
-[role="listbox"].choices {
-  cursor: pointer;
-  margin: 0;
-  
-  & > .choices__inner {
-    border: none;
-    min-height: 49px;
-  }
-  
-  &::after {
-    @extend %rc-icon;
-    @extend .rc-icon-down--xs--brand1;
-    pointer-events: none;
-    height: 32px;
-    width: 32px;
-    border: none;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 1rem;
-    position: absolute;
-    cursor: pointer;
-    z-index: z(select-box) + 1;
+/// ------------------- 
+/// Single select
+/// -------------------
+
+[data-type="select-one"] {
+  &.has-changed {
+    border-color: colour('tertiary', 'success');
+
+    & .choices__inner::after {
+      right: 2rem;
+      @extend .vertical-align;
+      @extend %rc-icon;
+      @extend .rc-icon-success--xs--iconography;
+    }
   }
 
-  &.is-open::after {
-    transform: translateY(-50%) rotate(180deg);
+  & .choices__list--single {
+    padding: 0;
   }
 }
 
-[role="listbox"].choices--white {
-  & > .choices__inner {
-    background-color: colour('primary', 'brand3');
+/// ------------------- 
+/// Multi select
+/// -------------------
+
+[data-type="select-multiple"] {
+  & .choices__input,
+  & .choices__list {
+    padding: 0;
+    margin: 0;
+    font-size: $font-size;
   }
-}
 
-.choices__item--selectable.is-highlighted {
-  background-color: colour('primary', 'brand4');
-}
-
-.choices__list--multiple {
-  & .choices__item {
-    background-color: colour('primary', 'brand1');
-    border: none;
-    border-radius: 0;
-    padding: .75em;
+  &.has-changed {
+    border-color: $base-colourTo;
   }
   
-  & .choices__item.is-highlighted {
-    background-color: colour('primary', 'brand1');
-    border: none;
+  & .choices__input {
+    background: none;
+    vertical-align: middle;
   }
-} 
 
-.choices__list--dropdown {
-  z-index: z(select-box) + 1;
-}
+  & .choices__list--multiple .choices__item {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    padding-right: 5px;
+    background: none;
+    border: none;
+    color: $base-colourTo;
+    font-weight: 300;
+    font-size: $font-size;
 
-.choices[data-type*="select-multiple"] .choices__button,
-.choices[data-type*="text"] .choices__button {
-  background-image: none;
-  border-left: none;
-  width: 1.5rem;
-  margin: 0;
-  padding: 0;
-  pointer-events: none;
+    &::after {
+      content: ',';
+    }
+  }
 
-  &::after {
-    @extend %rc-icon;
-    @extend .rc-icon-close--xs--brand3;
-    position: absolute;
-    right: -8px;
-    top: -10px;
+  & .choices__btn {
+    font-size: 0;
+    background: none;
+    border: none;
+    
+    &::after {
+      transform: scale(.5);
+      @extend %rc-icon;
+      @extend .rc-icon-close--xs--iconography;
+    }
   }
 }
 

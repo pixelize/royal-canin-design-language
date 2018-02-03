@@ -4,6 +4,35 @@
 
 /// ----------------------------------------------------------------------
 
+/// ------------------- 
+/// Input colour transition
+/// -------------------
+
+@mixin inputColour($colourFrom, $colourTo) {
+  color: $colourTo;
+  border-color: $colourFrom;
+
+  &:focus,
+  &:not([value=""]) {
+    border-color: $colourTo;
+  }
+
+  & + .input__label {
+    color: $colourFrom;
+    &::before {
+      background-color: $colourFrom;
+    }
+  }
+
+  &:not([value=""]) + .input__label,
+  &:focus + .input__label {
+    color: $colourTo;
+    &::after {
+      background-color: $colourTo;
+    }
+  }
+}
+
 /// -------------------
 /// Outlines/borders
 /// -------------------

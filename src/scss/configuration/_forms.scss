@@ -1,0 +1,55 @@
+/// ----------------------------------------------------------------------
+
+/// Forms configuration
+
+/// ----------------------------------------------------------------------
+
+$inputStates: (
+  'base': (
+    'colourFrom': colour('secondary', 'interface'),
+    'colourTo': colour('secondary', 'text'),
+    'icon': none
+  ),
+  'warning': (
+    'colourFrom': colour('tertiary', 'warning'),
+    'colourTo': colour('tertiary', 'warning'),
+    'icon': 'rc-icon-warning--xs--iconography'
+  ),
+  'error': (
+    'colourFrom': colour('tertiary', 'error'),
+    'colourTo': colour('tertiary', 'error'),
+    'icon': 'rc-icon-failure--xs--brand1'
+  )
+);
+
+$inputEffect: (
+  'control': (
+    'border-width': 2px,
+    'line-animation': true,
+    'label-animation': true
+  ),
+  'password': (
+    'line-animation': true,
+    'label-animation': true
+  ),
+  'textarea': (
+    'line-animation': false,
+    'label-animation': true
+  ),
+  'date': (
+    'line-animation': true,
+    'label-animation': true
+  ),
+  'select': (
+    'line-animation': false,
+    'label-animation': false
+  )
+);
+
+$inputSizes: (
+  'base': (
+    'padding-x': 0,
+    'padding-y': .8rem,
+    'font-size': 1rem
+  )
+);

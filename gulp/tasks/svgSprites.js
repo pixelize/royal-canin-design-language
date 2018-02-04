@@ -7,17 +7,37 @@ module.exports = function (task, gulp, sitesettings, need, taskObj) {
   const location = sitesettings.location;
 
   const config = {
-    baseSize: 32,
-    mode: 'sprite',
-    templates: {
-      scss: require('fs').readFileSync('./gulp/resources/sprite.scss', 'utf-8')
+    full: true,
+    log: 'debug',
+    mode          : {
+      css         : {     // Create a «css» sprite
+        dest: '.',
+        bust: false,
+        render    : {
+          scss    : {
+            dest: '../src/icons/icons.scss',
+            template: './gulp/resources/sprite.scss'
+          }   // Render a Sass stylesheet
+        },
+        prefix: '.rc-icon-',
+        sprite: 'royal-canin.sprite.svg'
+      }
     },
-    common: 'rc-icon',
-    layout: 'horizontal',
-    cssFile: '../src/icons/icons.scss',
-    preview: false,
-    svg: {
-      sprite: 'royal-canin.sprite.svg'
+    shape: {
+      whitespace  : '-',
+      spacing     : {                         // Spacing related options
+        padding   : 0,                       // Padding around all shapes
+        box       : 'border'                  // Padding strategy (similar to CSS `box-sizing`)
+      },
+      dimension   : {                         // Dimension related options
+        maxWidth  : 32,                       // Max. shape width
+        maxHeight : 32,                       // Max. shape height
+        precision : 10,                        // Floating point precision
+        attributes  : false                   // Width and height attributes on embedded shapes
+      }
+    },
+    svg           : {             // General options for created SVG files
+      dimensionAttributes : true
     }
   }
 
@@ -34,7 +54,7 @@ module.exports = function (task, gulp, sitesettings, need, taskObj) {
 
     return gulp.src(path.join(__dirname, '../../' + location['rawfiles']['svgs'] + '/output/*.svg'))
       .pipe(plumber())
-      .pipe(need.svgSprites(config))
+      .pipe(need.svgSprite(config))
       .on('error', function(error){
         console.log(error);
       })

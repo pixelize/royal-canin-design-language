@@ -25,3 +25,22 @@ $icon-size: 32px;
   @extend %rc-icon;
   animation: iconFade movementSetting('animation', 'base');
 }
+
+@each $icon in $icons {
+  $iconname: nth($icon, 1);
+
+  .rc-icon-#{$iconname}::after {
+    background-position: map-get( map-get($icons, $iconname), 'backgroundPos');
+
+    @each $rule in $iconHover {
+      $colourFrom: nth($rule, 1);
+      $colourTo: nth($rule, 2);
+
+      @if (str-index($iconname, $colourFrom)) {
+        &.rc-icon--interactive:hover {
+          @extend .rc-icon-#{str-replace($iconname, $colourFrom, $colourTo)};
+        }
+      }
+    }
+  }
+}

@@ -6795,6 +6795,8 @@ blockquote > p,q > p {
 .select .choices .choices__list--dropdown {
   border-radius: 4px;
   margin-top: -4px;
+  z-index: 2;
+  background-color: #FFFFFF;
   border-color: #D7D7D7;
 }
 

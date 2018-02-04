@@ -5823,7 +5823,7 @@ body::before {
   right: 0;
 }
 
-.vertical-align,.input__date::after,.input__password ~ .input__password-toggle,.input--warning::after,.input--error::after,.select .choices::after,[data-type="select-one"].has-changed .choices__inner::after,.navigation--vertical--toggle {
+.vertical-align,[role="alert"] .alert__close,.alert .alert__close,.input__date::after,.input__password ~ .input__password-toggle,.input--warning::after,.input--error::after,.select .choices::after,[data-type="select-one"].has-changed .choices__inner::after,.navigation--vertical--toggle {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -6232,13 +6232,9 @@ blockquote > p,q > p {
   top: .7em;
 }
 
-.alert__close {
+[role="alert"] .alert__close,.alert .alert__close {
   position: absolute;
   right: 1em;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
 }
 
 .breadcrumbs {

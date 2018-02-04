@@ -366,7 +366,7 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
     & .choices__list--dropdown {
       border-radius: 4px;
       margin-top: -4px;
-      z-index: z(select-box);
+      z-index: z(select-box) + 1;
       background-color: colour('primary', 'brand3');
       border-color: colour('secondary', 'interface');
     }

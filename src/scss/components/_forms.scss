@@ -199,17 +199,14 @@
 }
 
 .input__password__toggle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  @extend .vertical-align;
+  right: .5rem;
   opacity: .3;
-  width: 3em;
   transition: movementSetting('transition', 'base');
   border: none;
-  background: none;
+  background-color: transparent;
   @extend %rc-icon;
-  @extend .rc-icon-view--show--dark;
+  @extend .rc-icon-show--iconography;
 
   &:hover,
   &:focus,
@@ -274,7 +271,7 @@
   
   &:checked + .input__label--inline::after {
     @extend %rc-icon;
-    @extend .rc-icon-feedback--success--small--red;
+    @extend .rc-icon-success--xs--brand1;
     top: -4px;
     left: -4px;
   }
@@ -289,7 +286,7 @@
   
   &:checked + .input__label--inline::after {
     @extend %rc-icon;
-    @extend .rc-icon-feedback--success--small--red;
+    @extend .rc-icon-success--xs--brand1;
     top: -4px;
     left: -4px;
   }
@@ -378,7 +375,7 @@
   
   &::after {
     @extend %rc-icon;
-    @extend .rc-icon-chevron--down--small--red;
+    @extend .rc-icon-down--xs--brand1;
     pointer-events: none;
     height: 32px;
     width: 32px;
@@ -435,7 +432,7 @@
 
   &::after {
     @extend %rc-icon;
-    @extend .rc-icon-close--small--light::after;
+    @extend .rc-icon-close--xs--brand3;
     position: absolute;
     right: -8px;
     top: -10px;

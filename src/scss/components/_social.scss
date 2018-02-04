@@ -47,6 +47,7 @@ $social-color-youtube: #CD201F;
   transition: background-color .2s ease-in-out;
 
   &::after {
+    @extend %rc-icon;
     position: absolute;
     transform-origin: 0 0;
     top: 50%;
@@ -69,6 +70,10 @@ $social-color-youtube: #CD201F;
 .social__network--facebook {
   @extend %social-link;
   background-color: $social-color-facebook;
+
+  &::after {
+    @extend .rc-icon-facebook--brand3;
+  }
 }
 
 .social__network--instagram {
@@ -95,7 +100,7 @@ $social-color-youtube: #CD201F;
   padding: 1em 0;
 }
 
-.social-links--red-background {
+.social-links--brand1-background {
   @extend %social-links;
 
   & .social__network--instagram {
@@ -115,7 +120,7 @@ $social-color-youtube: #CD201F;
   }
 }
 
-.social-links--red-icons {
+.social-links--brand1-icons {
   @extend %social-links;
 
   .social-links__item > a {

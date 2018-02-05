@@ -28,7 +28,7 @@
   &:hover,
   &:focus {
     color: colour('primary', 'brand1');
-    border-bottom: 1px solid colour('secondary', 'interface');
+    border-bottom: 1px solid colour('primary', 'brand1');
     text-decoration: none;
   }
 
@@ -37,6 +37,8 @@
   }
 
   &:active {
+    opacity: .75;
+
     &::before {
       background-color: colour('secondary', 'text');
     }
@@ -45,8 +47,11 @@
 
 .styled-link--cta {
   @extend %styled-link;
+  display: table;
+  margin: 1rem 0;
   color: colour('primary', 'brand1');
   border-bottom: 1px solid rgba(colour('primary', 'brand1'), 0.15);
+
 
   &:hover {
     border-bottom: 1px solid rgba(colour('primary', 'brand1'), 1);

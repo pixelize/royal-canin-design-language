@@ -37,6 +37,7 @@ $padding-y--small: getProperty($buttonSizes, 'sm', 'padding-y');
   border-radius: $border-radius;
   text-decoration: none;
   cursor: pointer;
+  transition: movementSetting('transition', 'base');
   
   @media (get-breakpoint-up('small')) {
     width: auto;
@@ -45,10 +46,6 @@ $padding-y--small: getProperty($buttonSizes, 'sm', 'padding-y');
 
   &::first-letter {
     text-transform: uppercase;
-  }
-
-  &:hover:not(:disabled) {
-    transition: movementSetting('transition', 'base');
   }
 }
 

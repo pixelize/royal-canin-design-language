@@ -6540,13 +6540,13 @@ blockquote > p,q > p {
   display: block;
   position: relative;
   max-width: 300px;
-  margin-top: 1rem;
+  margin-top: 3rem;
   margin-bottom: 1rem;
 }
 
 .input--inline {
   display: inline-block;
-  margin-right: 1rem;
+  margin-right: 1.5rem;
 }
 
 .input--stacked {
@@ -6667,12 +6667,8 @@ button + .input__label {
   left: 0;
 }
 
-.input__password {
-  margin-right: 2.5rem;
-}
-
 .input__password ~ .input__password-toggle {
-  right: -2.5rem;
+  right: -2.25rem;
   border: none;
   background-color: transparent;
   opacity: .5;
@@ -6837,6 +6833,8 @@ button + .input__label {
 }
 
 .select .select__label {
+  position: absolute;
+  top: -1rem;
   padding: 0;
   font-size: 0.7rem;
 }

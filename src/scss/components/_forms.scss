@@ -37,13 +37,13 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
   display: block;
   position: relative;
   max-width: 300px;
-  margin-top: get-spacer('small'); // Allow space for label
+  margin-top: get-spacer('medium'); // Allow space for label
   margin-bottom: get-spacer('small');
 }
 
 %input-inline {
   display: inline-block;
-  margin-right: 1rem;
+  margin-right: 1.5rem;
 }
 
 %input-stacked {
@@ -252,11 +252,10 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
 /// -------------------
 
 .input__password {
-  margin-right: 2.5rem;
   @extend %input-base;
 
   & ~ .input__password-toggle {
-    right: -2.5rem;
+    right: -2.25rem;
     border: none;
     background-color: transparent;
     opacity: .5;
@@ -394,6 +393,8 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
   @extend %input;
 
   & .select__label {
+    position: absolute;
+    top: -1rem;
     padding: 0;
     font-size: $font-size-transform;
     @extend %label-text;

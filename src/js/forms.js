@@ -54,6 +54,37 @@ RCDL.features.FormElements = {
   },
 
   /**
+   * Adds email validation.
+   * @param {String} target
+   * Css selector for targeting.
+   */
+  emailValid: function (target) {
+    'use strict';
+    var inputs = document.querySelectorAll(target);
+    var validationMessage = document.createElement('span');
+    RCDL.utilities.modifyClass('add', validationMessage, 'input__validation-message');
+
+    Object.keys(inputs).forEach(function (input) {
+      var email = inputs[input];
+      
+      email.addEventListener('keyup', function () {
+        email.parentNode.appendChild(validationMessage);
+
+        if (email.value.length > 1 && email.checkValidity()) {
+          RCDL.utilities.modifyClass('add', email.parentNode, 'input--success');
+          RCDL.utilities.modifyClass('remove', email.parentNode, 'input--warning');
+          validationMessage.innerHTML = '';
+        }
+        else {
+          RCDL.utilities.modifyClass('add', email.parentNode, 'input--warning');
+          RCDL.utilities.modifyClass('remove', email.parentNode, 'input--success');
+          validationMessage.innerHTML = 'Your email address is invalid';
+        }
+      });
+    });
+  },
+
+  /**
    * Adds show/hide toggle to password inputs.
    * @param {String} target
    * Css selector for targeting.
@@ -91,7 +122,7 @@ RCDL.features.FormElements = {
   },
 
   /**
-   * Adds show/hide toggle to password inputs.
+   * Adds basic password matching validation.
    * @param {String} target
    * Css selector for targeting.
    */
@@ -101,19 +132,21 @@ RCDL.features.FormElements = {
     var validationMessage = document.createElement('span');
     RCDL.utilities.modifyClass('add', validationMessage, 'input__validation-message');
     
-    inputs.forEach(function (input) {
-      var passwordOne = input.getAttribute('data-pwd-match');
+    Object.keys(inputs).forEach(function (input) {
+      var passwordOne = inputs[input].getAttribute('data-pwd-match');
       var passwordTwo = document.getElementById(passwordOne);
-      validationMessage.innerHTML = 'Your passwords do not match';
-
+      passwordTwo.parentNode.appendChild(validationMessage);
+      
       passwordTwo.addEventListener('keyup', function (event) {
         if (passwordTwo.value === input.value) {
           RCDL.utilities.modifyClass('remove', passwordTwo.parentNode, 'input--error');
-          passwordTwo.parentNode.removeChild(validationMessage);
+          RCDL.utilities.modifyClass('add', passwordTwo.parentNode, 'input--success');
+          validationMessage.innerHTML = 'Your passwords match';
         }
         else {
+          RCDL.utilities.modifyClass('remove', passwordTwo.parentNode, 'input--success');
           RCDL.utilities.modifyClass('add', passwordTwo.parentNode, 'input--error');
-          passwordTwo.parentNode.appendChild(validationMessage);
+          validationMessage.innerHTML = 'Your passwords do not match';
         }
       });
     });
@@ -121,6 +154,7 @@ RCDL.features.FormElements = {
 };
 
 RCDL.ready(RCDL.features.FormElements.labels('.input'));
+RCDL.ready(RCDL.features.FormElements.emailValid('[type="email"]'));
 RCDL.ready(RCDL.features.FormElements.passwordField('[type="password"]'));
 RCDL.ready(RCDL.features.FormElements.passwordMatch('[data-pwd-match]'));
 

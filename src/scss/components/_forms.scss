@@ -36,12 +36,14 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
 %input {
   display: block;
   position: relative;
-  margin-top: get-spacer('medium'); // Allow space for label
+  max-width: 300px;
+  margin-top: get-spacer('small'); // Allow space for label
+  margin-bottom: get-spacer('small');
 }
 
 %input-inline {
   display: inline-block;
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
 
 %input-stacked {
@@ -135,23 +137,29 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
   cursor: pointer;
 }
 
-.input__label--wrap {
-  display: block;
-  margin-bottom: .5rem;
-  cursor: pointer;
-}
-
 /// ------------------- 
 /// Inputs - Standard (text, email, url, number etc)
 /// -------------------
 
 .input {
-  max-width: 300px;
   @extend %input;
 }
 
 .input__control {
   @extend %input-base;
+}
+
+
+/// ------------------- 
+/// Input modifiers
+/// -------------------
+
+.input--inline {
+  @extend %input-inline;
+}
+
+.input--stacked {
+  @extend %input-stacked;
 }
 
 /// ------------------- 
@@ -161,6 +169,10 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
 .input__submit {
   @extend .btn;
 }
+
+/// ------------------- 
+/// Submit modifiers
+/// -------------------
 
 .input__submit--search {
   position: absolute;
@@ -185,24 +197,12 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
 .input__submit--micro {
   position: absolute;
   top: 0; 
-  right: -3.5rem;
+  right: -3rem;
   @extend .btn--action;
 
   &::after {
     @extend .rc-icon-arrow--xs--brand3;
   }
-}
-
-/// ------------------- 
-/// Input modifiers
-/// -------------------
-
-.input--inline {
-  @extend %input-inline;
-}
-
-.input--stacked {
-  @extend %input-stacked;
 }
 
 /// ------------------- 

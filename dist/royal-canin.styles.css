@@ -1557,7 +1557,7 @@ sup {
 }
 
 .rc-flag::after {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/royal-canin.sprite--flags.png?v=beta-6-0-0");
+  background-image: url("royal-canin.sprite--flags.png");
 }
 
 [class*="rc-flags-"]::after {
@@ -2696,7 +2696,7 @@ html {
   width: 32px;
   height: 32px;
   transform-origin: 50% 50%;
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/royal-canin.sprite.svg?v=beta-6-0-0");
+  background-image: url("royal-canin.sprite.svg");
 }
 
 .rc-icon::after {
@@ -6531,12 +6531,14 @@ blockquote > p,q > p {
 .input,.select {
   display: block;
   position: relative;
-  margin-top: 3rem;
+  max-width: 300px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .input--inline {
   display: inline-block;
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
 
 .input--stacked {
@@ -6609,16 +6611,6 @@ blockquote > p,q > p {
   cursor: pointer;
 }
 
-.input__label--wrap {
-  display: block;
-  margin-bottom: .5rem;
-  cursor: pointer;
-}
-
-.input {
-  max-width: 300px;
-}
-
 .input__submit--search {
   position: absolute;
   top: 0;
@@ -6636,7 +6628,7 @@ blockquote > p,q > p {
 .input__submit--micro {
   position: absolute;
   top: 0;
-  right: -3.5rem;
+  right: -3rem;
 }
 
 .input__textarea {
@@ -8567,27 +8559,27 @@ video.hero__bg {
 }
 
 .region-holder.africa {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/africa.png?v=beta-6-0-0");
+  background-image: url("africa.png");
 }
 
 .region-holder.asia {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/asia.png?v=beta-6-0-0");
+  background-image: url("asia.png");
 }
 
 .region-holder.europe {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/europe.png?v=beta-6-0-0");
+  background-image: url("europe.png");
 }
 
 .region-holder.north-america {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/north-america.png?v=beta-6-0-0");
+  background-image: url("north-america.png");
 }
 
 .region-holder.oceania {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/oceania.png?v=beta-6-0-0");
+  background-image: url("oceania.png");
 }
 
 .region-holder.south-america {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/south-america.png?v=beta-6-0-0");
+  background-image: url("south-america.png");
 }
 
 .body--fixed-top-navigation {

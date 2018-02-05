@@ -37,6 +37,8 @@
   }
 
   &:active {
+    opacity: .75;
+
     &::before {
       background-color: colour('secondary', 'text');
     }

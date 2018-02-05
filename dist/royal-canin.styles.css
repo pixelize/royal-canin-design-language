@@ -5960,6 +5960,8 @@ body::before {
 }
 
 .styled-link--cta {
+  display: table;
+  margin: 1rem 0;
   color: #E2001A;
   border-bottom: 1px solid rgba(226, 0, 26, 0.15);
 }

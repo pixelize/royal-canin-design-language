@@ -155,6 +155,45 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
 }
 
 /// ------------------- 
+/// Submit
+/// -------------------
+
+.input__submit {
+  @extend .btn;
+}
+
+.input__submit--search {
+  position: absolute;
+  top: 0; 
+  left: -.5rem;
+  @extend .btn--icon;
+  
+  &::after {
+    @extend .rc-icon-search--xs--iconography;
+  }
+
+  & ~ .input__control,
+  & ~ .input__label .input__label-text {
+    padding-left: 2rem;
+
+    &:not([value=""]) + .input__label .input__label-text {
+      padding-left: 0;
+    }
+  }
+}
+
+.input__submit--micro {
+  position: absolute;
+  top: 0; 
+  right: -3.5rem;
+  @extend .btn--action;
+
+  &::after {
+    @extend .rc-icon-arrow--xs--brand3;
+  }
+}
+
+/// ------------------- 
 /// Input modifiers
 /// -------------------
 
@@ -227,7 +266,6 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
     }
   }
 }
-
 
 /// ------------------- 
 /// Input states

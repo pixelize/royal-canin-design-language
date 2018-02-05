@@ -10,15 +10,20 @@ $inputStates: (
     'colourTo': colour('secondary', 'text'),
     'icon': none
   ),
+  'success': (
+    'colourFrom': colour('tertiary', 'success'),
+    'colourTo': colour('tertiary', 'success'),
+    'icon': 'rc-icon-success--xs--success'
+  ),
   'warning': (
     'colourFrom': colour('tertiary', 'warning'),
     'colourTo': colour('tertiary', 'warning'),
-    'icon': 'rc-icon-warning--xs--iconography'
+    'icon': 'rc-icon-warning--xs--warning'
   ),
   'error': (
     'colourFrom': colour('tertiary', 'error'),
     'colourTo': colour('tertiary', 'error'),
-    'icon': 'rc-icon-failure--xs--brand1'
+    'icon': 'rc-icon-failure--xs--error'
   )
 );
 

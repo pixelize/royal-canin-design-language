@@ -122,6 +122,10 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
 
 .input__label {
   @extend %label;
+
+  button + & {
+    margin-right: 2rem;
+  }
 }
 
 .input__label-text {
@@ -438,14 +442,7 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
 
 [data-type="select-one"] {
   &.has-changed {
-    border-color: colour('tertiary', 'success');
-
-    & .choices__inner::after {
-      right: 2rem;
-      @extend .vertical-align;
-      @extend %rc-icon;
-      @extend .rc-icon-success--xs--iconography;
-    }
+    border-color: $base-colourTo;
   }
 
   & .choices__list--single {

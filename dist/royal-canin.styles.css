@@ -2689,7 +2689,7 @@ html {
   clear: both;
 }
 
-.rc-icon::after,.rc-icon--interactive:hover::after,.styled-link--external:hover::after,.btn--icon:hover::after,.input__submit--search:hover::after,.btn--icon-label:hover::after,.input__date:hover::after,.styled-link--external::after,.breadcrumb__list-item::after,.btn--one::after,.btn--two::after,.btn--sm::after,.btn--icon::after,.input__submit--search::after,.btn--icon-label::after,.btn--action::after,.input__submit--micro::after,.input__date::after,.input--warning::after,.input--error::after,.input__checkbox:checked + .input__label--inline::after,.select .choices::after,[data-type="select-one"].has-changed .choices__inner::after,[data-type="select-multiple"] .choices__btn::after,.navigation--prev::after,.navigation--next::after,.response--affirmative::after,.response--negative::after,.list-icon--feedback--success::after,.list-icon--arrow--go::after,.list-icon--chevron--down::after,.list-icon--chevron--right::after,.social__network--facebook::after,.social__network--instagram::after,.social__network--twitter::after,.social__network--youtube::after,.rc-navigation--footer .rc-navigation__link::after,.navigation--vertical__list-item > a.active::after,.navigation--vertical__list-item > a:hover::after {
+.rc-icon::after,.rc-icon--interactive:hover::after,.styled-link--external:hover::after,.btn--icon:hover::after,.input__submit--search:hover::after,.btn--icon-label:hover::after,.input__date:hover::after,.styled-link--external::after,.breadcrumb__list-item::after,.btn--one::after,.btn--two::after,.btn--sm::after,.btn--icon::after,.input__submit--search::after,.btn--icon-label::after,.btn--action::after,.input__submit--micro::after,.input__date::after,.input--warning::after,.input--error::after,.input__checkbox:checked + .input__label--inline::after,.select .choices::after,[data-type="select-multiple"] .choices__btn::after,.navigation--prev::after,.navigation--next::after,.response--affirmative::after,.response--negative::after,.list-icon--feedback--success::after,.list-icon--arrow--go::after,.list-icon--chevron--down::after,.list-icon--chevron--right::after,.social__network--facebook::after,.social__network--instagram::after,.social__network--twitter::after,.social__network--youtube::after,.rc-navigation--footer .rc-navigation__link::after,.navigation--vertical__list-item > a.active::after,.navigation--vertical__list-item > a:hover::after {
   content: '';
   display: inline-block;
   background-repeat: no-repeat;
@@ -5159,7 +5159,7 @@ html {
   background-position: 44.444% 92.308%;
 }
 
-.rc-icon-success--xs--brand1::after,.rc-icon-success--xs--iconography.rc-icon--interactive:hover::after,.rc-icon-success--xs--iconography.styled-link--external:hover::after,[data-type="select-one"].has-changed .styled-link--external.choices__inner:hover::after,.styled-link--external.list-icon--feedback--success:hover::after,.rc-icon-success--xs--iconography.btn--icon:hover::after,.rc-icon-success--xs--iconography.input__submit--search:hover::after,[data-type="select-one"].has-changed .input__submit--search.choices__inner:hover::after,.input__submit--search.list-icon--feedback--success:hover::after,[data-type="select-one"].has-changed .btn--icon.choices__inner:hover::after,.btn--icon.list-icon--feedback--success:hover::after,.rc-icon-success--xs--iconography.btn--icon-label:hover::after,[data-type="select-one"].has-changed .btn--icon-label.choices__inner:hover::after,.btn--icon-label.list-icon--feedback--success:hover::after,.rc-icon-success--xs--iconography.input__date:hover::after,[data-type="select-one"].has-changed .input__date.choices__inner:hover::after,.input__date.list-icon--feedback--success:hover::after,.select .rc-icon-success--xs--iconography.choices:hover::after,.select [data-type="select-one"].has-changed .choices.choices__inner:hover::after,[data-type="select-one"].has-changed .select .choices.choices__inner:hover::after,.select .choices.list-icon--feedback--success:hover::after,[data-type="select-one"].has-changed .rc-icon--interactive.choices__inner:hover::after,.rc-icon--interactive.list-icon--feedback--success:hover::after {
+.rc-icon-success--xs--brand1::after,.rc-icon-success--xs--iconography.rc-icon--interactive:hover::after,.rc-icon-success--xs--iconography.styled-link--external:hover::after,.styled-link--external.list-icon--feedback--success:hover::after,.rc-icon-success--xs--iconography.btn--icon:hover::after,.rc-icon-success--xs--iconography.input__submit--search:hover::after,.input__submit--search.list-icon--feedback--success:hover::after,.btn--icon.list-icon--feedback--success:hover::after,.rc-icon-success--xs--iconography.btn--icon-label:hover::after,.btn--icon-label.list-icon--feedback--success:hover::after,.rc-icon-success--xs--iconography.input__date:hover::after,.input__date.list-icon--feedback--success:hover::after,.select .rc-icon-success--xs--iconography.choices:hover::after,.select .choices.list-icon--feedback--success:hover::after,.rc-icon--interactive.list-icon--feedback--success:hover::after {
   background-position: 48.148% 92.308%;
 }
 
@@ -5171,7 +5171,7 @@ html {
   background-position: 55.556% 92.308%;
 }
 
-.rc-icon-success--xs--iconography::after,[data-type="select-one"].has-changed .choices__inner::after,.list-icon--feedback--success::after {
+.rc-icon-success--xs--iconography::after,.list-icon--feedback--success::after {
   background-position: 59.259% 92.308%;
 }
 
@@ -5823,7 +5823,7 @@ body::before {
   right: 0;
 }
 
-.vertical-align,[role="alert"] .alert__close,.alert .alert__close,.input__date::after,.input__password ~ .input__password-toggle,.input--warning::after,.input--error::after,.select .choices::after,[data-type="select-one"].has-changed .choices__inner::after,.navigation--vertical--toggle {
+.vertical-align,[role="alert"] .alert__close,.alert .alert__close,.input__date::after,.input__password ~ .input__password-toggle,.input--warning::after,.input--error::after,.select .choices::after,.navigation--vertical--toggle {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -6606,6 +6606,10 @@ blockquote > p,q > p {
   padding-left: 0;
 }
 
+button + .input__label {
+  margin-right: 2rem;
+}
+
 .input__label--inline {
   display: inline-block;
   cursor: pointer;
@@ -6833,11 +6837,7 @@ blockquote > p,q > p {
 }
 
 [data-type="select-one"].has-changed {
-  border-color: #47B800;
-}
-
-[data-type="select-one"].has-changed .choices__inner::after {
-  right: 2rem;
+  border-color: #666666;
 }
 
 [data-type="select-one"] .choices__list--single {

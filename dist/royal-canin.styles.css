@@ -5947,7 +5947,7 @@ body::before {
 
 .styled-link:hover,.styled-link:focus,.styled-link--cta:hover,.styled-link--external:hover,.styled-link--cta:focus,.styled-link--external:focus {
   color: #E2001A;
-  border-bottom: 1px solid #D7D7D7;
+  border-bottom: 1px solid #E2001A;
   text-decoration: none;
 }
 

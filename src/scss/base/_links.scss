@@ -28,7 +28,7 @@
   &:hover,
   &:focus {
     color: colour('primary', 'brand1');
-    border-bottom: 1px solid colour('secondary', 'interface');
+    border-bottom: 1px solid colour('primary', 'brand1');
     text-decoration: none;
   }
 

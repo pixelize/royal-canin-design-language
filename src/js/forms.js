@@ -55,6 +55,7 @@ RCDL.features.FormElements = {
 
   /**
    * Adds email validation.
+   * @todo make general validation function
    * @param {String} target
    * Css selector for targeting.
    */

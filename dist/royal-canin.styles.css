@@ -1557,7 +1557,7 @@ sup {
 }
 
 .rc-flag::after {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/royal-canin.sprite--flags.png?v=beta-6-0-0");
+  background-image: url("royal-canin.sprite--flags.png");
 }
 
 [class*="rc-flags-"]::after {
@@ -2696,7 +2696,7 @@ html {
   width: 32px;
   height: 32px;
   transform-origin: 50% 50%;
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/royal-canin.sprite.svg?v=beta-6-0-0");
+  background-image: url("royal-canin.sprite.svg");
 }
 
 .rc-icon::after {
@@ -6679,6 +6679,23 @@ button + .input__label {
   opacity: 1;
 }
 
+.input__control:disabled {
+  background-color: #D7D7D7;
+  cursor: not-allowed;
+}
+
+.input__control:disabled + .input__label > .input__label-text {
+  color: #666666;
+  opacity: .5;
+}
+
+.input__validation-message {
+  position: absolute;
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+
 .input--success > [class^="input"] {
   color: #47B800;
   border-color: #47B800;
@@ -6706,6 +6723,10 @@ button + .input__label {
 
 .input--success::after {
   right: 0;
+}
+
+.input--success .input__validation-message {
+  display: block;
 }
 
 .input--warning > [class^="input"] {
@@ -6737,6 +6758,10 @@ button + .input__label {
   right: 0;
 }
 
+.input--warning .input__validation-message {
+  display: block;
+}
+
 .input--error > [class^="input"] {
   color: #C03344;
   border-color: #C03344;
@@ -6766,20 +6791,8 @@ button + .input__label {
   right: 0;
 }
 
-.input__control:disabled {
-  background-color: #D7D7D7;
-  cursor: not-allowed;
-}
-
-.input__control:disabled + .input__label > .input__label-text {
-  color: #666666;
-  opacity: .5;
-}
-
-.input__validation-message {
-  position: absolute;
-  font-size: 0.7rem;
-  margin-top: 0.5rem;
+.input--error .input__validation-message {
+  display: block;
 }
 
 .input__checkbox,.input__radio {
@@ -8594,27 +8607,27 @@ video.hero__bg {
 }
 
 .region-holder.africa {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/africa.png?v=beta-6-0-0");
+  background-image: url("africa.png");
 }
 
 .region-holder.asia {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/asia.png?v=beta-6-0-0");
+  background-image: url("asia.png");
 }
 
 .region-holder.europe {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/europe.png?v=beta-6-0-0");
+  background-image: url("europe.png");
 }
 
 .region-holder.north-america {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/north-america.png?v=beta-6-0-0");
+  background-image: url("north-america.png");
 }
 
 .region-holder.oceania {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/oceania.png?v=beta-6-0-0");
+  background-image: url("oceania.png");
 }
 
 .region-holder.south-america {
-  background-image: url("https://d3moonnr9fkxfg.cloudfront.net/south-america.png?v=beta-6-0-0");
+  background-image: url("south-america.png");
 }
 
 .body--fixed-top-navigation {

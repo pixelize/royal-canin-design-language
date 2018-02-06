@@ -53,35 +53,94 @@ RCDL.features.FormElements = {
     });
   },
 
-  /**
-   * Adds email validation.
-   * @todo make general validation function
-   * @param {String} target
-   * Css selector for targeting.
-   */
-  emailValid: function (target) {
+  formValidation: function (target) {
     'use strict';
     var inputs = document.querySelectorAll(target);
-    var validationMessage = document.createElement('span');
-    RCDL.utilities.modifyClass('add', validationMessage, 'input__validation-message');
 
-    Object.keys(inputs).forEach(function (input) {
-      var email = inputs[input];
-      
-      email.addEventListener('keyup', function () {
-        email.parentNode.appendChild(validationMessage);
-
-        if (email.value.length > 1 && email.checkValidity()) {
-          RCDL.utilities.modifyClass('add', email.parentNode, 'input--success');
-          RCDL.utilities.modifyClass('remove', email.parentNode, 'input--warning');
-          validationMessage.innerHTML = '';
-        }
-        else {
-          RCDL.utilities.modifyClass('add', email.parentNode, 'input--warning');
-          RCDL.utilities.modifyClass('remove', email.parentNode, 'input--success');
-          validationMessage.innerHTML = 'Your email address is invalid';
+    function message(el) {
+      var result = false;
+      Object.keys(el.attributes).forEach(function (attr) {
+        var attrName = el.attributes[attr].name;
+        if (/message$/.test(attrName)) {
+          result = true;
         }
       });
+      return result;
+    }
+
+    function createMessage(el) {
+      var newSpan = document.createElement('span');
+      newSpan.setAttribute('data-js-validation-message', '');
+      RCDL.utilities.modifyClass('add', newSpan, 'input__validation-message');
+      el.appendChild(newSpan);
+    }
+
+    function state(el, state) {
+      var inputStates = ['success', 'warning', 'error'];
+      var validation = el.closest(target).querySelector('[data-js-validation-message]');
+
+      inputStates.forEach(function (state) {
+        RCDL.utilities.modifyClass('remove', el.closest(target), 'input--' + state);
+      });
+
+      if (validation) {
+        if (el.closest(target).hasAttribute('data-js-' + state + '-message')) {
+          validation.innerText = el.closest(target).getAttribute('data-js-' + state + '-message');
+        }
+        else {
+          validation.innerText = ' ';
+        }
+      }
+
+      if (state !== 'default') {
+        RCDL.utilities.modifyClass('add', el.closest(target), 'input--' + state);
+      }
+    }
+
+    function validateOnSubmit(el) {
+      var form = document.querySelector('[data-js-form]');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (el.value.length === 0) {
+          state(el, 'error');
+        }
+      });
+    }
+
+    function validateLive(el) {
+      if (el.value.length > 1 && el.checkValidity()) {
+        state(el, 'success');
+      }
+      else if (el.value.length === 0) {
+        state(el, 'default');
+      }
+      else {
+        state(el, 'warning');
+      }
+    }
+
+    Object.keys(inputs).forEach(function (key) {
+      var input = inputs[key];
+      var baseInput = input.querySelector('input');
+      var select = input.querySelector('select');
+
+      if (message(input)) {
+        createMessage(input);
+      }
+
+      if (select) {
+        select.addEventListener('addItem', function () {
+          validateLive(select);
+        });
+        validateOnSubmit(select);
+      }
+
+      if (baseInput) {
+        baseInput.addEventListener('keyup', function () {
+          validateLive(baseInput);
+        });
+        validateOnSubmit(baseInput);
+      }
     });
   },
 
@@ -96,6 +155,7 @@ RCDL.features.FormElements = {
 
     Object.keys(inputs).forEach(function (input) {
       var eye = document.createElement('button');
+      eye.setAttribute('type', 'button');
 
       // Initial styles and screen reader text for label.
       eye.innerHTML = '<span class="screen-reader-text">Toggle password visibility</span>';
@@ -120,44 +180,12 @@ RCDL.features.FormElements = {
         }
       });
     });
-  },
-
-  /**
-   * Adds basic password matching validation.
-   * @param {String} target
-   * Css selector for targeting.
-   */
-  passwordMatch: function (target) {
-    'use strict';
-    var inputs = document.querySelectorAll(target);
-    var validationMessage = document.createElement('span');
-    RCDL.utilities.modifyClass('add', validationMessage, 'input__validation-message');
-    
-    Object.keys(inputs).forEach(function (input) {
-      var passwordOne = inputs[input].getAttribute('data-pwd-match');
-      var passwordTwo = document.getElementById(passwordOne);
-      passwordTwo.parentNode.appendChild(validationMessage);
-      
-      passwordTwo.addEventListener('keyup', function (event) {
-        if (passwordTwo.value === input.value) {
-          RCDL.utilities.modifyClass('remove', passwordTwo.parentNode, 'input--error');
-          RCDL.utilities.modifyClass('add', passwordTwo.parentNode, 'input--success');
-          validationMessage.innerHTML = 'Your passwords match';
-        }
-        else {
-          RCDL.utilities.modifyClass('remove', passwordTwo.parentNode, 'input--success');
-          RCDL.utilities.modifyClass('add', passwordTwo.parentNode, 'input--error');
-          validationMessage.innerHTML = 'Your passwords do not match';
-        }
-      });
-    });
   }
 };
 
 RCDL.ready(RCDL.features.FormElements.labels('.input'));
-RCDL.ready(RCDL.features.FormElements.emailValid('[type="email"]'));
+RCDL.ready(RCDL.features.FormElements.formValidation('[data-js-validate]'));
 RCDL.ready(RCDL.features.FormElements.passwordField('[type="password"]'));
-RCDL.ready(RCDL.features.FormElements.passwordMatch('[data-pwd-match]'));
 
 /**
  * Converts selector element into Choices.js selectors with improved accessibility and styling.

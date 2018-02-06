@@ -274,6 +274,23 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
 /// Input states
 /// -------------------
 
+.input__control:disabled {
+  background-color: colour('secondary', 'interface');
+  cursor: not-allowed;
+
+  & + .input__label > .input__label-text {
+    color: colour('secondary', 'text');
+    opacity: .5;
+  }
+}
+
+.input__validation-message {
+  position: absolute;
+  font-size: $font-size-transform;
+  margin-top: $font-size / 2;
+  display: none;
+}
+
 @each $state in $inputStates {
   $state: nth($state, 1);
   $colourFrom: getProperty($inputStates, $state, 'colourFrom');
@@ -292,24 +309,12 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
         @extend %rc-icon;
         @extend .#{$icon};
       }
+
+      & .input__validation-message {
+        display: block;
+      }
     }
   }
-}
-
-.input__control:disabled {
-  background-color: colour('secondary', 'interface');
-  cursor: not-allowed;
-
-  & + .input__label > .input__label-text {
-    color: colour('secondary', 'text');
-    opacity: .5;
-  }
-}
-
-.input__validation-message {
-  position: absolute;
-  font-size: $font-size-transform;
-  margin-top: $font-size / 2;
 }
 
 /// ------------------- 

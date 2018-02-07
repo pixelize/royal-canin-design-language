@@ -4322,13 +4322,22 @@ RCDL.features.FormElements = {
     });
   },
 
-  formValidation: function (wrapper, target, message) {
+  /**
+   * Gets validation states from each input and determines whether to validate as you type or on submit and also
+   * whether to display an accompanying message. Default validation is activated using data-js-validate (no message),
+   * or to add messages use data-js-error-message, data-js-warning-message or data-js-success-message.
+   *
+   * @param {String} wrapper
+   * Selector for outer form.
+   * @param {String} target
+   * Selector for each form input
+   */
+  formValidation: function (wrapper, target) {
     'use strict';
     var form = document.querySelector(wrapper);
     var inputs = document.querySelectorAll(target);
-    var inputStates = ['success', 'error', 'warning'];
 
-    // Check if current input has a validation message
+    // Check if current input has any validation messages and push to array
     function getMessages(el) {
       var result = [];
       Object.keys(el.closest(target).attributes).forEach(function (attr) {
@@ -4349,58 +4358,48 @@ RCDL.features.FormElements = {
     }
 
     // Return the correct class and message for the state
-    function state(el, state) {
-      var validationMsg = el.closest(target).querySelector(message);
-
-      inputStates.forEach(function (state) {
-        RCDL.utilities.modifyClass('remove', el.closest(target), 'input--' + state);
-      });
-
-      if (validationMsg) {
-        if (el.closest(target).hasAttribute('data-js-' + state + '-message')) {
-          // apply this state
-          validationMsg.innerText = el.closest(target).getAttribute('data-js-' + state + '-message');
-        }
-        else {
-          validationMsg.innerText = ' ';
-        }
-      }
-
-      if (state !== 'default') {
-        RCDL.utilities.modifyClass('add', el.closest(target), 'input--' + state);
-      }
-    }
-
-    // Matches two inputs
-    function matchInput(el, success, warning, error) {
-      var match = document.getElementById(el.getAttribute('data-js-match'));
+    function state(el, state, messages) {
       
-      el.addEventListener('keyup', function () {
-        if (el.value.length > 2) {
-          state(match, el.value === match.value ? success : error);
-        }
-        else {
-          state(el, warning);
-        }
-      });
+      // Compare the messages to the state to check if any exist
+      if (messages.length > 0) {
+        var validationMsg = el.closest(target).querySelector('[data-js-validation-message]');
 
-      match.addEventListener('keyup', function () {
-        state(match, el.value === match.value ? success : error);
-      });
+        messages.forEach(function (msg) {
+          if (msg.includes(state)) {
+            RCDL.utilities.modifyClass('add', el.closest(target), 'input--' + state);
+            validationMsg.innerText = el.closest(target).getAttribute('data-js-' + state + '-message');
+          }
+          else {
+            var oldState = msg.split('-')[msg.split('-').length - 2];
+            RCDL.utilities.modifyClass('remove', el.closest(target), 'input--' + oldState);
+          }
+        });
+      }
+      else { // If no messages, then only two states are allowed
+        var newStates = ['default', 'error'];
+        newStates.forEach(function (newState) {
+          if (newState === state) { // If the state we passed matches then add the class
+            RCDL.utilities.modifyClass('add', el.closest(target), 'input--' + newState);
+          }
+          else { // Remove all other states
+            RCDL.utilities.modifyClass('remove', el.closest(target), 'input--' + newState);
+          }
+        });
+      }
     }
 
     // Main validation function
-    function validate(el, event, success, warning, error) {
-
+    function validate(el, event, messages) {
+      
       // On form submit
       if (form) {
         form.addEventListener('submit', function (e) {
           e.preventDefault();
           if (!el.hasAttribute('optional') && el.value.length === 0) {
-            state(el, error);
+            state(el, 'error', messages);
           }
           else if (el.checkValidity()) {
-            state(el, 'default');
+            state(el, 'default', messages);
           }
         });
       }
@@ -4408,14 +4407,32 @@ RCDL.features.FormElements = {
       // On input change
       el.addEventListener(event, function () {
         if (el.value.length > 1 && el.checkValidity()) {
-          state(el, success);
+          state(el, 'success', messages);
         }
         else if (el.value.length === 0) {
-          state(el, 'default'); // This is always the default state
+          state(el, 'default', messages);
         }
         else {
-          state(el, warning);
+          state(el, 'warning', messages);
         }
+      });
+    }
+
+    // Matches two inputs
+    function matchInput(el, messages) {
+      var match = document.getElementById(el.getAttribute('data-js-match'));
+      
+      el.addEventListener('input', function () {
+        if (el.value.length > 2) {
+          state(match, el.value === match.value ? 'success' : 'error', getMessages(match));
+        }
+        else {
+          state(el, 'warning', messages);
+        }
+      });
+
+      match.addEventListener('keyup', function () {
+        state(match, el.value === match.value ? 'success' : 'error', getMessages(match));
       });
     }
 
@@ -4424,28 +4441,23 @@ RCDL.features.FormElements = {
       var input = inputs[key].querySelector('input');
       var select = inputs[key].querySelector('select');
       var currentInput = input ? input : select;
-      var thisStates = [];
+      var thisMessages = [];
 
       // If the input has validation messages
       if (getMessages(currentInput)) {
         createMessage(currentInput);
-        thisStates = getMessages(currentInput);
-        console.log(thisStates);
-      }
-      else {
-        thisStates = ['default', 'error'];
+        thisMessages = getMessages(currentInput);
       }
 
       if (input) {
         if (input.hasAttribute('data-js-match')) {
-          matchInput(input, 'success', 'warning', 'error');
+          matchInput(input, thisMessages);
         }
-        validate(input, 'input', 'default', 'warning', 'error');
+        validate(input, 'input', thisMessages);
       }
       if (select) {
-        validate(select, 'addItem', 'default', null, 'error');
+        validate(select, 'addItem', thisMessages);
       }
-
     });
   },
 
@@ -4489,7 +4501,7 @@ RCDL.features.FormElements = {
 };
 
 RCDL.ready(RCDL.features.FormElements.labels('.input'));
-RCDL.ready(RCDL.features.FormElements.formValidation('[data-js-form]', '[data-js-validate]', '[data-js-validation-message]'));
+RCDL.ready(RCDL.features.FormElements.formValidation('[data-js-form]', '[data-js-validate]'));
 RCDL.ready(RCDL.features.FormElements.passwordField('[type="password"]'));
 
 /**

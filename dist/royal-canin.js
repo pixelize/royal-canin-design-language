@@ -4363,7 +4363,7 @@ RCDL.features.FormElements = {
       // Compare the messages to the state to check if any exist
       if (messages.length > 0) {
         var validationMsg = el.closest(target).querySelector('[data-js-validation-message]');
-
+        
         messages.forEach(function (msg) {
           if (msg.includes(state)) {
             RCDL.utilities.modifyClass('add', el.closest(target), 'input--' + state);
@@ -4420,20 +4420,23 @@ RCDL.features.FormElements = {
 
     // Matches two inputs
     function matchInput(el, messages) {
-      var match = document.getElementById(el.getAttribute('data-js-match'));
-      
-      el.addEventListener('input', function () {
-        if (el.value.length > 2) {
+      if (el.hasAttribute('data-js-match')) {
+        var match = document.getElementById(el.getAttribute('data-js-match'));
+        
+        el.addEventListener('input', function () {
+          if (el.value.length > 2) {
+            state(match, el.value === match.value ? 'success' : 'error', getMessages(match));
+            state(el, 'default', messages);
+          }
+          else {
+            state(el, 'warning', messages);
+          }
+        });
+        
+        match.addEventListener('keyup', function () {
           state(match, el.value === match.value ? 'success' : 'error', getMessages(match));
-        }
-        else {
-          state(el, 'warning', messages);
-        }
-      });
-
-      match.addEventListener('keyup', function () {
-        state(match, el.value === match.value ? 'success' : 'error', getMessages(match));
-      });
+        });
+      }
     }
 
     // Call our functions for the inputs
@@ -4450,10 +4453,12 @@ RCDL.features.FormElements = {
       }
 
       if (input) {
-        if (input.hasAttribute('data-js-match')) {
+        if (input.getAttribute('type') === 'password') {
           matchInput(input, thisMessages);
         }
-        validate(input, 'input', thisMessages);
+        else {
+          validate(input, 'input', thisMessages);
+        }
       }
       if (select) {
         validate(select, 'addItem', thisMessages);

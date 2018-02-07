@@ -60,12 +60,12 @@ RCDL.features.FormElements = {
     var inputStates = ['success', 'error', 'warning'];
 
     // Check if current input has a validation message
-    function checkMessage(el) {
-      var result = false;
+    function getMessages(el) {
+      var result = [];
       Object.keys(el.closest(target).attributes).forEach(function (attr) {
         var attrName = el.closest(target).attributes[attr].name;
         if (/message$/.test(attrName)) {
-          result = true;
+          result.push(attrName);
         }
       });
       return result;
@@ -106,11 +106,7 @@ RCDL.features.FormElements = {
     function matchInput(el, success, warning, error) {
       var match = document.getElementById(el.getAttribute('data-js-match'));
       
-      el.addEventListener('input', function () {
-        state(match, el.value === match.value ? success : error);
-      });
-
-      match.addEventListener('input', function () {
+      el.addEventListener('keyup', function () {
         if (el.value.length > 2) {
           state(match, el.value === match.value ? success : error);
         }
@@ -118,8 +114,13 @@ RCDL.features.FormElements = {
           state(el, warning);
         }
       });
+
+      match.addEventListener('keyup', function () {
+        state(match, el.value === match.value ? success : error);
+      });
     }
 
+    // Main validation function
     function validate(el, event, success, warning, error) {
 
       // On form submit
@@ -154,10 +155,18 @@ RCDL.features.FormElements = {
       var input = inputs[key].querySelector('input');
       var select = inputs[key].querySelector('select');
       var currentInput = input ? input : select;
+      var thisStates = [];
 
-      if (checkMessage(currentInput)) {
+      // If the input has validation messages
+      if (getMessages(currentInput)) {
         createMessage(currentInput);
+        thisStates = getMessages(currentInput);
+        console.log(thisStates);
       }
+      else {
+        thisStates = ['default', 'error'];
+      }
+
       if (input) {
         if (input.hasAttribute('data-js-match')) {
           matchInput(input, 'success', 'warning', 'error');
@@ -167,6 +176,7 @@ RCDL.features.FormElements = {
       if (select) {
         validate(select, 'addItem', 'default', null, 'error');
       }
+
     });
   },
 

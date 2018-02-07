@@ -4357,7 +4357,7 @@ RCDL.features.FormElements = {
       el.closest(target).appendChild(newSpan);
     }
 
-    // Return the correct class and message for the state
+    // Return the correct class and messages for the state
     function state(el, state, messages) {
       
       // Compare the messages to the state to check if any exist
@@ -4370,7 +4370,7 @@ RCDL.features.FormElements = {
             validationMsg.innerText = el.closest(target).getAttribute('data-js-' + state + '-message');
           }
           else {
-            var oldState = msg.split('-')[msg.split('-').length - 2];
+            var oldState = msg.split('-')[msg.split('-').length - 2]; // Get just the state from the message type
             RCDL.utilities.modifyClass('remove', el.closest(target), 'input--' + oldState);
           }
         });
@@ -4378,7 +4378,7 @@ RCDL.features.FormElements = {
       else { // If no messages, then only two states are allowed
         var newStates = ['default', 'error'];
         newStates.forEach(function (newState) {
-          if (newState === state) { // If the state we passed matches then add the class
+          if (newState === state) { // If the state we passed matches, add the class
             RCDL.utilities.modifyClass('add', el.closest(target), 'input--' + newState);
           }
           else { // Remove all other states
@@ -4452,6 +4452,7 @@ RCDL.features.FormElements = {
         thisMessages = getMessages(currentInput);
       }
 
+      // Pass different values based on input type
       if (input) {
         if (input.getAttribute('type') === 'password') {
           matchInput(input, thisMessages);

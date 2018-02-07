@@ -53,12 +53,14 @@ RCDL.features.FormElements = {
     });
   },
 
-  formValidation: function (target, wrapper) {
+  formValidation: function (wrapper, target, message) {
     'use strict';
-    var inputs = document.querySelectorAll(target);
     var form = document.querySelector(wrapper);
+    var inputs = document.querySelectorAll(target);
+    var inputStates = ['success', 'error', 'warning'];
 
-    function message(el) {
+    // Check if current input has a validation message
+    function checkMessage(el) {
       var result = false;
       Object.keys(el.closest(target).attributes).forEach(function (attr) {
         var attrName = el.closest(target).attributes[attr].name;
@@ -69,6 +71,7 @@ RCDL.features.FormElements = {
       return result;
     }
 
+    // Create the container span for the validation message
     function createMessage(el) {
       var newSpan = document.createElement('span');
       newSpan.setAttribute('data-js-validation-message', '');
@@ -76,20 +79,21 @@ RCDL.features.FormElements = {
       el.closest(target).appendChild(newSpan);
     }
 
+    // Return the correct class and message for the state
     function state(el, state) {
-      var inputStates = ['success', 'warning', 'error'];
-      var validation = el.closest(target).querySelector('[data-js-validation-message]');
+      var validationMsg = el.closest(target).querySelector(message);
 
       inputStates.forEach(function (state) {
         RCDL.utilities.modifyClass('remove', el.closest(target), 'input--' + state);
       });
 
-      if (validation) {
+      if (validationMsg) {
         if (el.closest(target).hasAttribute('data-js-' + state + '-message')) {
-          validation.innerText = el.closest(target).getAttribute('data-js-' + state + '-message');
+          // apply this state
+          validationMsg.innerText = el.closest(target).getAttribute('data-js-' + state + '-message');
         }
         else {
-          validation.innerText = ' ';
+          validationMsg.innerText = ' ';
         }
       }
 
@@ -98,19 +102,40 @@ RCDL.features.FormElements = {
       }
     }
 
+    // Matches two inputs
+    function matchInput(el, success, warning, error) {
+      var match = document.getElementById(el.getAttribute('data-js-match'));
+      
+      el.addEventListener('input', function () {
+        state(match, el.value === match.value ? success : error);
+      });
+
+      match.addEventListener('input', function () {
+        if (el.value.length > 2) {
+          state(match, el.value === match.value ? success : error);
+        }
+        else {
+          state(el, warning);
+        }
+      });
+    }
+
     function validate(el, event, success, warning, error) {
 
       // On form submit
       if (form) {
         form.addEventListener('submit', function (e) {
           e.preventDefault();
-          if (el.value.length === 0) {
+          if (!el.hasAttribute('optional') && el.value.length === 0) {
             state(el, error);
+          }
+          else if (el.checkValidity()) {
+            state(el, 'default');
           }
         });
       }
 
-      // On key press
+      // On input change
       el.addEventListener(event, function () {
         if (el.value.length > 1 && el.checkValidity()) {
           state(el, success);
@@ -124,18 +149,22 @@ RCDL.features.FormElements = {
       });
     }
 
+    // Call our functions for the inputs
     Object.keys(inputs).forEach(function (key) {
       var input = inputs[key].querySelector('input');
       var select = inputs[key].querySelector('select');
       var currentInput = input ? input : select;
 
-      if (message(currentInput)) {
+      if (checkMessage(currentInput)) {
         createMessage(currentInput);
       }
-      if (currentInput === input) {
-        validate(input, 'keyup', 'success', 'warning', 'error');
+      if (input) {
+        if (input.hasAttribute('data-js-match')) {
+          matchInput(input, 'success', 'warning', 'error');
+        }
+        validate(input, 'input', 'default', 'warning', 'error');
       }
-      if (currentInput === select) {
+      if (select) {
         validate(select, 'addItem', 'default', null, 'error');
       }
     });
@@ -181,7 +210,7 @@ RCDL.features.FormElements = {
 };
 
 RCDL.ready(RCDL.features.FormElements.labels('.input'));
-RCDL.ready(RCDL.features.FormElements.formValidation('[data-js-validate]', '[data-js-form]'));
+RCDL.ready(RCDL.features.FormElements.formValidation('[data-js-form]', '[data-js-validate]', '[data-js-validation-message]'));
 RCDL.ready(RCDL.features.FormElements.passwordField('[type="password"]'));
 
 /**

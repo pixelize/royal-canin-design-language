@@ -42,6 +42,7 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
 }
 
 %input-inline {
+  position: relative;
   display: inline-block;
   margin-right: 1.5rem;
 }
@@ -303,7 +304,16 @@ $base-colourTo: getProperty($inputStates, 'base', 'colourTo');
         @include inputColour($colourFrom, $colourTo);
       }
 
-      &::after {
+      &.select .choices {
+        color: $colourTo;
+        border-color: $colourTo;
+
+        & .choices__placeholder {
+          opacity: 1;
+        }
+      }
+
+      &.input::after {
         right: $padding-x--base;
         @extend .vertical-align;
         @extend %rc-icon;

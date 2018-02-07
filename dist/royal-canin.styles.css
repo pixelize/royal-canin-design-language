@@ -2689,7 +2689,7 @@ html {
   clear: both;
 }
 
-.rc-icon::after,.rc-icon--interactive:hover::after,.styled-link--external:hover::after,.btn--icon:hover::after,.input__submit--search:hover::after,.btn--icon-label:hover::after,.input__date:hover::after,.styled-link--external::after,.breadcrumb__list-item::after,.btn--one::after,.btn--two::after,.btn--sm::after,.btn--icon::after,.input__submit--search::after,.btn--icon-label::after,.btn--action::after,.input__submit--micro::after,.input__date::after,.input--success::after,.input--warning::after,.input--error::after,.input__checkbox:checked + .input__label--inline::after,.select .choices::after,[data-type="select-multiple"] .choices__btn::after,.navigation--prev::after,.navigation--next::after,.response--affirmative::after,.response--negative::after,.list-icon--feedback--success::after,.list-icon--arrow--go::after,.list-icon--chevron--down::after,.list-icon--chevron--right::after,.social__network--facebook::after,.social__network--instagram::after,.social__network--twitter::after,.social__network--youtube::after,.rc-navigation--footer .rc-navigation__link::after,.navigation--vertical__list-item > a.active::after,.navigation--vertical__list-item > a:hover::after {
+.rc-icon::after,.rc-icon--interactive:hover::after,.styled-link--external:hover::after,.btn--icon:hover::after,.input__submit--search:hover::after,.btn--icon-label:hover::after,.input__date:hover::after,.styled-link--external::after,.breadcrumb__list-item::after,.btn--one::after,.btn--two::after,.btn--sm::after,.btn--icon::after,.input__submit--search::after,.btn--icon-label::after,.btn--action::after,.input__submit--micro::after,.input__date::after,.input--success.input::after,.input--warning.input::after,.input--error.input::after,.input__checkbox:checked + .input__label--inline::after,.select .choices::after,[data-type="select-multiple"] .choices__btn::after,.navigation--prev::after,.navigation--next::after,.response--affirmative::after,.response--negative::after,.list-icon--feedback--success::after,.list-icon--arrow--go::after,.list-icon--chevron--down::after,.list-icon--chevron--right::after,.social__network--facebook::after,.social__network--instagram::after,.social__network--twitter::after,.social__network--youtube::after,.rc-navigation--footer .rc-navigation__link::after,.navigation--vertical__list-item > a.active::after,.navigation--vertical__list-item > a:hover::after {
   content: '';
   display: inline-block;
   background-repeat: no-repeat;
@@ -3471,7 +3471,7 @@ html {
   background-position: 29.63% 50%;
 }
 
-.rc-icon-failure--xs--error::after,.input--error::after {
+.rc-icon-failure--xs--error::after,.input--error.input::after {
   background-position: 33.333% 50%;
 }
 
@@ -5175,7 +5175,7 @@ html {
   background-position: 59.259% 92.308%;
 }
 
-.rc-icon-success--xs--success::after,.input--success::after {
+.rc-icon-success--xs--success::after,.input--success.input::after {
   background-position: 62.963% 92.308%;
 }
 
@@ -5659,7 +5659,7 @@ html {
   background-position: 100% 30.769%;
 }
 
-.rc-icon-warning--xs--warning::after,.input--warning::after {
+.rc-icon-warning--xs--warning::after,.input--warning.input::after {
   background-position: 100% 34.615%;
 }
 
@@ -5831,7 +5831,7 @@ body::before {
   right: 0;
 }
 
-.vertical-align,[role="alert"] .alert__close,.alert .alert__close,.input__date::after,.input__password ~ .input__password-toggle,.input--success::after,.input--warning::after,.input--error::after,.select .choices::after,.navigation--vertical--toggle {
+.vertical-align,[role="alert"] .alert__close,.alert .alert__close,.input__date::after,.input__password ~ .input__password-toggle,.input--success.input::after,.input--warning.input::after,.input--error.input::after,.select .choices::after,.navigation--vertical--toggle {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -6545,6 +6545,7 @@ blockquote > p,q > p {
 }
 
 .input--inline {
+  position: relative;
   display: inline-block;
   margin-right: 1.5rem;
 }
@@ -6721,7 +6722,16 @@ button + .input__label {
   background-color: #47B800;
 }
 
-.input--success::after {
+.input--success.select .choices {
+  color: #47B800;
+  border-color: #47B800;
+}
+
+.input--success.select .choices .choices__placeholder {
+  opacity: 1;
+}
+
+.input--success.input::after {
   right: 0;
 }
 
@@ -6754,7 +6764,16 @@ button + .input__label {
   background-color: #EE8B00;
 }
 
-.input--warning::after {
+.input--warning.select .choices {
+  color: #EE8B00;
+  border-color: #EE8B00;
+}
+
+.input--warning.select .choices .choices__placeholder {
+  opacity: 1;
+}
+
+.input--warning.input::after {
   right: 0;
 }
 
@@ -6787,7 +6806,16 @@ button + .input__label {
   background-color: #C03344;
 }
 
-.input--error::after {
+.input--error.select .choices {
+  color: #C03344;
+  border-color: #C03344;
+}
+
+.input--error.select .choices .choices__placeholder {
+  opacity: 1;
+}
+
+.input--error.input::after {
   right: 0;
 }
 
@@ -6800,7 +6828,8 @@ button + .input__label {
 }
 
 .input__checkbox,.input__radio {
-  display: none;
+  opacity: 0;
+  margin-right: -1rem;
 }
 
 .input__checkbox + .input__label--inline,.input__radio + .input__label--inline {

@@ -62,10 +62,12 @@ RCDL.features.FormElements = {
    * Selector for outer form.
    * @param {String} target
    * Selector for each form input
+   * @param {String} submitButton
+   * Selector for each form input
    */
-  formValidation: function (wrapper, target) {
+  formValidation: function (target, submit) {
     'use strict';
-    var form = document.querySelector(wrapper);
+    var submitButton = document.querySelector(submit);
     var inputs = document.querySelectorAll(target);
 
     // Check if current input has any validation messages and push to array
@@ -121,11 +123,10 @@ RCDL.features.FormElements = {
 
     // Main validation function
     function validate(el, event, messages) {
-      
+
       // On form submit
-      if (form) {
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
+      if (submitButton) {
+        submitButton.addEventListener('click', function (e) {
           if (!el.hasAttribute('optional') && el.value.length === 0) {
             state(el, 'error', messages);
           }
@@ -237,7 +238,7 @@ RCDL.features.FormElements = {
 };
 
 RCDL.ready(RCDL.features.FormElements.labels('.input'));
-RCDL.ready(RCDL.features.FormElements.formValidation('[data-js-form]', '[data-js-validate]'));
+RCDL.ready(RCDL.features.FormElements.formValidation('[data-js-validate]', null));
 RCDL.ready(RCDL.features.FormElements.passwordField('[type="password"]'));
 
 /**

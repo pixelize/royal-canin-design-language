@@ -4322,14 +4322,15 @@ RCDL.features.FormElements = {
     });
   },
 
-  formValidation: function (target) {
+  formValidation: function (target, wrapper) {
     'use strict';
     var inputs = document.querySelectorAll(target);
+    var form = document.querySelector(wrapper);
 
     function message(el) {
       var result = false;
-      Object.keys(el.attributes).forEach(function (attr) {
-        var attrName = el.attributes[attr].name;
+      Object.keys(el.closest(target).attributes).forEach(function (attr) {
+        var attrName = el.closest(target).attributes[attr].name;
         if (/message$/.test(attrName)) {
           result = true;
         }
@@ -4341,7 +4342,7 @@ RCDL.features.FormElements = {
       var newSpan = document.createElement('span');
       newSpan.setAttribute('data-js-validation-message', '');
       RCDL.utilities.modifyClass('add', newSpan, 'input__validation-message');
-      el.appendChild(newSpan);
+      el.closest(target).appendChild(newSpan);
     }
 
     function state(el, state) {
@@ -4366,49 +4367,45 @@ RCDL.features.FormElements = {
       }
     }
 
-    function validateOnSubmit(el) {
-      var form = document.querySelector('[data-js-form]');
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (el.value.length === 0) {
-          state(el, 'error');
+    function validate(el, event, success, warning, error) {
+
+      // On form submit
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (el.value.length === 0) {
+            state(el, error);
+          }
+        });
+      }
+
+      // On key press
+      el.addEventListener(event, function () {
+        if (el.value.length > 1 && el.checkValidity()) {
+          state(el, success);
+        }
+        else if (el.value.length === 0) {
+          state(el, 'default'); // This is always the default state
+        }
+        else {
+          state(el, warning);
         }
       });
     }
 
-    function validateLive(el) {
-      if (el.value.length > 1 && el.checkValidity()) {
-        state(el, 'success');
-      }
-      else if (el.value.length === 0) {
-        state(el, 'default');
-      }
-      else {
-        state(el, 'warning');
-      }
-    }
-
     Object.keys(inputs).forEach(function (key) {
-      var input = inputs[key];
-      var baseInput = input.querySelector('input');
-      var select = input.querySelector('select');
+      var input = inputs[key].querySelector('input');
+      var select = inputs[key].querySelector('select');
+      var currentInput = input ? input : select;
 
-      if (message(input)) {
-        createMessage(input);
+      if (message(currentInput)) {
+        createMessage(currentInput);
       }
-
-      if (select) {
-        select.addEventListener('addItem', function () {
-          validateLive(select);
-        });
-        validateOnSubmit(select);
+      if (currentInput === input) {
+        validate(input, 'keyup', 'success', 'warning', 'error');
       }
-
-      if (baseInput) {
-        baseInput.addEventListener('keyup', function () {
-          validateLive(baseInput);
-        });
-        validateOnSubmit(baseInput);
+      if (currentInput === select) {
+        validate(select, 'addItem', 'default', null, 'error');
       }
     });
   },
@@ -4453,7 +4450,7 @@ RCDL.features.FormElements = {
 };
 
 RCDL.ready(RCDL.features.FormElements.labels('.input'));
-RCDL.ready(RCDL.features.FormElements.formValidation('[data-js-validate]'));
+RCDL.ready(RCDL.features.FormElements.formValidation('[data-js-validate]', '[data-js-form]'));
 RCDL.ready(RCDL.features.FormElements.passwordField('[type="password"]'));
 
 /**

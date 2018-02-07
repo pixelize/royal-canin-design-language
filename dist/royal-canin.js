@@ -4394,6 +4394,7 @@ RCDL.features.FormElements = {
       // On form submit
       if (submitButton) {
         submitButton.addEventListener('click', function (e) {
+          e.preventDefault();
           if (!el.hasAttribute('optional') && el.value.length === 0) {
             state(el, 'error', messages);
           }

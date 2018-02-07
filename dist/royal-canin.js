@@ -4327,11 +4327,9 @@ RCDL.features.FormElements = {
    * whether to display an accompanying message. Default validation is activated using data-js-validate (no message),
    * or to add messages use data-js-error-message, data-js-warning-message or data-js-success-message.
    *
-   * @param {String} wrapper
-   * Selector for outer form.
    * @param {String} target
    * Selector for each form input
-   * @param {String} submitButton
+   * @param {String} submit
    * Selector for each form input
    */
   formValidation: function (target, submit) {

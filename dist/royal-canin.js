@@ -4533,7 +4533,7 @@ RCDL.features.FormElements = {
         }
       }
       if (select) {
-        validate(select, 'addItem', thisMessages);
+        validate(select, 'change', thisMessages);
       }
     });
   },

@@ -3,11 +3,31 @@
 All notable changes to Royal Canin Design Language will be documented on this page.
 [View Full](http://developer.royalcanin.com/changelog.html)
 
+ ## v6.0.0
+A major version update that includes an overhaul of foundation elements; namely buttons and forms. These design and functional updates help to underpin our consistent visual identity whilst making these elements more robust and flexible for implementation, with clear new rules on aspects such as usage, interactivity and hierarchy.
+ ### Breaking Changes
+ ##### Buttons
+An overhaul of all button elements including styling, states, functionality as well as rules on hierarchy that help to support visual flow and create a unified consistent brand identity.
+ ##### Forms
+A complete overhaul of all form elements including a slicker simplified styling, alert states and functionality.
+ ### New Features
+ ##### Interactive Icons
+Icons now have an interactive class which allows them to display a hover state within icon buttons.
+ ##### Warning colour
+We have added a warning colour under the tertiary pallet to support UX for form implementation and alert messages. The error colour has been updated as not to clash with the Brand1 colour.
+ ### Minor updates/bug fixes
+ ##### Icon colours
+Update to ensure that default icons inherit the Iconography colour class.
  ## v5.1.0
 A refinement on version 5 with the addition of some new hyperlink styles.
  ### Breaking Changes
- ##### New Hyperlink styles
-We've added icons for hyperlinks that generate new pages and lead to external sites..
+ ##### Hyperlinks
+A complete overhaul of a better branded link styling with a new external link style coupled with an icon for links that generate new pages and lead to external sites; also a CTA link style for use underneath paragraph text or where additional visual attention is required.
+ ##### Typography
+Complete overhaul to typography styling with some additional modifier classes provided for interactive titles and the removal of legacy bold and uppercase typeface and styles.
+ ### Minor updates/bug fixes
+ ##### Layout container
+Removed padding from single column container to enable full width display.
  ## v5.0.0
 With the growing need for visual elements we've added various multimedia elements.
  ### Breaking Changes

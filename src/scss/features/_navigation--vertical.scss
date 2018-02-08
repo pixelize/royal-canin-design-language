@@ -21,15 +21,13 @@
 }
 
 %active-menu-item {
-  @extend %rc-icon;
-  @extend .rc-icon-chevron--right--red;
-  @extend %rc-icon--small;
-
   &::after {
     content: '';
     position: absolute;
     right: 0;
     top: 0;
+    @extend %rc-icon;
+    @extend .rc-icon-right--xs--brand1;
   }
 }
 
@@ -64,48 +62,19 @@
   }
 }
 
-
 .navigation--vertical--toggle {
-  @extend %rc-icon;
   position: absolute;
   z-index: z(side-navigation);
-  top: 30px;
-  left: 15px;
-  height: 32px;
-  width: 32px;
-
-  &::after {
-    content: '';
-    display: block;
-    position: relative;
-    @extend .rc-icon-menu--dark::after;
-
-    &:hover,
-    &:focus {
-      @extend .rc-icon-menu--red::after;
-    }
-  }
+  @extend .vertical-align;
 
   @media (get-breakpoint-down('medium')) {
-    background-color: transparent;
-
-    &:hover,
-    &:focus {
-      background-color: transparent;
-    }
+    left: 1rem;
   }
 
   @media (get-breakpoint-up('medium')) {
-    height: auto;
-    width: auto;
-    bottom: -60px;
-    left: 15px;
     top: auto;
-    display: inline-block;
-
-    &::after {
-      display: none;
-    }
+    transform: none;
+    bottom: -55px;
   }
 }
 
@@ -117,7 +86,7 @@
   @extend .center-align;
 
   @media (get-breakpoint-up('medium')) {
-   position: relative;
+    position: relative;
     left: auto;
     transform: none;
   }

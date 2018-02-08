@@ -159,6 +159,82 @@ RCDL.utilities.getSiblings = function (el) {
 };
 
 /**
+ * Check if string includes another string
+ *
+ * @param {String} str
+ * First string
+ *
+ * @param {String} value
+ * String to check against.
+ *
+ * @return {Boolean}
+ * Returns true if match found.
+ */
+RCDL.utilities.includes = function (str, value) {
+  'use strict';
+
+  if (typeof str === 'string') {
+    var returnValue = false;
+    var pos = str.indexOf(value);
+    if (pos >= 0) {
+      returnValue = true;
+    }
+    return returnValue;
+  }
+  else {
+    throw new Error('RCDL.utilities.includes:' + str + 'is not a string');
+  }
+};
+
+/**
+ * Get the closest parent element that matches a selector.
+ *
+ * @param {Node} el
+ * Target DOM node item.
+ *
+ * @param  {String}  selector
+ * Selector to match against
+ *
+ * @return {Boolean|Element}
+ * Returns null if no match found
+ */
+RCDL.utilities.closest = function (el, selector) {
+  'use strict';
+
+  // Element.matches() polyfill
+  if (!Element.prototype.matches) {
+    Element.prototype.matches =
+      Element.prototype.msMatchesSelector ||
+      Element.prototype.webkitMatchesSelector;
+  }
+
+  if (!Element.prototype.closest) {
+    Element.prototype.closest = function (s) {
+      var el = this;
+      if (!document.documentElement.contains(el)) {
+        return null;
+      }
+      do {
+        if (el.matches(s)) {
+          return el;
+        }
+        el = el.parentElement || el.parentNode;
+      } while (el !== null && el.nodeType === 1);
+      return null;
+    };
+  }
+
+  // Get closest match
+  for (; el && el !== document; el = el.parentNode) {
+    if (el.matches(selector)) {
+      return el;
+    }
+  }
+
+  return null;
+};
+
+/**
  * Used to add/remove classes on a target element.
  *
  * @param {String} type
@@ -213,7 +289,14 @@ RCDL.utilities.modifyClass = function (type, target, className) {
 
   else if (type === 'add') {
     if (target.classList) {
-      target.classList.add(className);
+      if (typeof className == 'string') {
+        target.classList.add(className);
+      }
+      else {
+        className.forEach(function (name) {
+          target.classList.add(name);
+        });
+      }
     }
     // IE 8+ support.
     else {
@@ -223,7 +306,14 @@ RCDL.utilities.modifyClass = function (type, target, className) {
 
   else if (type === 'remove') {
     if (target.classList) {
-      target.classList.remove(className);
+      if (typeof className == 'string') {
+        target.classList.remove(className);
+      }
+      else {
+        className.forEach(function (name) {
+          target.classList.remove(name);
+        });
+      }
     }
     // IE 8+ support.
     else {

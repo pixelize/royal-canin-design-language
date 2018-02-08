@@ -9,35 +9,35 @@ module.exports = function (task, gulp, sitesettings, need, taskObj) {
   const config = {
     full: true,
     log: 'debug',
-    mode					: {
-      css					: {			// Create a «css» sprite
+    mode          : {
+      css         : {     // Create a «css» sprite
         dest: '.',
         bust: false,
-        render		: {
-          scss		: {
+        render    : {
+          scss    : {
             dest: '../src/icons/icons.scss',
             template: './gulp/resources/sprite.scss'
-          }		// Render a Sass stylesheet
+          }   // Render a Sass stylesheet
         },
         prefix: '.rc-icon-',
         sprite: 'royal-canin.sprite.svg'
       }
     },
     shape: {
-      whitespace	: '-',
-      spacing			: {                         // Spacing related options
-        padding		: 0,                       // Padding around all shapes
+      whitespace  : '-',
+      spacing     : {                         // Spacing related options
+        padding   : 0,                       // Padding around all shapes
         box       : 'border'                  // Padding strategy (similar to CSS `box-sizing`)
       },
-      dimension		: {                         // Dimension related options
-        maxWidth	: 32,                       // Max. shape width
-        maxHeight	: 32,                       // Max. shape height
-        precision	: 10,                        // Floating point precision
-        attributes 	: false                   // Width and height attributes on embedded shapes
+      dimension   : {                         // Dimension related options
+        maxWidth  : 32,                       // Max. shape width
+        maxHeight : 32,                       // Max. shape height
+        precision : 10,                        // Floating point precision
+        attributes  : false                   // Width and height attributes on embedded shapes
       }
     },
-    svg						: {							// General options for created SVG files
-      dimensionAttributes	: true
+    svg           : {             // General options for created SVG files
+      dimensionAttributes : true
     }
   }
 

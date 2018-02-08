@@ -54,6 +54,151 @@ RCDL.features.FormElements = {
   },
 
   /**
+   * Gets validation states from each input and determines whether to validate as you type or on submit and also
+   * whether to display an accompanying message. Default validation is activated using data-js-validate (no message),
+   * or to add messages use data-js-error-message, data-js-warning-message or data-js-success-message.
+   *
+   * @param {String} target
+   * Selector for each form input
+   * @param {String} submit
+   * Selector for each form input
+   */
+  formValidation: function (target, submit) {
+    'use strict';
+    var submitButton = document.querySelector(submit);
+    var inputs = document.querySelectorAll(target);
+
+    // Check if current input has any validation messages and push to array
+    function getMessages(el) {
+      var result = [];
+      Object.keys(RCDL.utilities.closest(el, target).attributes).forEach(function (attr) {
+        var attrName = RCDL.utilities.closest(el, target).attributes[attr].name;
+        if (/message$/.test(attrName)) {
+          result.push(attrName);
+        }
+      });
+      return result;
+    }
+
+    // Create the container span for the validation message - @todo extract this into element creator
+    function createMessage(el) {
+      var newSpan = document.createElement('span');
+      newSpan.setAttribute('data-js-validation-message', '');
+      RCDL.utilities.modifyClass('add', newSpan, 'input__validation-message');
+      RCDL.utilities.closest(el, target).appendChild(newSpan);
+    }
+
+    // Return the correct class and messages for the state
+    function state(el, state, messages) {
+      
+      // Compare the messages to the state to check if any exist
+      if (messages.length > 0) {
+        var validationMsg = RCDL.utilities.closest(el, target).querySelector('[data-js-validation-message]');
+        
+        messages.forEach(function (msg) {
+          if (RCDL.utilities.includes(msg, state)) {
+            RCDL.utilities.modifyClass('add', RCDL.utilities.closest(el, target), 'input--' + state);
+            validationMsg.innerText = RCDL.utilities.closest(el, target).getAttribute('data-js-' + state + '-message');
+          }
+          else {
+            var oldState = msg.split('-')[msg.split('-').length - 2]; // Get just the state from the message type
+            RCDL.utilities.modifyClass('remove', RCDL.utilities.closest(el, target), 'input--' + oldState);
+          }
+        });
+      }
+      else { // If no messages, then only two states are allowed
+        var newStates = ['default', 'error'];
+        newStates.forEach(function (newState) {
+          if (newState === state) { // If the state we passed matches, add the class
+            RCDL.utilities.modifyClass('add', RCDL.utilities.closest(el, target), 'input--' + newState);
+          }
+          else { // Remove all other states
+            RCDL.utilities.modifyClass('remove', RCDL.utilities.closest(el, target), 'input--' + newState);
+          }
+        });
+      }
+    }
+
+    // Main validation function
+    function validate(el, event, messages) {
+
+      // On form submit
+      if (submitButton) {
+        submitButton.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (!el.hasAttribute('optional') && el.value.length === 0) {
+            state(el, 'error', messages);
+          }
+          else if (el.checkValidity()) {
+            state(el, 'default', messages);
+          }
+        });
+      }
+
+      // On input change
+      el.addEventListener(event, function () {
+        if (el.value.length > 1 && el.checkValidity()) {
+          state(el, 'success', messages);
+        }
+        else if (el.value.length === 0) {
+          state(el, 'default', messages);
+        }
+        else {
+          state(el, 'warning', messages);
+        }
+      });
+    }
+
+    // Matches two inputs
+    function matchInput(el, messages) {
+      if (el.hasAttribute('data-js-match')) {
+        var match = document.getElementById(el.getAttribute('data-js-match'));
+        
+        el.addEventListener('input', function () {
+          if (el.value.length > 2) {
+            state(match, el.value === match.value ? 'success' : 'error', getMessages(match));
+            state(el, 'default', messages);
+          }
+          else {
+            state(el, 'warning', messages);
+          }
+        });
+        
+        match.addEventListener('keyup', function () {
+          state(match, el.value === match.value ? 'success' : 'error', getMessages(match));
+        });
+      }
+    }
+
+    // Call our functions for the inputs
+    Object.keys(inputs).forEach(function (key) {
+      var input = inputs[key].querySelector('input');
+      var select = inputs[key].querySelector('select');
+      var currentInput = input ? input : select;
+      var thisMessages = [];
+
+      // If the input has validation messages
+      if (getMessages(currentInput)) {
+        createMessage(currentInput);
+        thisMessages = getMessages(currentInput);
+      }
+
+      // Pass different values based on input type
+      if (input) {
+        if (input.getAttribute('type') === 'password') {
+          matchInput(input, thisMessages);
+        }
+        else {
+          validate(input, 'input', thisMessages);
+        }
+      }
+      if (select) {
+        validate(select, 'change', thisMessages);
+      }
+    });
+  },
+
+  /**
    * Adds show/hide toggle to password inputs.
    * @param {String} target
    * Css selector for targeting.
@@ -64,11 +209,11 @@ RCDL.features.FormElements = {
 
     Object.keys(inputs).forEach(function (input) {
       var eye = document.createElement('button');
+      eye.setAttribute('type', 'button');
 
       // Initial styles and screen reader text for label.
       eye.innerHTML = '<span class="screen-reader-text">Toggle password visibility</span>';
-      eye.classList.add('input__password__toggle');
-
+      RCDL.utilities.modifyClass('add', eye, ['btn', 'btn--icon', 'rc-icon-show--xs--iconography', 'input__password-toggle']);
       inputs[input].parentNode.appendChild(eye);
 
       eye.addEventListener('click', function (event) {
@@ -78,8 +223,12 @@ RCDL.features.FormElements = {
         switch (input.getAttribute('type')) {
           case 'password':
             input.setAttribute('type', 'text');
+            RCDL.utilities.modifyClass('toggle', eye, 'rc-icon-hide--xs--iconography');
+            RCDL.utilities.modifyClass('toggle', eye, 'rc-icon-show--xs--iconography');
             break;
           case 'text':
+            RCDL.utilities.modifyClass('toggle', eye, 'rc-icon-hide--xs--iconography');
+            RCDL.utilities.modifyClass('toggle', eye, 'rc-icon-show--xs--iconography');
             input.setAttribute('type', 'password');
             break;
         }
@@ -89,6 +238,7 @@ RCDL.features.FormElements = {
 };
 
 RCDL.ready(RCDL.features.FormElements.labels('.input'));
+RCDL.ready(RCDL.features.FormElements.formValidation('[data-js-validate]', null));
 RCDL.ready(RCDL.features.FormElements.passwordField('[type="password"]'));
 
 /**
@@ -102,18 +252,26 @@ RCDL.features.Selects = function (selector) {
   'use strict';
   selector = selector || '[data-js-select]';
   var selects = document.querySelectorAll(selector);
-
+  
   // Check if we actually have any selects on the page.
   if (selects !== null && selects.length > 0) {
     selects.forEach(function (select) {
-      new Choices(select,
-        {
-          placeholder: true,
-          placeholderValue: 'Select an option',
-          searchEnabled: false,
-          removeItemButton: true,
-          shouldSort: false
-        },
+
+      var singleConfig = {
+        searchEnabled: false
+      };
+    
+      var multipleConfig = {
+        placeholderValue: select.getAttribute('data-js-select-placeholder'),
+        searchEnabled: false,
+        removeItemButton: false,
+        classNames: {
+          button: 'choices__btn'
+        }
+      };
+
+      var currentConfig = select.hasAttribute('multiple') ? multipleConfig : singleConfig;
+      new Choices(select, currentConfig,
         select.addEventListener('choice', function () {
           RCDL.utilities.modifyClass('add', select.parentNode.parentNode, 'has-changed');
         })

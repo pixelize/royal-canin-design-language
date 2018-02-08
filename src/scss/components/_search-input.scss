@@ -26,17 +26,13 @@
     }
 
     &:focus ~ [aria-label="Close"]::after {
-        top: -2em;
-        right: -10px;
-        transform-origin: 46% 50%;
-
         .no-cssanimations & {
           background-image: url('../images/loading.gif');
         }
       }
   }
 
-  & > button {
+  & > .btn {
     position: absolute;
     left: 1rem;
     top: 50%;
@@ -50,19 +46,6 @@
   & > [aria-label="Close"] {
     left: auto;
     right: 1rem;
-
-    &::after {
-      @extend %rc-icon;
-      @extend .rc-icon-close--small--red::after;
-    }
-  }
-
-  & > [type="submit"]::after {
-    @extend %rc-icon;
-    @extend .rc-icon-search--red::after;
-    // This is overridden to stop the top of the icon being clipped.
-    // ToDo: Investigate why clipping occurs.
-    height: 33px;
   }
 
   & > label::before {

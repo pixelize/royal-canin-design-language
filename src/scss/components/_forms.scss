@@ -3,10 +3,18 @@
 /// Forms
 
 /// ----------------------------------------------------------------------
-
 /// ------------------- 
-/// Labels
+/// Forms setup
 /// -------------------
+
+$font-size: getProperty($inputSizes, 'base', 'font-size');
+$font-size-transform: $font-size * .7;
+$padding-x--base: getProperty($inputSizes, 'base', 'padding-x');
+$padding-y--base: getProperty($inputSizes, 'base', 'padding-y');
+
+$base-border-width: getProperty($inputEffect, 'control', 'border-width');
+$base-colourFrom: getProperty($inputStates, 'base', 'colourFrom');
+$base-colourTo: getProperty($inputStates, 'base', 'colourTo');
 
 %label {
   position: absolute;
@@ -17,58 +25,112 @@
   pointer-events: none;
 }
 
-%label__text {
+%label-text {
   display: inline-block;
-  padding: .75em;
-  pointer-events: none;
+  padding: $padding-y--base $padding-x--base;
+  text-indent: 1px; // So the cursor lines up nicely.
+  font-weight: 500;
   transition: movementSetting('transition', 'base');
 }
 
-.input__label {
-  @extend %label;
-  
-  &::before,
-  &::after {
+%input {
+  display: block;
+  position: relative;
+  max-width: 300px;
+  margin-top: get-spacer('medium'); // Allow space for label
+  margin-bottom: get-spacer('small');
+}
+
+%input-inline {
+  position: relative;
+  display: inline-block;
+  margin-right: 1.5rem;
+}
+
+%input-stacked {
+  margin-top: get-spacer('small');
+}
+
+%input-base {
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: $padding-y--base $padding-x--base;
+  font-weight: 300;
+  box-shadow: none;
+  border: none;
+  @include inputColour($base-colourFrom, $base-colourTo);
+}
+
+/// ------------------- 
+/// Line animation
+/// -------------------
+
+%line-animation {
+  & + .input__label::before,
+  & + .input__label::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
-    background-color: colour('primary', 'brand2');
     height: 2px;
     z-index: z(default);
     transition: movementSetting('transition', 'base');
   }
-  
-  &::after {
-    background-color: colour('tertiary', 'function');
+
+  & + .input__label::before {
+    width: 100%;
+  }
+
+  & + .input__label::after {
     z-index: z(default) + 1;
     width: 0;
   }
+
+  &:focus + .input__label::after,
+  &:not([value=""]) ~ .input__label::after {
+    width: 100%;
+  }
 }
 
-.input__label__text {
-  @extend %label__text;
- }
+%label-animation {
+  &:not([value=""]) ~ .input__label .input__label-text {
+    font-size: $font-size-transform;
+    transform: translateY(-2.8em);
+    padding-left: 0;
+  }
+}
 
-/// ------------------- 
-/// Label transition
-/// -------------------
+@each $input in $inputEffect {
+  $line-animation: getProperty($inputEffect, $input, 'line-animation');
+  $label-animation: getProperty($inputEffect, $input, 'label-animation');
 
-.input input:focus,
-.input textarea:focus,
-.input input:not([value=""]),
-.input textarea:not([value=""]) {
-  & + .input__label {
-    & > .input__label__text {
-      transform: translate(0, -3em);
-      padding-left: 0;
-    }
-
-    &::after {
-      width: 100%;
+  @if ($line-animation) {
+    .input__#{$input} + .input__label {
+      @extend %line-animation;
     }
   }
+  @if ($label-animation) {
+    .input__#{$input} + .input__label {
+      @extend %label-animation;
+    }
+  }
+}
+
+/// ------------------- 
+/// Labels
+/// -------------------
+
+.input__label {
+  @extend %label;
+
+  button + & {
+    margin-right: 2rem;
+  }
+}
+
+.input__label-text {
+  @extend %label-text;
 }
 
 /// ------------------- 
@@ -80,113 +142,109 @@
   cursor: pointer;
 }
 
-.input__label--wrap {
-  display: block;
-  margin-bottom: .5rem;
-  cursor: pointer;
-}
-
 /// ------------------- 
-/// Input wrapper & base styles
+/// Inputs - Standard (text, email, url, number etc)
 /// -------------------
-
-%input-wrapper {
-  display: block;
-  position: relative;
-  margin-top: 3rem;
-  margin-bottom: 1em;
-}
 
 .input {
-  @extend %input-wrapper;
-  max-width: 300px;
+  @extend %input;
 }
 
-%input-base {
-  margin-bottom: 0;
-  padding: .75em;
-  box-shadow: none;
-  background-color: colour('primary', 'brand4');
-  display: block;
-  width: 100%;
-  font-size: 1.125em;
-  border: 1px solid transparent;
-
-  &:focus {
-    outline: none;
-  }
-}
-
-/// ------------------- 
-/// Input states
-/// -------------------
-
-%error {
-  border: 1px solid colour('primary', 'brand1');
-  background-color: lighten(colour('primary', 'brand1'), 50%);
-}
-
-.input {
-  & :disabled {
-    & + .input__label {
-      opacity: .3;
-    }
-  }
-  
-  & .error {
-    @extend %error;
-    color: colour('primary', 'brand1');
-    & + .input__label::after {
-      background-color: colour('primary', 'brand1');
-      width: 100%;
-    }
-  }
-}
-
-.choices.error + .select__label {
-  @extend %error;
-  border-bottom: 2px solid colour('primary', 'brand1');
-}
-
-/// ------------------- 
-/// Common inputs
-/// -------------------
-
-.input__text {
+.input__control {
   @extend %input-base;
 }
 
-.input__email {
-  @extend %input-base;
-}
-
-.input__number {
-  @extend %input-base;
-}
-
-.input__search {
-  @extend %input-base;
-}
-
-.input__tel {
-  @extend %input-base;
-}
-
-.input__url {
-  @extend %input-base;
-}
-
-.input__date {
-  @extend %input-base;
-}
 
 /// ------------------- 
 /// Input modifiers
 /// -------------------
 
-.input--white {
-  & input {
-    background-color: colour('primary', 'brand3');
+.input--inline {
+  @extend %input-inline;
+}
+
+.input--stacked {
+  @extend %input-stacked;
+}
+
+/// ------------------- 
+/// Submit
+/// -------------------
+
+.input__submit {
+  @extend .btn;
+}
+
+/// ------------------- 
+/// Submit modifiers
+/// -------------------
+
+.input__submit--search {
+  position: absolute;
+  top: 0; 
+  left: -.5rem;
+  @extend .btn--icon;
+  
+  &::after {
+    @extend .rc-icon-search--xs--iconography;
+  }
+
+  & ~ .input__control,
+  & ~ .input__label .input__label-text {
+    padding-left: 2rem;
+
+    &:not([value=""]) + .input__label .input__label-text {
+      padding-left: 0;
+    }
+  }
+}
+
+.input__submit--micro {
+  position: absolute;
+  top: 0; 
+  right: -3rem;
+  @extend .btn--action;
+
+  &::after {
+    @extend .rc-icon-arrow--xs--brand3;
+  }
+}
+
+/// ------------------- 
+/// Textarea
+/// -------------------
+
+.input__textarea {
+  padding: $padding-y--base;
+  resize: vertical;
+  height: 200px;
+  border-style: solid;
+  border-width: $base-border-width;
+  @extend %input-base;
+
+  & + .input__label > .input__label-text {
+    padding-left: $padding-y--base;
+  }
+
+  &:not([value=""]) ~ .input__label .input__label-text {
+    margin-bottom: $padding-y--base;
+  }
+}
+
+/// ------------------- 
+/// Date
+/// -------------------
+
+.input__date {
+  text-indent: 1rem;
+  @extend %input-base;
+
+  &::after {
+    left: 0;
+    @extend .vertical-align;
+    @extend %rc-icon;
+    @extend .rc-icon--interactive;
+    @extend .rc-icon-calendar--xs--iconography;
   }
 }
 
@@ -196,37 +254,77 @@
 
 .input__password {
   @extend %input-base;
-}
 
-.input__password__toggle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  opacity: .3;
-  width: 3em;
-  transition: movementSetting('transition', 'base');
-  border: none;
-  background: none;
-  @extend %rc-icon;
-  @extend .rc-icon-view--show--dark;
-
-  &:hover,
-  &:focus,
-  &:active {
-    opacity: 1;
+  & ~ .input__password-toggle {
+    right: -2.25rem;
+    border: none;
+    background-color: transparent;
+    opacity: .5;
+    transition: movementSetting('transition', 'base');
+    @extend .vertical-align;
+  
+    &:hover,
+    &:focus,
+    &:active {
+      opacity: 1;
+    }
   }
 }
 
 /// ------------------- 
-/// Textarea
+/// Input states
 /// -------------------
 
-.input__textarea {
-  @extend %input-base;
-  resize: vertical;
-  height: 200px;
-  background-color: colour('primary', 'brand4');
+.input__control:disabled {
+  background-color: colour('secondary', 'interface');
+  cursor: not-allowed;
+
+  & + .input__label > .input__label-text {
+    color: colour('secondary', 'text');
+    opacity: .5;
+  }
+}
+
+.input__validation-message {
+  position: absolute;
+  font-size: $font-size-transform;
+  margin-top: $font-size / 2;
+  display: none;
+}
+
+@each $state in $inputStates {
+  $state: nth($state, 1);
+  $colourFrom: getProperty($inputStates, $state, 'colourFrom');
+  $colourTo: getProperty($inputStates, $state, 'colourTo');
+  $icon: getProperty($inputStates, $state, 'icon');
+
+  @if ($state != 'base') {
+    .input--#{$state} {
+      & > [class^="input"] {
+        @include inputColour($colourFrom, $colourTo);
+      }
+
+      &.select .choices {
+        color: $colourTo;
+        border-color: $colourTo;
+
+        & .choices__placeholder {
+          opacity: 1;
+        }
+      }
+
+      &.input::after {
+        right: $padding-x--base;
+        @extend .vertical-align;
+        @extend %rc-icon;
+        @extend .#{$icon};
+      }
+
+      & .input__validation-message {
+        display: block;
+      }
+    }
+  }
 }
 
 /// ------------------- 
@@ -239,7 +337,8 @@
 }
 
 %rc-checkbox-radio {
-  display: none;
+  opacity: 0;
+  margin-right: -1rem;
   
   & + .input__label--inline {
     margin-left: 2rem;
@@ -247,8 +346,8 @@
     &::before {
       content: '';
       display: inline-block;
-      border: 1px solid colour('primary', 'brand2');
-      background-color: colour('primary', 'brand4');
+      border: 1px solid colour('secondary', 'interface');
+      background-color: colour('primary', 'brand3');
       width: 1.5rem;
       height: 1.5rem;
       position: absolute;
@@ -265,7 +364,7 @@
 /// Checkbox modifiers
 /// -------------------
 
-.input__checkbox--custom {
+.input__checkbox {
   @extend %rc-checkbox-radio;
 
   & + .input__label--inline::before {
@@ -273,25 +372,10 @@
   }
   
   &:checked + .input__label--inline::after {
-    @extend %rc-icon;
-    @extend .rc-icon-feedback--success--small--red;
     top: -4px;
     left: -4px;
-  }
-}
-
-.input__checkbox--featured {
-  @extend %rc-checkbox-radio;
-
-  & + .input__label--inline::before {
-    border: none;
-  }
-  
-  &:checked + .input__label--inline::after {
     @extend %rc-icon;
-    @extend .rc-icon-feedback--success--small--red;
-    top: -4px;
-    left: -4px;
+    @extend .rc-icon-tick--xs--brand1;
   }
 }
 
@@ -299,7 +383,7 @@
 /// Radio modifiers
 /// -------------------
 
-.input__radio--custom {
+.input__radio {
   @extend %rc-checkbox-radio;
 
   & + .input__label--inline::before {
@@ -310,10 +394,10 @@
     content: '';
     background-color: colour('primary', 'brand1');
     border-radius: 1rem;
-    width: 1rem;
-    height: 1rem;
-    top: 4px;
-    left: 4px;
+    width: .6rem;
+    height: .6rem;
+    top: 7px;
+    left: 7px;
   }
 }
 
@@ -322,123 +406,114 @@
 /// -------------------
 
 .select {
-  @extend %input-wrapper;
-}
+  @extend %input;
 
-.select__label {
-  @extend %label; 
-  z-index: z(select-box);
-  background-color: colour('primary', 'brand4');
-  border: none;
-  border-bottom: 2px solid #87888A;
-  border-radius: 0;
-  
-  .select__label__text {
-    @extend %label__text;
-  }
-}
-
-/// ------------------- 
-/// Select modifiers
-/// -------------------
-
-.select--white {
-  & .choices__inner,
   & .select__label {
-    background-color: colour('primary', 'brand3');
+    position: absolute;
+    top: -1rem;
+    padding: 0;
+    font-size: $font-size-transform;
+    @extend %label-text;
   }
-}
 
-/// ------------------- 
-/// Choices.js
-/// -------------------
+  & .choices {
+    margin: 0;
+    border-bottom: solid 2px;
+    border-color: $base-colourFrom;
+    cursor: pointer;
 
-.choices:focus,
-.choices.is-open,
-.choices.has-changed {
-  & + .select__label {
-    background: none;
+    & .choices__list--dropdown {
+      border-radius: 4px;
+      margin-top: -4px;
+      z-index: z(select-box) + 1;
+      background-color: colour('primary', 'brand3');
+      border-color: colour('secondary', 'interface');
+    }
+    
+    & .choices__inner {
+      font-size: $font-size;
+      border: none;
+      background: none;
+      padding: .6rem $padding-x--base;
+    }
+    
+    &::after {
+      border: none;
+      right: .5rem;
+      z-index: z(select-box) + 1;
+      @extend .vertical-align;
+      @extend %rc-icon;
+      @extend .rc-icon--interactive;
+      @extend .rc-icon-down--xs--iconography;
+    }
 
-    .select__label__text {
-        transform: translate(0, -3em);
-        padding-left: 0;
-        background: none;
+    &.is-open::after {
+      transform: translateY(-50%) rotate(180deg);
     }
   }
 }
 
-[role="listbox"].choices {
-  cursor: pointer;
-  margin: 0;
-  
-  & > .choices__inner {
-    border: none;
-    min-height: 49px;
-  }
-  
-  &::after {
-    @extend %rc-icon;
-    @extend .rc-icon-chevron--down--small--red;
-    pointer-events: none;
-    height: 32px;
-    width: 32px;
-    border: none;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 1rem;
-    position: absolute;
-    cursor: pointer;
-    z-index: z(select-box) + 1;
+/// ------------------- 
+/// Single select
+/// -------------------
+
+[data-type="select-one"] {
+  &.has-changed {
+    border-color: $base-colourTo;
   }
 
-  &.is-open::after {
-    transform: translateY(-50%) rotate(180deg);
+  & .choices__list--single {
+    padding: 0;
   }
 }
 
-[role="listbox"].choices--white {
-  & > .choices__inner {
-    background-color: colour('primary', 'brand3');
+/// ------------------- 
+/// Multi select
+/// -------------------
+
+[data-type="select-multiple"] {
+  & .choices__input,
+  & .choices__list {
+    padding: 0;
+    margin: 0;
+    font-size: $font-size;
   }
-}
 
-.choices__item--selectable.is-highlighted {
-  background-color: colour('primary', 'brand4');
-}
-
-.choices__list--multiple {
-  & .choices__item {
-    background-color: colour('primary', 'brand1');
-    border: none;
-    border-radius: 0;
-    padding: .75em;
+  &.has-changed {
+    border-color: $base-colourTo;
   }
   
-  & .choices__item.is-highlighted {
-    background-color: colour('primary', 'brand1');
-    border: none;
+  & .choices__input {
+    background: none;
+    vertical-align: middle;
   }
-} 
 
-.choices__list--dropdown {
-  z-index: z(select-box) + 1;
-}
+  & .choices__list--multiple .choices__item {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    padding-right: 5px;
+    background: none;
+    border: none;
+    color: $base-colourTo;
+    font-weight: 300;
+    font-size: $font-size;
 
-.choices[data-type*="select-multiple"] .choices__button,
-.choices[data-type*="text"] .choices__button {
-  background-image: none;
-  border-left: none;
-  width: 1.5rem;
-  margin: 0;
-  padding: 0;
-  pointer-events: none;
+    &::after {
+      content: ',';
+    }
+  }
 
-  &::after {
-    @extend %rc-icon;
-    @extend .rc-icon-close--small--light::after;
-    position: absolute;
-    right: -8px;
-    top: -10px;
+  & .choices__btn {
+    font-size: 0;
+    background: none;
+    border: none;
+    
+    &::after {
+      transform: scale(.5);
+      @extend %rc-icon;
+      @extend .rc-icon-close--xs--iconography;
+    }
   }
 }
 

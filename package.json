@@ -4,7 +4,7 @@
   "description": "This repository contains the development files used to generate the Royal Canin Web Design Language assets.",
   "main": "src/scss/royal-canin.styles.scss",
   "dependencies": {
-    "choices.js": "^3.0.2",
+    "choices.js": "^3.0.3",
     "normalize.css": "^7.0.0",
     "nouislider": "^10.0.0",
     "pikaday": "^1.6.1",

@@ -35,3 +35,20 @@
     @error 'The shadow doesn\'t exist';
   }
 }
+
+///
+/// Get border radius
+///
+/// Get border radius of element.
+///
+/// @param {String} $key Name of the element, found in the $border-radius sass map.
+/// @returns {Number}
+///
+@function borderRadius($key) {
+	@if map-has-key($border-radius, $key) {
+		@return map-get($border-radius, $key);
+	}
+	@else {
+		@error 'Unknown `#{$key}` in $border-radius.';
+	}
+}

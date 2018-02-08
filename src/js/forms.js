@@ -80,7 +80,7 @@ RCDL.features.FormElements = {
       return result;
     }
 
-    // Create the container span for the validation message
+    // Create the container span for the validation message - @todo extract this into element creator
     function createMessage(el) {
       var newSpan = document.createElement('span');
       newSpan.setAttribute('data-js-validation-message', '');

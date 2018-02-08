@@ -3839,26 +3839,31 @@ RCDL.utilities.getSiblings = function (el) {
 };
 
 /**
- * Check if element includes a value
+ * Check if string includes another string
  *
- * @param {Node} el
- * Target DOM node item.
+ * @param {String} str
+ * First string
  *
  * @param {String} value
- * Value to check against.
+ * String to check against.
  *
  * @return {Boolean}
  * Returns true if match found.
  */
-RCDL.utilities.includes = function (el, value) {
+RCDL.utilities.includes = function (str, value) {
   'use strict';
 
-  var returnValue = false;
-  var pos = el.indexOf(value);
-  if (pos >= 0) {
-    returnValue = true;
+  if (typeof str === 'string') {
+    var returnValue = false;
+    var pos = str.indexOf(value);
+    if (pos >= 0) {
+      returnValue = true;
+    }
+    return returnValue;
   }
-  return returnValue;
+  else {
+    throw new Error('RCDL.utilities.includes:' + str + 'is not a string');
+  }
 };
 
 /**

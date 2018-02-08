@@ -4,7 +4,7 @@ All notable changes to Royal Canin Design Language will be documented on this pa
 [View Full](http://developer.royalcanin.com/changelog.html)
 
  ## v6.0.0
-A new version with some major updates, namely to buttons and forms that help underpin our consistent visual identity.
+A major version update that includes an overhaul of foundation elements; namely buttons and forms. These design and functional updates help to underpin our consistent visual identity whilst making these elements more robust and flexible for implementation, with clear new rules on aspects such as usage, interactivity and hierarchy.
  ### Breaking Changes
  ##### Buttons
 An overhaul of all button elements including styling, states, functionality as well as rules on hierarchy that help to support visual flow and create a unified consistent brand identity.

@@ -23,13 +23,6 @@
 ///
 ///
 
-
-$properties: (
-  ('bg', 'background-color')
-  ('text', 'color')
-  ('border', 'border-color')
-);
-
 @each $shortname, $prop in $properties {
   
   $style: if($shortname == 'bg', $background, if($shortname == 'text', $text, $border));
@@ -47,32 +40,16 @@ $properties: (
 ///  Gradients
 /// -------------------
 
-$gradients: ('horizontal', colour('primary', 'brand3'), colour('primary', 'brand4')),
-            ('vertical', colour('primary', 'brand3'), colour('primary', 'brand4'));
-
 @mixin linear-gradient($direction, $from, $to) {
   background: linear-gradient(
     is-direction($direction), $from 0%, $to 100%);
-}
-
-@function is-direction($value) {
-  $conversion-map: (
-    horizontal    : 90deg,
-    vertical      : 180deg
-  );
-
-  @if map-has-key($conversion-map, $value) {
-    @return map-get($conversion-map, $value);
-  }
-
-  @return $value;
 }
 
 @each $gradient in $gradients {
   .bg-gradient--#{nth($gradient, 1)} {
     @include linear-gradient(
       nth($gradient, 1),
-      nth($gradient, 2),
-      nth($gradient, 3));
+      map-get( map-get($gradients, #{nth($gradient, 1)}), 'colour-from'),
+      map-get( map-get($gradients, #{nth($gradient, 1)}), 'colour-to'));
   }
 }

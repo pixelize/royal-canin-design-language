@@ -5,7 +5,7 @@
 .styled-link,
 %styled-link {
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: middle;
   position: relative;
   z-index: z(default);
   color: colour('secondary', 'hyperlink');
@@ -28,7 +28,7 @@
   &:hover,
   &:focus {
     color: colour('primary', 'brand1');
-    border-bottom: 1px solid colour('secondary', 'interface');
+    border-bottom: 1px solid colour('primary', 'brand1');
     text-decoration: none;
   }
 
@@ -37,6 +37,8 @@
   }
 
   &:active {
+    opacity: .75;
+
     &::before {
       background-color: colour('secondary', 'text');
     }
@@ -45,8 +47,11 @@
 
 .styled-link--cta {
   @extend %styled-link;
+  display: table;
+  margin: 1rem 0;
   color: colour('primary', 'brand1');
   border-bottom: 1px solid rgba(colour('primary', 'brand1'), 0.15);
+
 
   &:hover {
     border-bottom: 1px solid rgba(colour('primary', 'brand1'), 1);
@@ -70,15 +75,16 @@ nav {
 
 .styled-link--external {
   @extend %styled-link;
-
+  vertical-align: middle;
+  padding-right: 1.5rem;
+  
   &::after {
     @extend %rc-icon;
-    @extend .rc-icon-external--small--dark;
-    position: relative;
-    bottom: -.7rem;
-  }
-
-  &:hover::after {
-    @extend .rc-icon-external--small--red;
+    @extend .rc-icon-external--xs--iconography;
+    @extend .rc-icon--interactive;
+    position: absolute;
+    vertical-align: middle;
+    top: -.5em;
   }
 }
+

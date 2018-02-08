@@ -46,6 +46,15 @@
   }
 }
 
+@keyframes iconFade {
+  0% {
+    opacity: .6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @mixin generateAnimation($animate, $transform, $transformPlusValue) {
   @if $animate == steady-spin {
     @keyframes steady-spin-#{$transform} {

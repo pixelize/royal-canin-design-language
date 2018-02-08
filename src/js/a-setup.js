@@ -159,7 +159,7 @@ RCDL.utilities.getSiblings = function (el) {
 };
 
 /**
- * Get all siblings of an element.
+ * Check if element includes a value
  *
  * @param {Node} el
  * Target DOM node item.

@@ -4521,24 +4521,24 @@ RCDL.features.Selects = function (selector) {
   'use strict';
   selector = selector || '[data-js-select]';
   var selects = document.querySelectorAll(selector);
-
-  var singleConfig = {
-    placeholderValue: 'Please select...',
-    searchEnabled: false
-  };
-
-  var multipleConfig = {
-    placeholderValue: 'Please select...',
-    searchEnabled: false,
-    removeItemButton: false,
-    classNames: {
-      button: 'choices__btn'
-    }
-  };
-
+  
   // Check if we actually have any selects on the page.
   if (selects !== null && selects.length > 0) {
     selects.forEach(function (select) {
+
+      var singleConfig = {
+        searchEnabled: false
+      };
+    
+      var multipleConfig = {
+        placeholderValue: select.getAttribute('data-js-select-placeholder'),
+        searchEnabled: false,
+        removeItemButton: false,
+        classNames: {
+          button: 'choices__btn'
+        }
+      };
+
       var currentConfig = select.hasAttribute('multiple') ? multipleConfig : singleConfig;
       new Choices(select, currentConfig,
         select.addEventListener('choice', function () {

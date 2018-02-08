@@ -71,8 +71,8 @@ RCDL.features.FormElements = {
     // Check if current input has any validation messages and push to array
     function getMessages(el) {
       var result = [];
-      Object.keys(el.closest(target).attributes).forEach(function (attr) {
-        var attrName = el.closest(target).attributes[attr].name;
+      Object.keys(RCDL.utilities.closest(el, target).attributes).forEach(function (attr) {
+        var attrName = RCDL.utilities.closest(el, target).attributes[attr].name;
         if (/message$/.test(attrName)) {
           result.push(attrName);
         }
@@ -85,7 +85,7 @@ RCDL.features.FormElements = {
       var newSpan = document.createElement('span');
       newSpan.setAttribute('data-js-validation-message', '');
       RCDL.utilities.modifyClass('add', newSpan, 'input__validation-message');
-      el.closest(target).appendChild(newSpan);
+      RCDL.utilities.closest(el, target).appendChild(newSpan);
     }
 
     // Return the correct class and messages for the state
@@ -93,16 +93,16 @@ RCDL.features.FormElements = {
       
       // Compare the messages to the state to check if any exist
       if (messages.length > 0) {
-        var validationMsg = el.closest(target).querySelector('[data-js-validation-message]');
+        var validationMsg = RCDL.utilities.closest(el, target).querySelector('[data-js-validation-message]');
         
         messages.forEach(function (msg) {
-          if (msg.includes(state)) {
-            RCDL.utilities.modifyClass('add', el.closest(target), 'input--' + state);
-            validationMsg.innerText = el.closest(target).getAttribute('data-js-' + state + '-message');
+          if (RCDL.utilities.includes(msg, state)) {
+            RCDL.utilities.modifyClass('add', RCDL.utilities.closest(el, target), 'input--' + state);
+            validationMsg.innerText = RCDL.utilities.closest(el, target).getAttribute('data-js-' + state + '-message');
           }
           else {
             var oldState = msg.split('-')[msg.split('-').length - 2]; // Get just the state from the message type
-            RCDL.utilities.modifyClass('remove', el.closest(target), 'input--' + oldState);
+            RCDL.utilities.modifyClass('remove', RCDL.utilities.closest(el, target), 'input--' + oldState);
           }
         });
       }
@@ -110,10 +110,10 @@ RCDL.features.FormElements = {
         var newStates = ['default', 'error'];
         newStates.forEach(function (newState) {
           if (newState === state) { // If the state we passed matches, add the class
-            RCDL.utilities.modifyClass('add', el.closest(target), 'input--' + newState);
+            RCDL.utilities.modifyClass('add', RCDL.utilities.closest(el, target), 'input--' + newState);
           }
           else { // Remove all other states
-            RCDL.utilities.modifyClass('remove', el.closest(target), 'input--' + newState);
+            RCDL.utilities.modifyClass('remove', RCDL.utilities.closest(el, target), 'input--' + newState);
           }
         });
       }

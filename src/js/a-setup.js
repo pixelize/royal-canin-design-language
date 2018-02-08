@@ -159,6 +159,77 @@ RCDL.utilities.getSiblings = function (el) {
 };
 
 /**
+ * Get all siblings of an element.
+ *
+ * @param {Node} el
+ * Target DOM node item.
+ *
+ * @param {String} value
+ * Value to check against.
+ *
+ * @return {Boolean}
+ * Returns true if match found.
+ */
+RCDL.utilities.includes = function (el, value) {
+  'use strict';
+
+  var returnValue = false;
+  var pos = el.indexOf(value);
+  if (pos >= 0) {
+    returnValue = true;
+  }
+  return returnValue;
+};
+
+/**
+ * Get the closest parent element that matches a selector.
+ *
+ * @param {Node} el
+ * Target DOM node item.
+ *
+ * @param  {String}  selector
+ * Selector to match against
+ *
+ * @return {Boolean|Element}
+ * Returns null if no match found
+ */
+RCDL.utilities.closest = function (el, selector) {
+  'use strict';
+
+  // Element.matches() polyfill
+  if (!Element.prototype.matches) {
+    Element.prototype.matches =
+      Element.prototype.msMatchesSelector ||
+      Element.prototype.webkitMatchesSelector;
+  }
+
+  if (!Element.prototype.closest) {
+    Element.prototype.closest = function (s) {
+      var el = this;
+      if (!document.documentElement.contains(el)) {
+        return null;
+      }
+      do {
+        if (el.matches(s)) {
+          return el;
+        }
+        el = el.parentElement || el.parentNode;
+      } while (el !== null && el.nodeType === 1);
+      return null;
+    };
+  }
+
+  // Get closest match
+  for (; el && el !== document; el = el.parentNode) {
+    if (el.matches(selector)) {
+      return el;
+    }
+  }
+
+  return null;
+};
+
+/**
  * Used to add/remove classes on a target element.
  *
  * @param {String} type
